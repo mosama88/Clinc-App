@@ -46,16 +46,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard.currencies.index') }}" class="nav-link @yield('active-currency')">
+                            <a href="#" class="nav-link @yield('active-currency')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>العملات</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.calcNetSalary.index') }}" class="nav-link @yield('active-calcNetSalary')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>حساب العملات</p>
                             </a>
                         </li>
                     </ul>
