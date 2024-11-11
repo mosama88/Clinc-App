@@ -34,9 +34,9 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item has-treeview    {{ request()->is('admin/calcNetSalary*') || request()->is('admin/currencies*') ? 'menu-open' : '' }} ">
+                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/cities*') || request()->is('admin/specializations*') ? 'menu-open' : '' }} ">
                     <a href="{{ url('/') }}"
-                        class="nav-link {{ request()->is('calcNetSalary*') || request()->is('currencies*') ? 'active' : '' }} ">
+                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('cities*') || request()->is('specializations*') ? 'active' : '' }} ">
 
                         <i class="fas fa-cog"></i>
                         <p>
@@ -46,11 +46,24 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link @yield('active-currency')">
+                            <a href="{{ route('dashboard.BloodTypes.index') }}" class="nav-link @yield('active-BloodTypes')">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>العملات</p>
+                                <p>فصيلة الدم</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.cities.index') }}" class="nav-link @yield('active-cities')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>المدن</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.specializations.index') }}" class="nav-link @yield('active-specializations')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>التخصصات</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
 

@@ -5,7 +5,8 @@ use App\Http\Controllers\Dashboard\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Dashboard\calcNetSalaryController;
+use App\Http\Controllers\Dashboard\CityController;
+use App\Http\Controllers\Dashboard\BloodTypesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,9 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->name('dashboard.
 
 
     //
-
-
+    Route::resource('cities', CityController::class);
+    Route::resource('BloodTypes', BloodTypesController::class);
+    Route::resource('specializations', BloodTypesController::class);
 });
 
 
