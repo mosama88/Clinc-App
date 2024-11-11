@@ -54,9 +54,19 @@ class AdminPanelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $com_code = auth()->user()->com_code;
+        $updateAdminPanel = AdminPanel::findOrFail($id);
+        $updateAdminPanel['company_name'] = $request->company_name;
+        $updateAdminPanel['system_status'] = $request->system_status;
+        $updateAdminPanel['phons'] = $request->phons;
+        $updateAdminPanel['address'] = $request->address;
+        $updateAdminPanel['email'] = $request->email;
+        $updateAdminPanel['company_name'] = auth()->user()->id;
+        $updateAdminPanel['com_code'] = $com_code;
+        $updateAdminPanel->save();
+        return redirect()->route('dashboard.admin_panels.index')->with('success', 'تم تعديل بيانات الشركة بنجاح');
     }
 
     /**

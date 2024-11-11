@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Nationality extends Model
 {
     use HasFactory;
+
+
+    protected $table = "nationalities";
+
+    protected $guarded = [];
+
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
 }

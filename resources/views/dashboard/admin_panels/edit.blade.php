@@ -28,88 +28,97 @@
                 <!-- /.card-header -->
                 <div class="card-body p-0">
 
+                    <form action="{{ route('dashboard.admin_panels.update', $editData['id']) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                    <table class="table table-bordered mg-b-0 text-md-nowrap">
-                        <tr>
-                            <td class="wd-500">اسم الشركة</td>
-                            <td>
-                                <input type="text" class="form-control" value="{{ $editData['company_name'] }}"
-                                    placeholder="Enter ...">
-                            </td>
-                            @error('image')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </tr>
-                        <tr>
-                            <td class="wd-500"> حالة التفعيل</td>
-                            <td>
-                                <input type="text" class="form-control" value="{{ $editData['company_name'] }}"
-                                    placeholder="Enter ...">
-                            </td>
-                            @error('image')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </tr>
-                        <tr>
-                            <td class="wd-500">هاتف الشركة</td>
-                            <td>
-                                <input type="text" class="form-control" value="{{ $editData['phons'] }}"
-                                    placeholder="Enter ...">
-                            </td>
-                            @error('image')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </tr>
-                        <tr>
-                            <td class="wd-500">عنوان الشركة</td>
-                            <td>
-                                <input type="text" class="form-control" value="{{ $editData['address'] }}"
-                                    placeholder="Enter ...">
-                            </td>
-                            @error('image')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </tr>
-                        <tr>
-                            <td class="wd-500">بريد الشركة</td>
-                            <td>
-                                <input type="text" class="form-control" value="{{ $editData['email'] }}"
-                                    placeholder="Enter ...">
-                            </td>
-                            @error('image')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </tr>
+                        <table class="table table-bordered mg-b-0 text-md-nowrap">
+                            <tr>
+                                <td class="wd-500">اسم الشركة</td>
+                                <td>
+                                    <input type="text" class="form-control" name="company_name"
+                                        value="{{ $editData['company_name'] }}" placeholder="Enter ...">
+                                </td>
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <td class="wd-500"> حالة التفعيل</td>
+                                <td>
+                                    <select name="system_status" class="form-control">
+                                        <option selected>-- أختر حالة التفعيل --</option>
+                                        <option @if ($editData['system_status'] == 1) selected @endif value="1">مفعل
+                                        </option>
+                                        <option @if ($editData['system_status'] == 0) selected @endif value="0">غير مفعل
+                                        </option>
+                                    </select>
 
-
-                        <tr>
-                            <td class="wd-500">شعار الشركة</td>
-                            <td>
-                                <input type="file" name="photo_cover" class="dropify" data-height="200" />
-                            </td>
-                            @error('image')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </tr>
-
-                        <tr>
-                            <td class="wd-500">شعار الشركة</td>
-                            <td>
-                                <input type="file" name="photo_cover" class="dropify" data-height="200" />
-                            </td>
-                            @error('image')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </tr>
-
-                        <tr>
-                            <td colspan="2" class="text-center">
-                                <button type="button" class="btn  btn-primary btn-flat">تعديل البيانات</button>
-                            </td>
-                        </tr>
-                    </table>
+                                </td>
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <td class="wd-500">هاتف الشركة</td>
+                                <td>
+                                    <input type="text" name="phons" class="form-control"
+                                        value="{{ $editData['phons'] }}" placeholder="Enter ...">
+                                </td>
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <td class="wd-500">عنوان الشركة</td>
+                                <td>
+                                    <input type="text" name="address" class="form-control"
+                                        value="{{ $editData['address'] }}" placeholder="Enter ...">
+                                </td>
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </tr>
+                            <tr>
+                                <td class="wd-500">بريد الشركة</td>
+                                <td>
+                                    <input type="text" class="form-control" name="email"
+                                        value="{{ $editData['email'] }}" placeholder="Enter ...">
+                                </td>
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </tr>
 
 
+                            <tr>
+                                <td class="wd-500">شعار الشركة</td>
+                                <td>
+                                    <input type="file" name="photo_cover" class="dropify" data-height="200" />
+                                </td>
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </tr>
+
+                            <tr>
+                                <td class="wd-500">شعار الشركة</td>
+                                <td>
+                                    <input type="file" name="image" class="dropify" data-height="200" />
+                                </td>
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <button type="button" class="btn  btn-primary btn-flat">تعديل البيانات</button>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
 
 
                 </div>

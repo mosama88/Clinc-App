@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class AdminPanel extends Model
 {
     use HasFactory;
+
+    protected $table = "admin_panels";
+
+    protected $guarded = [];
+
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
 }
