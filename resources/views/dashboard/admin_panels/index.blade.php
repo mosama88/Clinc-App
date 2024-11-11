@@ -50,7 +50,7 @@
                             </tr>
                             <tr>
                                 <td class="wd-500">هاتف الشركة</td>
-                                <td> {{ $data['phons'] }}</td>
+                                <td> {{ $data['phones'] }}</td>
                             </tr>
                             <tr>
                                 <td class="wd-500">عنوان الشركة</td>

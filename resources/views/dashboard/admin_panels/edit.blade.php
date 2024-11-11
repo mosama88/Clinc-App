@@ -71,9 +71,9 @@
                             <tr>
                                 <td class="wd-500">هاتف الشركة</td>
                                 <td>
-                                    <input type="text" name="phons" class="form-control"
-                                        value="{{ $editData['phons'] }}" placeholder="Enter ...">
-                                    @error('phons')
+                                    <input type="text" name="phones" class="form-control"
+                                        value="{{ $editData['phones'] }}" placeholder="Enter ...">
+                                    @error('phones')
                                         <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
@@ -103,8 +103,8 @@
                             <tr>
                                 <td class="wd-500">لوجو الشركة</td>
                                 <td>
-                                    <input type="file" name="photo" class="dropify" data-height="200" />
-                                    @error('photo')
+                                    <input class="form-control" name="comp_photo" type="file" id="formFile">
+                                    @error('comp_photo')
                                         <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
@@ -113,7 +113,8 @@
                             <tr>
                                 <td class="wd-500">صورة الشركة</td>
                                 <td>
-                                    <input type="file" name="photo_cover" class="dropify" data-height="200" />
+                                    <input class="form-control" name="photo_cover" type="file" id="formFile">
+
                                     @error('photo_cover')
                                         <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror

@@ -64,33 +64,36 @@ class AdminPanelController extends Controller
         $updateAdminPanel = AdminPanel::findOrFail($id);
         $updateAdminPanel['company_name'] = $request->company_name;
         $updateAdminPanel['system_status'] = $request->system_status;
-        $updateAdminPanel['phons'] = $request->phons;
+        $updateAdminPanel['phones'] = $request->phones;
         $updateAdminPanel['address'] = $request->address;
         $updateAdminPanel['email'] = $request->email;
         $updateAdminPanel['updated_by'] = auth()->user()->id;
         $updateAdminPanel['com_code'] = $com_code;
      $adminPanel =    $updateAdminPanel->save();
 
-// التحقق من وجود الصورة وتحديثها إذا لزم الأمر
-if ($request->hasFile('photo')) { // التحقق من وجود ملف في الحقل photo
-    // حذف الصورة القديمة إذا وجدت
-    if ($updateAdminPanel->image) {
-        $old_img_path = public_path('dashboard/assets/uploads/admin_setting/' . $updateAdminPanel->image);
-        if (file_exists($old_img_path)) {
-            unlink($old_img_path); // حذف الملف الفعلي
+// التحقق من وجود الصورة وتحديثها
+if ($request->hasFile('photo')) {
+    $request->validate([
+        'photo' => 'nullable|mimes:png,jpg,jpeg|max:5000',
+    ], [
+        'photo.mimes' => 'الملفات المسموح بها يجب ان تكون من نوع png,jpg,jpeg',
+        'photo.max' => 'اقصى مساحة للملف 5 ميجا',
+    ]);
+
+    // حذف الصورة القديمة إذا كانت موجودة
+    if ($updateAdminPanel->photo) {
+        $old_image_path = public_path('dashboard/assets/uploads/admin_setting/' . $updateAdminPanel->photo);
+        if (file_exists($old_image_path)) {
+            unlink($old_image_path);
         }
-        $updateAdminPanel->image = null; // تحديث الحقل في قاعدة البيانات
     }
 
-    // رفع الصورة الجديدة وتخزينها
-    $file = $request->file('photo');
-    $fileName = time() . '.' . $file->getClientOriginalExtension();
-    $file->move(public_path('dashboard/assets/uploads/admin_setting'), $fileName);
-
-    // تحديث حقل الصورة في الجدول
-    $updateAdminPanel->image = $fileName;
-    $updateAdminPanel->save();
+    // رفع الصورة الجديدة وتخزين مسارها
+    $the_file_path = uploadImage('dashboard/assets/uploads/admin_setting', $request->file('photo'));
+    $updateAdminPanel->photo = $the_file_path;
+    $updateAdminPanel->save(); // حفظ البيانات والصورة بعد التحديث
 }
+
         
 
         
