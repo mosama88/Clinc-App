@@ -67,6 +67,21 @@ class AdminPanelController extends Controller
         $updateAdminPanel['updated_by'] = auth()->user()->id;
         $updateAdminPanel['com_code'] = $com_code;
         $updateAdminPanel->save();
+
+if($request->has('image')){
+    $request->validate([
+        'image'=>'nullable|max:5000|mimes:png,jpg,jpeg,gif'
+    ],[
+        'image.mimes' => 'الملفات المسموح بها يجب ان تكون من نوع png,gif,jpg,jpeg',
+        'image.max' => 'اقصى مساحة للملف 5 ميجا',
+    ]);
+    
+}
+
+
+
+
+        
         return redirect()->route('dashboard.admin_panels.index')->with('success', 'تم تعديل بيانات الشركة بنجاح');
     }
 
