@@ -39,7 +39,7 @@
                                     <input type="text" class="form-control" name="company_name"
                                         value="{{ $editData['company_name'] }}" placeholder="Enter ...">
                                 </td>
-                                @error('image')
+                                @error('company_name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </tr>
@@ -55,7 +55,7 @@
                                     </select>
 
                                 </td>
-                                @error('image')
+                                @error('system_status')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </tr>
@@ -65,7 +65,7 @@
                                     <input type="text" name="phons" class="form-control"
                                         value="{{ $editData['phons'] }}" placeholder="Enter ...">
                                 </td>
-                                @error('image')
+                                @error('phons')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </tr>
@@ -75,7 +75,7 @@
                                     <input type="text" name="address" class="form-control"
                                         value="{{ $editData['address'] }}" placeholder="Enter ...">
                                 </td>
-                                @error('image')
+                                @error('address')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </tr>
@@ -85,7 +85,7 @@
                                     <input type="text" class="form-control" name="email"
                                         value="{{ $editData['email'] }}" placeholder="Enter ...">
                                 </td>
-                                @error('image')
+                                @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </tr>
@@ -113,7 +113,7 @@
 
                             <tr>
                                 <td colspan="2" class="text-center">
-                                    <button type="button" class="btn  btn-primary btn-flat">تعديل البيانات</button>
+                                    <button type="submit" class="btn  btn-primary btn-flat">تعديل البيانات</button>
                                 </td>
                             </tr>
                         </table>
