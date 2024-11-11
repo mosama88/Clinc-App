@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blood_types', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
-            $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
+            $table->string('filename');
+            $table->integer('imageable_id'); // id User insert
+            $table->string('imageable_type'); // Type Tables Admin Or User
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blood_types');
+        Schema::dropIfExists('images');
     }
 };

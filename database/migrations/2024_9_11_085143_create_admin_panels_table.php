@@ -11,11 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blood_types', function (Blueprint $table) {
+        Schema::create('admin_panels', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
+            $table->string('company_name', 250);
+            $table->tinyInteger('system_status')->default('1')->comment('واحد مفعل - صفر معطل');
+            $table->string('image', 250)->nullable();
+            $table->string('photo_cover', 250)->nullable();
+            $table->string('phons', 250);
+            $table->string('address', 250);
+            $table->string('email', 100);
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
+            $table->integer('com_code');
             $table->timestamps();
         });
     }
@@ -25,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blood_types');
+        Schema::dropIfExists('admin_panels');
     }
 };

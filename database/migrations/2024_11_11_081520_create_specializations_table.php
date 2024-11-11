@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('specializations', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
+            $table->foreignId('section_id')->references('id')->on('sections')->onUpdate('cascade');
+            $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
+            $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
             $table->timestamps();
         });
     }

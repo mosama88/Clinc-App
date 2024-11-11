@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminPanelController;
 use App\Http\Controllers\Dashboard\CurrencyController;
 use App\Http\Controllers\Dashboard\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +8,10 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Dashboard\CityController;
 use App\Http\Controllers\Dashboard\BloodTypesController;
+use App\Http\Controllers\Dashboard\NationalityController;
+use App\Http\Controllers\Dashboard\SectionController;
+use App\Http\Controllers\Dashboard\SpecializationController;
+use App\Http\Controllers\Dashboard\BranchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +39,13 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->name('dashboard.
 
 
     //
+    Route::resource('admin_panels',  AdminPanelController::class);
     Route::resource('cities', CityController::class);
     Route::resource('BloodTypes', BloodTypesController::class);
-    Route::resource('specializations', BloodTypesController::class);
+    Route::resource('specializations', SpecializationController::class);
+    Route::resource('nationalities', NationalityController::class);
+    Route::resource('sections', SectionController::class);
+    Route::resource('branches',  BranchController::class);
 });
 
 

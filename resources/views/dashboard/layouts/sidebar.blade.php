@@ -34,9 +34,9 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/cities*') || request()->is('sections*') || request()->is('admin/specializations*') ? 'menu-open' : '' }} ">
+                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/admin_panels*')|| request()->is('admin/cities*') || request()->is('admin/branches*') || request()->is('admin/nationalities*') || request()->is('admin/sections*') || request()->is('admin/specializations*') ? 'menu-open' : '' }} ">
                     <a href="{{ url('/') }}"
-                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('cities*') || request()->is('specializations*') || request()->is('sections*') ? 'active' : '' }} ">
+                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('admin_panels*')|| request()->is('cities*') || request()->is('branches*') || request()->is('nationalities*') || request()->is('specializations*') || request()->is('sections*') ? 'active' : '' }} ">
 
                         <i class="fas fa-cog"></i>
                         <p>
@@ -45,6 +45,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.admin_panels.index') }}" class="nav-link @yield('active-admin_panels')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الضبط العام</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('dashboard.BloodTypes.index') }}" class="nav-link @yield('active-BloodTypes')">
                                 <i class="far fa-circle nav-icon"></i>
@@ -58,7 +64,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dashboard.specializations.index') }}" class="nav-link @yield('active-specializations')">
+                            <a href="{{ route('dashboard.branches.index') }}" class="nav-link @yield('active-branches')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الفروع</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.nationalities.index') }}" class="nav-link @yield('active-nationalities')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الجنسيات</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.specializations.index') }}"
+                                class="nav-link @yield('active-specializations')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>التخصصات</p>
                             </a>
@@ -151,7 +170,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/' . ($page = 'charts-chartjs')) }}" class="nav-link @yield('active-charts-chartjs')">
+                            <a href="{{ url('/' . ($page = 'charts-chartjs')) }}"
+                                class="nav-link @yield('active-charts-chartjs')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ChartJS</p>
                             </a>

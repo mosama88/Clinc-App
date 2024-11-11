@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blood_types', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
+            $table->string('address', 500);
+            $table->string('mobile', 255);
+            $table->string('email', 50)->unique();
+            $table->foreignId('governorate_id')->references('id')->on('governorates');
+            $table->foreignId('city_id')->references('id')->on('cities');
+            $table->integer('status')->default(1)->nullable();
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
             $table->timestamps();
@@ -25,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blood_types');
+        Schema::dropIfExists('branches');
     }
 };
