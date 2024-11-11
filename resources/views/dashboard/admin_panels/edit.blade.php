@@ -38,10 +38,10 @@
                                 <td>
                                     <input type="text" class="form-control" name="company_name"
                                         value="{{ $editData['company_name'] }}" placeholder="Enter ...">
+                                    @error('company_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
-                                @error('company_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </tr>
                             <tr>
                                 <td class="wd-500"> حالة التفعيل</td>
@@ -54,40 +54,40 @@
                                         </option>
                                     </select>
 
+                                    @error('system_status')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
-                                @error('system_status')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </tr>
                             <tr>
                                 <td class="wd-500">هاتف الشركة</td>
                                 <td>
                                     <input type="text" name="phons" class="form-control"
                                         value="{{ $editData['phons'] }}" placeholder="Enter ...">
+                                    @error('phons')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
-                                @error('phons')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </tr>
                             <tr>
                                 <td class="wd-500">عنوان الشركة</td>
                                 <td>
                                     <input type="text" name="address" class="form-control"
                                         value="{{ $editData['address'] }}" placeholder="Enter ...">
+                                    @error('address')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
-                                @error('address')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </tr>
                             <tr>
                                 <td class="wd-500">بريد الشركة</td>
                                 <td>
                                     <input type="text" class="form-control" name="email"
                                         value="{{ $editData['email'] }}" placeholder="Enter ...">
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
-                                @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </tr>
 
 
@@ -95,20 +95,20 @@
                                 <td class="wd-500">شعار الشركة</td>
                                 <td>
                                     <input type="file" name="photo_cover" class="dropify" data-height="200" />
+                                    @error('photo_cover')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
-                                @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </tr>
 
                             <tr>
                                 <td class="wd-500">شعار الشركة</td>
                                 <td>
                                     <input type="file" name="image" class="dropify" data-height="200" />
+                                    @error('image')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
-                                @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </tr>
 
                             <tr>

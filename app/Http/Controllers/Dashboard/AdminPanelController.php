@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\AdminPanelRequest;
 use App\Models\AdminPanel;
 use Illuminate\Http\Request;
 
