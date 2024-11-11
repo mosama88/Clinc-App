@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminPanel;
 use Illuminate\Http\Request;
 
 class AdminPanelController extends Controller
@@ -12,7 +13,9 @@ class AdminPanelController extends Controller
      */
     public function index()
     {
-        //
+        $com_code = auth()->user()->com_code;
+        $data = AdminPanel::select('*')->where('com_code', $com_code)->first();
+        return view('dashboard.admin_panels.index', compact('data'));
     }
 
     /**
