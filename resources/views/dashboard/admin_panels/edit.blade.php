@@ -1,73 +1,122 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'أضافة عملة جديده')
+@section('admin_title', 'تعديل الضبط العام')
 @section('css')
 @endsection
-@section('active-currency', 'active')
-@section('page-header', 'أضافة عملة جديده')
-@section('page-header_desc', 'أضافة عملة جديده')
+@section('active-admin_panels', 'active')
+@section('page-header', 'جدول تعديل الضبط العام')
+@section('page-header_desc', 'جدول تعديل الضبط العام')
 @section('page-header_link')
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.currencies.index') }}">جدول العملات</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard.admin_panels.index') }}">جدول الضبط العام</a></li>
 @endsection
 @section('content')
 
     {{-- ./row --}}
     <div class="row">
         <div class="col-md-12">
-
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">أضف عملة جديده</h3>
+            @if (session('success') != null)
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
                 </div>
+            @endif
+
+            {{-- Content --}}
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"> تعديل الضبط العام</h3>
+                </div>
+
                 <!-- /.card-header -->
-                <!-- form start -->
-                <form action="{{ route('dashboard.currencies.update', $currencyUpdate['id']) }}" method="POST" role="form">
-                    @csrf
-                    @method('PUT')
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="">أسم العملة</label>
-                            <input class="form-control" name="name" value="{{ $currencyUpdate['name'] }}" type="text"
-                                placeholder="أكتب أسم العملة">
-                            @error('name')
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="">وصف العملة</label>
-                            <input class="form-control" name="description" value="{{ $currencyUpdate['description'] }}"
-                                type="text" placeholder="وصف العملة">
-                            @error('description')
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                <div class="card-body p-0">
 
-                        <div class="form-group mb-3">
-                            <label for="">قيمة العملة بالمصرى</label>
-                            <input class="form-control" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
-                                name="amount" type="text" value="{{ $currencyUpdate['amount'] }}" placeholder="0.00">
-                            @error('amount')
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $message }}
-                                </div>
+
+                    <table class="table table-bordered mg-b-0 text-md-nowrap">
+                        <tr>
+                            <td class="wd-500">اسم الشركة</td>
+                            <td>
+                                <input type="text" class="form-control" value="{{ $editData['company_name'] }}"
+                                    placeholder="Enter ...">
+                            </td>
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </tr>
+                        <tr>
+                            <td class="wd-500"> حالة التفعيل</td>
+                            <td>
+                                <input type="text" class="form-control" value="{{ $editData['company_name'] }}"
+                                    placeholder="Enter ...">
+                            </td>
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </tr>
+                        <tr>
+                            <td class="wd-500">هاتف الشركة</td>
+                            <td>
+                                <input type="text" class="form-control" value="{{ $editData['phons'] }}"
+                                    placeholder="Enter ...">
+                            </td>
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </tr>
+                        <tr>
+                            <td class="wd-500">عنوان الشركة</td>
+                            <td>
+                                <input type="text" class="form-control" value="{{ $editData['address'] }}"
+                                    placeholder="Enter ...">
+                            </td>
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </tr>
+                        <tr>
+                            <td class="wd-500">بريد الشركة</td>
+                            <td>
+                                <input type="text" class="form-control" value="{{ $editData['email'] }}"
+                                    placeholder="Enter ...">
+                            </td>
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </tr>
 
-                    </div>
-                    <!-- /.card-body -->
 
-                    <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-primary">تأكيد البيانات</button>
-                    </div>
-                </form>
+                        <tr>
+                            <td class="wd-500">شعار الشركة</td>
+                            <td>
+                                <input type="file" name="photo_cover" class="dropify" data-height="200" />
+                            </td>
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </tr>
+
+                        <tr>
+                            <td class="wd-500">شعار الشركة</td>
+                            <td>
+                                <input type="file" name="photo_cover" class="dropify" data-height="200" />
+                            </td>
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <button type="button" class="btn  btn-primary btn-flat">تعديل البيانات</button>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+                </div>
+                <!-- /.card-body -->
             </div>
 
         </div>
-
-
 
     </div>
     <!-- /.row -->

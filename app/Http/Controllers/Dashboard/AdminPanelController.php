@@ -45,9 +45,10 @@ class AdminPanelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $editData = AdminPanel::findOrFail($id);
+        return view('dashboard.admin_panels.edit', compact('editData'));
     }
 
     /**

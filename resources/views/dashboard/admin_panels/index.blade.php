@@ -25,56 +25,78 @@
                     <h3 class="card-title">جدول الضبط العام</h3>
                 </div>
                 <div class="card-header">
-                    <a type="button" href="{{ route('dashboard.admin_panels.create') }}"
-                        class="btn btn-md btn-primary btn-flat"><i class="fas fa-plus ml-2"></i> أضافة شركة جديده</a>
+                    <a type="button" href="{{ route('dashboard.admin_panels.edit', $data['id']) }}"
+                        class="btn btn-md btn-primary btn-flat"><i class="fas fa-edit ml-2"></i> تعديل بيانات الشركة</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>أسم العملة</th>
-                                <th>قيمة العملة</th>
-                                <th>وصف العملة</th>
-                                <th>العمليات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 0; ?>
-                            @foreach ($data as $info)
-                                <?php $i++; ?>
-                                <tr>
-                                    <td>{{ $i }}</td>
-                                    <td>{{ $info['name'] }}</td>
-                                    <td>{{ $info['description'] }}</td>
-                                    <td>{{ $info['amount'] }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info">العلميات</button>
-                                            <button type="button" class="btn btn-info dropdown-toggle"
-                                                data-toggle="dropdown" aria-expanded="true">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu" role="menu" x-placement="top-start"
-                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-1px, -165px, 0px);">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('dashboard.admin_panels.edit', $info['id']) }}"><i
-                                                        class="fas fa-edit ml-2"></i>
-                                                    تعديل</a>
-                                                <a class="dropdown-item modal-effect btn btn-sm" data-effect="effect-scale"
-                                                    data-toggle="modal" href="#delete{{ $info->id }}">
-                                                    <i class="fas fa-trash-alt ml-1"></i>حذف</a>
-                                            </div>
-                                        </div>
-                                        @include('dashboard.admin_panels.delete')
-                                    </td>
 
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+
+                    @if (!empty($data) && isset($data))
+                        <table class="table table-bordered mg-b-0 text-md-nowrap">
+                            <tr>
+                                <td class="wd-500">اسم الشركة</td>
+                                <td> {{ $data['company_name'] }}</td>
+                            </tr>
+                            <tr>
+                                <td class="wd-500"> حالة التفعيل</td>
+                                <td>
+                                    @if ($data['system_status'] == 1)
+                                        مفعل
+                                    @else
+                                        معطل
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="wd-500">هاتف الشركة</td>
+                                <td> {{ $data['phons'] }}</td>
+                            </tr>
+                            <tr>
+                                <td class="wd-500">عنوان الشركة</td>
+                                <td> {{ $data['address'] }}</td>
+                            </tr>
+                            <tr>
+                                <td class="wd-500">بريد الشركة</td>
+                                <td> {{ $data['email'] }}</td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="wd-500">شعار الشركة</td>
+                                <td>
+                                    @if ($data['image'])
+                                        <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
+                                            style="width: 100px; height:100"
+                                            src="{{ asset('dashboard/assets/uploads/admin_setting/' . $data['image']) }}"
+                                            data-holder-rendered="true">
+                                    @else
+                                        <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
+                                            style="width: 100px; height:100"
+                                            src="{{ asset('dashboard/assets/img/default-logo.png') }}"
+                                            data-holder-rendered="true">
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                @can('تعديل الضبط العام')
+                                    <td colspan="2" class="text-center">
+                                        <a href="{{ route('dashboard.generalSettings.edit', $data->id) }}"
+                                            class="btn btn-info-gradient col-4">تعديل</a>
+                                    </td>
+                                @endcan
+                            </tr>
+                        </table>
+                    @else
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                            لا توجد بيانات لعرضها!!
+                        </div>
+                    @endif
+
+
+
                 </div>
                 <!-- /.card-body -->
             </div>
