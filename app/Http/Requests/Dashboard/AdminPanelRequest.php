@@ -22,7 +22,7 @@ class AdminPanelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50',
+            'company_name' => 'required|max:50',
             'description' => 'required|max:150',
             'amount' => 'required|max:10',
         ];
@@ -31,8 +31,8 @@ class AdminPanelRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => "يرجى كتابة اسم العملة",
-            'name.max' => "اسم العملة يجب ألا يزيد عن الحد 50 المسموح",
+            'company_name.required' => "يرجى كتابة اسم الشركة",
+            'company_name.max' => "اسم الشركة يجب ألا يزيد عن الحد 50 المسموح",
             'description.required' => "يرجى كتابة وصف للعملة",
             'description.max' => "الوصف يجب ألا يزيد عن الحد 150 المسموح",
             'amount.required' => "يرجى كتابة قيمة المبلغ",
