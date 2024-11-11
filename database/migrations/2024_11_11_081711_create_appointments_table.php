@@ -17,7 +17,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('governorates')->insert(
+        DB::table('appointments')->insert(
             [
                 ['name' => 'السبت'],
                 ['name' => 'الأحد'],
