@@ -19,6 +19,15 @@
                 </div>
             @endif
 
+
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
@@ -94,8 +103,8 @@
                             <tr>
                                 <td class="wd-500">لوجو الشركة</td>
                                 <td>
-                                    <input type="file" name="image" class="dropify" data-height="200" />
-                                    @error('image')
+                                    <input type="file" name="photo" class="dropify" data-height="200" />
+                                    @error('photo')
                                         <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>

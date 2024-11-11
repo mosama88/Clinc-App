@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('company_name', 250);
             $table->tinyInteger('system_status')->default('1')->comment('واحد مفعل - صفر معطل');
-            $table->string('image', 250)->nullable();
+            $table->string('photo', 250)->nullable();
             $table->string('photo_cover', 250)->nullable();
             $table->string('phons', 250);
             $table->string('address', 250);
@@ -32,7 +32,7 @@ return new class extends Migration
             'id' => 1,
             'company_name' => 'طيبه',
             'system_status' => 1,
-            'image' => null,
+            'photo' => null,
             'photo_cover' => null,
             'phons' => '01550565699',
             'address' => '141 شارع الهرم محطة التعاون',
