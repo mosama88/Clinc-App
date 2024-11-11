@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CurrencyRequest extends FormRequest
+class AdminPanelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,16 @@ class CurrencyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|max:50',
-            'description'=>'required|max:150',
-            'amount'=>'required|max:10',
+            'name' => 'required|max:50',
+            'description' => 'required|max:150',
+            'amount' => 'required|max:10',
         ];
     }
 
-    public function messages():array{
-        return[
-           'name.required' => "يرجى كتابة اسم العملة",
+    public function messages(): array
+    {
+        return [
+            'name.required' => "يرجى كتابة اسم العملة",
             'name.max' => "اسم العملة يجب ألا يزيد عن الحد 50 المسموح",
             'description.required' => "يرجى كتابة وصف للعملة",
             'description.max' => "الوصف يجب ألا يزيد عن الحد 150 المسموح",
