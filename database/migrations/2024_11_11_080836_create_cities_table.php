@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 255);
+            $table->foreignId('governorate_id')->references('id')->on('governorates');
+            $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
+            $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
             $table->timestamps();
         });
     }

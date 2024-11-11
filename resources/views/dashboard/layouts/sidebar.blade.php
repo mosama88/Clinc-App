@@ -34,9 +34,9 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/cities*') || request()->is('admin/specializations*') ? 'menu-open' : '' }} ">
+                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/cities*') || request()->is('sections*') || request()->is('admin/specializations*') ? 'menu-open' : '' }} ">
                     <a href="{{ url('/') }}"
-                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('cities*') || request()->is('specializations*') ? 'active' : '' }} ">
+                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('cities*') || request()->is('specializations*') || request()->is('sections*') ? 'active' : '' }} ">
 
                         <i class="fas fa-cog"></i>
                         <p>
@@ -63,7 +63,12 @@
                                 <p>التخصصات</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.sections.index') }}" class="nav-link @yield('active-sections')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الأقسام</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
