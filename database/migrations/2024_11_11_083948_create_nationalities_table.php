@@ -16,8 +16,45 @@ return new class extends Migration
             $table->string('name', 255);
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
+            $table->integer('com_code');
             $table->timestamps();
         });
+
+        DB::table('nationalities')->insert([
+            'name' => 'مصرى',            
+            'com_code' => 1,
+            'created_by' => 1,
+        ]);
+
+        DB::table('nationalities')->insert([
+            'name' => 'سودانى',            
+            'created_by' => 1,
+            'com_code' => 1,
+        ]);
+
+        DB::table('nationalities')->insert([
+            'name' => 'يمنى',            
+            'created_by' => 1,
+            'com_code' => 1,
+        ]);
+
+        DB::table('nationalities')->insert([
+            'name' => 'تونسى',            
+            'created_by' => 1,
+            'com_code' => 1,
+        ]);
+
+        DB::table('nationalities')->insert([
+            'name' => 'سعودى',            
+            'created_by' => 1,
+            'com_code' => 1,
+        ]);
+
+        DB::table('nationalities')->insert([
+            'name' => 'جزائرى',            
+            'created_by' => 1,
+            'com_code' => 1,
+        ]);
     }
 
     /**

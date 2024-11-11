@@ -16,6 +16,18 @@ return new class extends Migration
             $table->string('name', 255);
             $table->timestamps();
         });
+
+        DB::table('governorates')->insert(
+            [
+                ['name' => 'السبت'],
+                ['name' => 'الأحد'],
+                ['name' => 'الاثنين'],
+                ['name' => 'الثلاثاء'],
+                ['name' => 'الاربعاء'],
+                ['name' => 'الخميس'],
+                ['name' => 'الجمعه'],
+            ]
+        );
     }
 
     /**

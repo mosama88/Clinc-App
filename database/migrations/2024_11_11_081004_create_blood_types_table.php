@@ -16,8 +16,81 @@ return new class extends Migration
             $table->string('name', 255);
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
+            $table->integer('com_code');
             $table->timestamps();
         });
+
+        DB::table('blood_types')->insert([
+            [
+                'name' => 'A +',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('blood_types')->insert([
+            [
+                'name' => 'A -',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+
+        DB::table('blood_types')->insert([
+            [
+                'name' => 'AB',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('blood_types')->insert([
+            [
+                'name' => 'B +',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('blood_types')->insert([
+            [
+                'name' => 'B -',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('blood_types')->insert([
+            [
+                'name' => 'O -',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('blood_types')->insert([
+            [
+                'name' => 'O +',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        
     }
 
     /**
