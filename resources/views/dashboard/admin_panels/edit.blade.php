@@ -39,7 +39,7 @@
                                     <input type="text" class="form-control" name="company_name"
                                         value="{{ $editData['company_name'] }}" placeholder="Enter ...">
                                     @error('company_name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger my-2 my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
                             </tr>
@@ -55,7 +55,7 @@
                                     </select>
 
                                     @error('system_status')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
                             </tr>
@@ -65,7 +65,7 @@
                                     <input type="text" name="phons" class="form-control"
                                         value="{{ $editData['phons'] }}" placeholder="Enter ...">
                                     @error('phons')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
                             </tr>
@@ -75,7 +75,7 @@
                                     <input type="text" name="address" class="form-control"
                                         value="{{ $editData['address'] }}" placeholder="Enter ...">
                                     @error('address')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
                             </tr>
@@ -85,7 +85,7 @@
                                     <input type="text" class="form-control" name="email"
                                         value="{{ $editData['email'] }}" placeholder="Enter ...">
                                     @error('email')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
                             </tr>
@@ -96,7 +96,7 @@
                                 <td>
                                     <input type="file" name="photo_cover" class="dropify" data-height="200" />
                                     @error('photo_cover')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
                             </tr>
@@ -106,7 +106,7 @@
                                 <td>
                                     <input type="file" name="image" class="dropify" data-height="200" />
                                     @error('image')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>
                             </tr>
