@@ -8,6 +8,8 @@ use App\Models\Governorate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\BranchRequest;
+use App\Http\Requests\Dashboard\UpdateBranchRequest;
 
 class BranchController extends Controller
 {
@@ -36,7 +38,7 @@ class BranchController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BranchRequest $request)
     {
         try{
             $com_code = auth()->user()->com_code;
@@ -84,7 +86,7 @@ class BranchController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateBranchRequest $request, string $id)
     {
         try{
             $com_code = auth()->user()->com_code;

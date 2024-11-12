@@ -6,6 +6,7 @@ use App\Models\BloodTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\BloodTypesRequest;
 
 class BloodTypesController extends Controller
 {
@@ -30,7 +31,7 @@ class BloodTypesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BloodTypesRequest $request)
     {
         try{
             $com_code = auth()->user()->com_code;
@@ -70,7 +71,7 @@ class BloodTypesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BloodTypesRequest $request, string $id)
     {
         try{
             $com_code = auth()->user()->com_code;
