@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\BloodTypes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class BloodTypesController extends Controller
 {
@@ -12,7 +14,9 @@ class BloodTypesController extends Controller
      */
     public function index()
     {
-        //
+        $com_code = auth()->user()->com_code;
+        $data = BloodTypes::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
+        return view('dashboard.BloodTypes.index',compact('data'));
     }
 
     /**
@@ -20,7 +24,7 @@ class BloodTypesController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.BloodTypes.create');
     }
 
     /**
@@ -28,7 +32,21 @@ class BloodTypesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $blood = new BloodTypes();
+           $blood['name'] = $request->name;
+           $blood['created_by'] = 1;
+           $blood['com_code'] = $com_code;
+           $blood->save();
+            DB::commit();
+            return redirect()->route('dashboard.BloodTypes.index')->with('success', 'تم أضافة فصيلة الدم بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.BloodTypes.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
     }
 
     /**
@@ -44,7 +62,9 @@ class BloodTypesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $info = BloodTypes::findOrFail($id);
+        return view('dashboard.BloodTypes.edit',compact('info'));
+
     }
 
     /**
@@ -52,7 +72,21 @@ class BloodTypesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $Updateblood = BloodTypes::findOrFail($id);
+           $Updateblood['name'] = $request->name;
+           $Updateblood['updated_by'] = 1;
+           $Updateblood['com_code'] = $com_code;
+           $Updateblood->save();
+            DB::commit();
+            return redirect()->route('dashboard.BloodTypes.index')->with('success', 'تم تعديل فصيلة الدم بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.BloodTypes.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
     }
 
     /**
@@ -60,6 +94,18 @@ class BloodTypesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $Deleteblood = BloodTypes::findOrFail($id);
+           $Deleteblood->delete();
+            DB::commit();
+            return redirect()->route('dashboard.BloodTypes.index')->with('success', 'تم حذف فصيلة الدم بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.BloodTypes.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
+
     }
 }

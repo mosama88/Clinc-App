@@ -12,4 +12,16 @@ class BloodTypes extends Model
     protected $table = "blood_types";
 
     protected $guarded = [];
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
+
 }
