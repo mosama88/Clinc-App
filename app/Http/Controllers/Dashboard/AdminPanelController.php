@@ -72,18 +72,18 @@ class AdminPanelController extends Controller
      $adminPanel =    $updateAdminPanel->save();
 
      
-              // التحقق من وجود الصورة وتحديثها إذا لزم الأمر
-              if ($request->has('photo')) {
-                // حذف الصورة القديمة
-                if ($updateAdminPanel->image) {
-                    $old_img = $updateAdminPanel->image->filename;
-                    $this->Delete_attachment('upload_image', 'AdminPanels/photo/' . $old_img, $request->id);
-                    $updateAdminPanel->image()->delete(); // حذف السجل القديم للصورة من قاعدة البيانات
-                }
-                // رفع الصورة الجديدة وتخزينها في قاعدة البيانات
-                $this->verifyAndStoreImage($request, 'photo', 'AdminPanels/photo/', 'upload_image', $updateAdminPanel->id, 'App\Models\AdminPanel');
-            }
+             // Check if there's a new photo to upload
+if ($request->hasFile('photo')) {
+    // Delete the old image file if it exists
+    if ($updateAdminPanel->image) {
+        $old_img = $updateAdminPanel->image->filename;
+        $this->Delete_attachment('upload_image', 'AdminPanels/photo/' . $old_img, $updateAdminPanel->id);
+        $updateAdminPanel->image()->delete(); // Remove the old image record from the database
+    }
 
+    // Upload the new image and save it in the database
+    $this->verifyAndStoreFile($request, 'photo', 'AdminPanels/photo/', 'upload_image', $updateAdminPanel->id, 'App\Models\AdminPanel');
+}
 
             
         return redirect()->route('dashboard.admin_panels.index')->with('success', 'تم تعديل بيانات الشركة بنجاح');

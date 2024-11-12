@@ -15,7 +15,12 @@ class AdminPanel extends Model
 
     protected $guarded = [];
 
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 
+    
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');
@@ -28,9 +33,6 @@ class AdminPanel extends Model
     }
 
 
-    public function image(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
-    }
+ 
     
 }

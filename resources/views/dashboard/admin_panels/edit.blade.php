@@ -37,7 +37,8 @@
                 <!-- /.card-header -->
                 <div class="card-body p-0">
 
-                    <form action="{{ route('dashboard.admin_panels.update', $editData['id']) }}" method="POST">
+                    <form action="{{ route('dashboard.admin_panels.update', $editData['id']) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

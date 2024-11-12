@@ -16,7 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('company_name', 250);
             $table->tinyInteger('system_status')->default('1')->comment('واحد مفعل - صفر معطل');
-            $table->string('photo_cover', 250)->nullable();
+            $table->string('photo_cover', 500)->nullable();
+            $table->string('logo', 500)->nullable();
             $table->string('phones', 250);
             $table->string('address', 250);
             $table->string('email', 100);
@@ -32,6 +33,7 @@ return new class extends Migration
             'company_name' => 'طيبه',
             'system_status' => 1,
             'photo_cover' => null,
+            'logo' => null,
             'phones' => '01550565699',
             'address' => '141 شارع الهرم محطة التعاون',
             'email' => 'info@teba.com',
