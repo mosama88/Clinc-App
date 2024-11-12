@@ -103,8 +103,8 @@
                             <tr>
                                 <td class="wd-500">لوجو الشركة</td>
                                 <td>
-                                    <input class="form-control" name="comp_photo" type="file" id="formFile">
-                                    @error('comp_photo')
+                                    <input class="form-control" name="photo" type="file" id="formFile">
+                                    @error('photo')
                                         <div class="alert alert-danger my-2">{{ $message }}</div>
                                     @enderror
                                 </td>

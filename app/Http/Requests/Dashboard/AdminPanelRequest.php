@@ -23,7 +23,7 @@ class AdminPanelRequest extends FormRequest
     {
         return [
             'company_name' => 'required|max:50',
-            'phons' => 'required|max:150',
+            'phones' => 'required|max:150',
         ];
     }
 
@@ -32,8 +32,8 @@ class AdminPanelRequest extends FormRequest
         return [
             'company_name.required' => "يرجى كتابة اسم الشركة",
             'company_name.max' => "اسم الشركة يجب ألا يزيد عن الحد 50 المسموح",
-            'phons.required' => "يرجى كتابة تليفون الشركة",
-            'phons.max' => "تليفون الشركة يجب ألا يزيد عن الحد 150 المسموح",
+            'phones.required' => "يرجى كتابة تليفون الشركة",
+            'phones.max' => "تليفون الشركة يجب ألا يزيد عن الحد 150 المسموح",
         ];
     }
 }

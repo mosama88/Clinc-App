@@ -71,32 +71,21 @@ class AdminPanelController extends Controller
         $updateAdminPanel['com_code'] = $com_code;
      $adminPanel =    $updateAdminPanel->save();
 
-// التحقق من وجود الصورة وتحديثها
-if ($request->hasFile('photo')) {
-    $request->validate([
-        'photo' => 'nullable|mimes:png,jpg,jpeg|max:5000',
-    ], [
-        'photo.mimes' => 'الملفات المسموح بها يجب ان تكون من نوع png,jpg,jpeg',
-        'photo.max' => 'اقصى مساحة للملف 5 ميجا',
-    ]);
+     
+              // التحقق من وجود الصورة وتحديثها إذا لزم الأمر
+              if ($request->has('photo')) {
+                // حذف الصورة القديمة
+                if ($updateAdminPanel->image) {
+                    $old_img = $updateAdminPanel->image->filename;
+                    $this->Delete_attachment('upload_image', 'AdminPanels/photo/' . $old_img, $request->id);
+                    $updateAdminPanel->image()->delete(); // حذف السجل القديم للصورة من قاعدة البيانات
+                }
+                // رفع الصورة الجديدة وتخزينها في قاعدة البيانات
+                $this->verifyAndStoreImage($request, 'photo', 'AdminPanels/photo/', 'upload_image', $updateAdminPanel->id, 'App\Models\AdminPanel');
+            }
 
-    // حذف الصورة القديمة إذا كانت موجودة
-    if ($updateAdminPanel->photo) {
-        $old_image_path = public_path('dashboard/assets/uploads/admin_setting/' . $updateAdminPanel->photo);
-        if (file_exists($old_image_path)) {
-            unlink($old_image_path);
-        }
-    }
 
-    // رفع الصورة الجديدة وتخزين مسارها
-    $the_file_path = uploadImage('dashboard/assets/uploads/admin_setting', $request->file('photo'));
-    $updateAdminPanel->photo = $the_file_path;
-    $updateAdminPanel->save(); // حفظ البيانات والصورة بعد التحديث
-}
-
-        
-
-        
+            
         return redirect()->route('dashboard.admin_panels.index')->with('success', 'تم تعديل بيانات الشركة بنجاح');
     }
 
