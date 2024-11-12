@@ -65,27 +65,18 @@
                             <tr>
                                 <td class="wd-500">شعار الشركة</td>
                                 <td>
-                                    @if ($data['image'])
-                                        <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
-                                            style="width: 100px; height:100"
-                                            src="{{ asset('dashboard/assets/uploads/admin_setting/' . $data['image']) }}"
+                                    @if ($data->image)
+                                        <img class="img-thumbnail rounded me-2" alt="200x200"
+                                            style="width: 80px; height:50px"
+                                            src="{{ asset('dashboard/assets/uploads/AdminPanels/photo/' . $data->image->filename) }}"
                                             data-holder-rendered="true">
                                     @else
-                                        <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
-                                            style="width: 100px; height:100"
-                                            src="{{ asset('dashboard/assets/img/default-logo.png') }}"
-                                            data-holder-rendered="true">
+                                        <img alt="Responsive image" style="width: 80px; height:50px"
+                                            src="{{ asset('dashboard/assets/uploads/logo-default.png') }}">
                                     @endif
                                 </td>
                             </tr>
-                            <tr>
-                                @can('تعديل الضبط العام')
-                                    <td colspan="2" class="text-center">
-                                        <a href="{{ route('dashboard.generalSettings.edit', $data->id) }}"
-                                            class="btn btn-info-gradient col-4">تعديل</a>
-                                    </td>
-                                @endcan
-                            </tr>
+
                         </table>
                     @else
                         <div class="alert alert-warning alert-dismissible">

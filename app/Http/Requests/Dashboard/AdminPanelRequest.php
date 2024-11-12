@@ -24,6 +24,9 @@ class AdminPanelRequest extends FormRequest
         return [
             'company_name' => 'required|max:50',
             'phones' => 'required|max:150',
+            'photo' => 'nullable|mimes:png,jpg,jpeg|max:5000',
+
+            
         ];
     }
 
@@ -34,6 +37,8 @@ class AdminPanelRequest extends FormRequest
             'company_name.max' => "اسم الشركة يجب ألا يزيد عن الحد 50 المسموح",
             'phones.required' => "يرجى كتابة تليفون الشركة",
             'phones.max' => "تليفون الشركة يجب ألا يزيد عن الحد 150 المسموح",
+            'photo.mimes' => 'الملفات المسموح بها يجب ان تكون من نوع png,jpg,jpeg',
+            'photo.max' => 'اقصى مساحة للملف 5 ميجا',    
         ];
     }
 }

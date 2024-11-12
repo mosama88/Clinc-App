@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\AdminPanel;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminPanelRequest;
 
@@ -60,33 +61,43 @@ class AdminPanelController extends Controller
      */
     public function update(AdminPanelRequest $request, $id)
     {
-        $com_code = auth()->user()->com_code;
-        $updateAdminPanel = AdminPanel::findOrFail($id);
-        $updateAdminPanel['company_name'] = $request->company_name;
-        $updateAdminPanel['system_status'] = $request->system_status;
-        $updateAdminPanel['phones'] = $request->phones;
-        $updateAdminPanel['address'] = $request->address;
-        $updateAdminPanel['email'] = $request->email;
-        $updateAdminPanel['updated_by'] = auth()->user()->id;
-        $updateAdminPanel['com_code'] = $com_code;
-     $adminPanel =    $updateAdminPanel->save();
 
-     
-             // Check if there's a new photo to upload
-if ($request->hasFile('photo')) {
-    // Delete the old image file if it exists
-    if ($updateAdminPanel->image) {
-        $old_img = $updateAdminPanel->image->filename;
-        $this->Delete_attachment('upload_image', 'AdminPanels/photo/' . $old_img, $updateAdminPanel->id);
-        $updateAdminPanel->image()->delete(); // Remove the old image record from the database
+
+        try{
+            DB::beginTransaction();
+            $com_code = auth()->user()->com_code;
+            $updateAdminPanel = AdminPanel::findOrFail($id);
+            $updateAdminPanel['company_name'] = $request->company_name;
+            $updateAdminPanel['system_status'] = $request->system_status;
+            $updateAdminPanel['phones'] = $request->phones;
+            $updateAdminPanel['address'] = $request->address;
+            $updateAdminPanel['email'] = $request->email;
+            $updateAdminPanel['updated_by'] = auth()->user()->id;
+            $updateAdminPanel['com_code'] = $com_code;
+         $adminPanel =    $updateAdminPanel->save();
+    
+         
+                 // Check if there's a new photo to upload
+    if ($request->hasFile('photo')) {
+        // Delete the old image file if it exists
+        if ($updateAdminPanel->image) {
+            $old_img = $updateAdminPanel->image->filename;
+            $this->Delete_attachment('upload_image', 'AdminPanels/photo/' . $old_img, $updateAdminPanel->id);
+            $updateAdminPanel->image()->delete(); // Remove the old image record from the database
+        }
+    
+        // Upload the new image and save it in the database
+        $this->verifyAndStoreFile($request, 'photo', 'AdminPanels/photo/', 'upload_image', $updateAdminPanel->id, 'App\Models\AdminPanel');
     }
-
-    // Upload the new image and save it in the database
-    $this->verifyAndStoreFile($request, 'photo', 'AdminPanels/photo/', 'upload_image', $updateAdminPanel->id, 'App\Models\AdminPanel');
-}
-
+                
+    DB::commit();
+            return redirect()->route('dashboard.admin_panels.index')->with('success', 'تم تعديل بيانات الشركة بنجاح');            
             
-        return redirect()->route('dashboard.admin_panels.index')->with('success', 'تم تعديل بيانات الشركة بنجاح');
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.admin_panels.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
+
     }
 
     /**
