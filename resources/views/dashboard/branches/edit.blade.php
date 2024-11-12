@@ -14,7 +14,8 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">أسم الفرع</label>
-                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم الفرع">
+                            <input class="form-control" name="name" value="{{ $info['name'] }}" type="text"
+                                placeholder="أكتب أسم الفرع">
                             @error('name')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
@@ -24,7 +25,8 @@
 
                         <div class="form-group">
                             <label for="">عنوان الفرع</label>
-                            <input class="form-control" name="address" type="text" placeholder="أكتب عنوان الفرع">
+                            <input class="form-control" name="address" value="{{ $info['address'] }}" type="text"
+                                placeholder="أكتب عنوان الفرع">
                             @error('address')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
@@ -34,7 +36,8 @@
 
                         <div class="form-group">
                             <label for="">تليفون الفرع</label>
-                            <input class="form-control" name="phone" type="text" placeholder="أكتب تليفون الفرع">
+                            <input class="form-control" name="phone" type="text" value="{{ $info['phone'] }}"
+                                placeholder="أكتب تليفون الفرع">
                             @error('phone')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
@@ -45,7 +48,7 @@
 
                         <div class="form-group">
                             <label for="">البريد الالكترونى</label>
-                            <input class="form-control" name="email" type="text"
+                            <input class="form-control" value="{{ $info['email'] }}" name="email" type="text"
                                 placeholder="أكتب البريد الالكترونى للفرع">
                             @error('email')
                                 <div class="alert alert-danger" role="alert">
@@ -61,7 +64,8 @@
 
                                 @if (!empty($other['governorates']) && isset($other['governorates']))
                                     @foreach ($other['governorates'] as $governrate)
-                                        <option value="{{ $governrate->id }}">{{ $governrate->name }}</option>
+                                        <option @if (old('governorate_id', $info['governorate_id']) == $governrate->id) selected="selected" @endif
+                                            value="{{ $governrate->id }}">{{ $governrate->name }}</option>
                                     @endforeach
                                 @else
                                     لا توجد بيانات
@@ -81,7 +85,8 @@
                                 <option selected>-- أختر المدينة --</option>
                                 @if (!empty($other['cities']) && isset($other['cities']))
                                     @foreach ($other['cities'] as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        <option @if (old('city_id', $info['city_id']) == $city->id) selected="selected" @endif
+                                            value="{{ $city->id }}">{{ $city->name }}</option>
                                     @endforeach
                                 @else
                                     لا توجد بيانات

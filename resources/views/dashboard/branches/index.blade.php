@@ -32,12 +32,18 @@
                     @include('dashboard.branches.create')
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body p-0">
+                <div class="card-body table-responsive p-0">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>أسم الفرع</th>
+                                <th> عنوان</th>
+                                <th> تليفون</th>
+                                <th>البريد الالكترونى</th>
+                                <th>المحافظة</th>
+                                <th>المدينة</th>
+                                <th>الحالة</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>
@@ -50,6 +56,18 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $info['name'] }}</td>
+                                    <td>{{ Str::limit($info['address'], 20) }}</td>
+                                    <td>{{ $info['phone'] }}</td>
+                                    <td>{{ $info['email'] }}</td>
+                                    <td>{{ $info->governorate->name }}</td>
+                                    <td>{{ $info->city->name }}</td>
+                                    <td>
+                                        @if ($info->status == 1)
+                                            مفعل
+                                        @else
+                                            غير مفعل
+                                        @endif
+                                    </td>
                                     <td>{{ $info->createdBy->name }}</td>
                                     <td>
                                         @if ($info->updated_by > 0)
