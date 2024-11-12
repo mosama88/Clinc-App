@@ -100,6 +100,22 @@
                         </div>
 
 
+                        <div class="form-group">
+                            <label>حالة الفرع</label>
+                            <select name="status" class="custom-select">
+                                <option selected>-- أختر الحالة --</option>
+                                <option @if ($info['status'] == 1) selected @endif value="1">مفعل</option>
+                                <option @if ($info['status'] == 0) selected @endif value="0">غير مفعل
+                                </option>
+                            </select>
+                            @error('status')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
 
                     </div>
                     <!-- /.card-body -->
