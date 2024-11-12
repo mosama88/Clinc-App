@@ -1,76 +1,111 @@
-@extends('dashboard.layouts.master')
-@section('admin_title', 'أضافة عملة جديده')
-@section('css')
-@endsection
-@section('active-currency', 'active')
-@section('page-header', 'أضافة عملة جديده')
-@section('page-header_desc', 'أضافة عملة جديده')
-@section('page-header_link')
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.currencies.index') }}">جدول العملات</a></li>
-@endsection
-@section('content')
-
-    {{-- ./row --}}
-    <div class="row">
-        <div class="col-md-12">
-
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">أضف عملة جديده</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form action="{{ route('dashboard.currencies.store') }}" method="POST" role="form">
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">أضافة فرع جديد</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('dashboard.branches.store') }}" method="POST" role="form">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">أسم العملة</label>
-                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم العملة">
+                            <label for="">أسم الفرع</label>
+                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم الفرع">
                             @error('name')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="">وصف العملة</label>
-                            <input class="form-control" name="description" type="text" placeholder="وصف العملة">
-                            @error('description')
+
+                        <div class="form-group">
+                            <label for="">عنوان الفرع</label>
+                            <input class="form-control" name="address" type="text" placeholder="أكتب عنوان الفرع">
+                            @error('address')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="">قيمة العملة بالمصرى</label>
-                            <input class="form-control" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
-                                name="amount" type="text" placeholder="0.00">
-                            @error('amount')
+                        <div class="form-group">
+                            <label for="">تليفون الفرع</label>
+                            <input class="form-control" name="phone" type="text" placeholder="أكتب تليفون الفرع">
+                            @error('phone')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
+
+
+                        <div class="form-group">
+                            <label for="">البريد الالكترونى</label>
+                            <input class="form-control" name="email" type="text"
+                                placeholder="أكتب البريد الالكترونى للفرع">
+                            @error('email')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="">البريد الالكترونى</label>
+                            <input class="form-control" name="email" type="text"
+                                placeholder="أكتب البريد الالكترونى للفرع">
+                            @error('email')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>محافظة</label>
+                            <select name="governorate_id" class="custom-select">
+                                <option selected>-- أختر المحافظة --</option>
+                                <option>option 2</option>
+                            </select>
+                            @error('governorate_id')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>المدينة</label>
+                            <select name="city_id" class="custom-select">
+                                <option selected>-- أختر المدينة --</option>
+                                <option>option 2</option>
+                            </select>
+                            @error('city_id')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
 
                     </div>
                     <!-- /.card-body -->
 
-                    <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-primary">تأكيد البيانات</button>
-                    </div>
-                </form>
             </div>
-
+            <div class="modal-footer justify-content-between">
+                <button type="submit" class="btn btn-primary">تأكيد البيانات</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+            </div>
+            </form>
         </div>
-
-
-
+        <!-- /.modal-content -->
     </div>
-    <!-- /.row -->
-
-
-
-@endsection
-@section('scripts')
-@endsection
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

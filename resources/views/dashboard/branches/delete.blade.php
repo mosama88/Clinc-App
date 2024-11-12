@@ -1,5 +1,5 @@
 <!-- End Modal effects-->
-<div class="modal delete" id="delete{{ $info->id }}">
+<div class="modal Delete-modal-default delete" id="delete{{ $info->id }}">
 
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content tx-size-sm">
@@ -9,12 +9,12 @@
                     class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-danger mg-b-20">إحذر: ستقوم بحذف العملية !</h4>
 
-                <form action="{{ route('dashboard.currencies.destroy', $info['id']) }}" method="POST">
+                <form action="{{ route('dashboard.branches.destroy', $info['id']) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-body">
                         <input type="hidden" name="id" value="{{ $info->id }}">
-                        <h5>أسم نوع العملة</h5>
+                        <h5>أسم الفرع</h5>
                         <h5 class="text-primary">{{ $info->name }}</h5>
                     </div>
                     <div class="modal-footer mx-auto">
