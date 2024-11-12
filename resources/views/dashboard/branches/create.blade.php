@@ -53,18 +53,6 @@
                             @enderror
                         </div>
 
-
-                        <div class="form-group">
-                            <label for="">البريد الالكترونى</label>
-                            <input class="form-control" name="email" type="text"
-                                placeholder="أكتب البريد الالكترونى للفرع">
-                            @error('email')
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
                         <div class="form-group">
                             <label>محافظة</label>
                             <select name="governorate_id" class="custom-select">
