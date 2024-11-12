@@ -20,7 +20,7 @@ class BranchController extends Controller
         $other['governorates'] = Governorate::get();
         $other['cities'] = City::get();
         $data = Branch::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
-        return view('dashboard.branches.index',compact('data'));
+        return view('dashboard.branches.index',compact('data','other'));
     }
 
     /**

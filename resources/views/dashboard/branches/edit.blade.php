@@ -70,7 +70,14 @@
                             <label>محافظة</label>
                             <select name="governorate_id" class="custom-select">
                                 <option selected>-- أختر المحافظة --</option>
-                                <option>option 2</option>
+
+                                @if (!empty($other['governorates']) && isset($other['governorates']))
+                                    @foreach ($other['governorates'] as $governrate)
+                                        <option value="{{ $governrate->id }}">{{ $governrate->name }}</option>
+                                    @endforeach
+                                @else
+                                    لا توجد بيانات
+                                @endif
                             </select>
                             @error('governorate_id')
                                 <div class="alert alert-danger" role="alert">
@@ -84,7 +91,13 @@
                             <label>المدينة</label>
                             <select name="city_id" class="custom-select">
                                 <option selected>-- أختر المدينة --</option>
-                                <option>option 2</option>
+                                @if (!empty($other['cities']) && isset($other['cities']))
+                                    @foreach ($other['cities'] as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                @else
+                                    لا توجد بيانات
+                                @endif
                             </select>
                             @error('city_id')
                                 <div class="alert alert-danger" role="alert">
