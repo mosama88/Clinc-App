@@ -118,7 +118,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <br>
+                    <hr>
                     <div class="col-12">
                         {{ $data->render('pagination::bootstrap-5') }}
                     </div>
