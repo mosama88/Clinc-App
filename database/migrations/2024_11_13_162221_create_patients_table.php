@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('name',50);
+            $table->string('mobile',20);
+            $table->string('alt_mobile',20);
+            $table->string('address',300);
+            $table->string('emergency_contact',300);
+            $table->string('email',300)->unique();
+            $table->date('date_of_birth');
+            $table->integer('age');
+            $table->integer('gender')->comment('1:Male,2:Female');
+            $table->foreignId('blood_type_id')->references('id')->on('blood_types')->onUpdate('cascade');
+            $table->foreignId('doctor_id')->references('id')->on('doctors')->onUpdate('cascade');
+            $table->text('medical_history',2000);
+            $table->integer('are_previous_surgeries')->nullable()->comment('  1 نعم | 2 لا::: هل يوجد عمليات جراحية سابقه');
+            $table->text('previous_surgeries',2000); 
             $table->timestamps();
         });
     }

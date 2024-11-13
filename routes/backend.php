@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\Dashboard\AdminPanelController;
-use App\Http\Controllers\Dashboard\CurrencyController;
-use App\Http\Controllers\Dashboard\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Dashboard\CityController;
+use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\BranchController;
+use App\Http\Controllers\Dashboard\DoctorController;
+use App\Http\Controllers\Dashboard\PatientController;
+use App\Http\Controllers\Dashboard\SectionController;
+use App\Http\Controllers\Dashboard\CurrencyController;
+use App\Http\Controllers\Dashboard\AdminPanelController;
 use App\Http\Controllers\Dashboard\BloodTypesController;
 use App\Http\Controllers\Dashboard\NationalityController;
-use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SpecializationController;
-use App\Http\Controllers\Dashboard\BranchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,16 +40,37 @@ Route::get('/', function () {
 Route::middleware(['auth:admin', 'verified'])->prefix('admin')->name('dashboard.')->group(function () {
 
 
-    //
+    //الضبط العام
     Route::resource('admin_panels',  AdminPanelController::class);
+
+    // المدن
     Route::resource('cities', CityController::class);
+
+    // فصيلة الدم
     Route::resource('BloodTypes', BloodTypesController::class);
+
+    // التخصصات
     Route::resource('specializations', SpecializationController::class);
+
+    // الجنسيات
     Route::resource('nationalities', NationalityController::class);
+
+    // الاقسام
     Route::resource('sections', SectionController::class);
+
+    // الفروع
     Route::resource('branches',  BranchController::class);
     Route::post('branches/getCities', [BranchController::class, 'getCities'])->name('branches.getCities');
+
+    // الأطباء
+    Route::resource('doctors',  DoctorController::class);
+
+       // المرضى
+       Route::resource('patients',  PatientController::class);
+
 });
+
+
 
 
 Route::middleware('auth:admin')->group(function () {
