@@ -16,7 +16,7 @@ class BloodTypesController extends Controller
     public function index()
     {
         $com_code = auth()->user()->com_code;
-        $data = BloodTypes::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
+        $data = BloodTypes::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
         return view('dashboard.BloodTypes.index',compact('data'));
     }
 

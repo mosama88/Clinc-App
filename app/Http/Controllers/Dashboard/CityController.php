@@ -16,7 +16,7 @@ class CityController extends Controller
     {
         $com_code = auth()->user()->com_code;
         $other['governorates'] = Governorate::get();
-        $data = City::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
+        $data = City::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
         return view('dashboard.cities.index',compact('data','other'));
     }
 

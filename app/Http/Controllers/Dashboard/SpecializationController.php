@@ -19,7 +19,7 @@ class SpecializationController extends Controller
     {
         $com_code = auth()->user()->com_code;
         $other['sections'] = Section::get();
-        $data = Specialization::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
+        $data = Specialization::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
         return view('dashboard.specializations.index',compact('data','other'));
     }
 

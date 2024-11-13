@@ -17,7 +17,7 @@ class NationalityController extends Controller
     public function index()
     {
         $com_code = auth()->user()->com_code;
-        $data = Nationality::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
+        $data = Nationality::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
         return view('dashboard.nationalities.index',compact('data'));
     }
 

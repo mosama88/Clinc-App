@@ -17,7 +17,7 @@ class SectionController extends Controller
     public function index()
     {
         $com_code = auth()->user()->com_code;
-        $data = Section::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
+        $data = Section::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
         return view('dashboard.sections.index',compact('data'));
     }
 

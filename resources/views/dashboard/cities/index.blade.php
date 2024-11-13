@@ -103,6 +103,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <br>
+                    <div class="col-12">
+                        {{ $data->render('pagination::bootstrap-5') }}
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>
