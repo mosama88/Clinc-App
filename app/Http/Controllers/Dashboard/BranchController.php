@@ -43,17 +43,17 @@ class BranchController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $blood = new Branch();
-           $blood['name'] = $request->name;
-           $blood['address'] = $request->address;
-           $blood['phone'] = $request->phone;
-           $blood['email'] = $request->email ;
-           $blood['governorate_id'] = $request->governorate_id;
-           $blood['city_id'] = $request->city_id;
-           $blood['status'] = 1;
-           $blood['created_by'] = 1;
-           $blood['com_code'] = $com_code;
-           $blood->save();
+           $Branch = new Branch();
+           $Branch['name'] = $request->name;
+           $Branch['address'] = $request->address;
+           $Branch['phone'] = $request->phone;
+           $Branch['email'] = $request->email ;
+           $Branch['governorate_id'] = $request->governorate_id;
+           $Branch['city_id'] = $request->city_id;
+           $Branch['status'] = 1;
+           $Branch['created_by'] = 1;
+           $Branch['com_code'] = $com_code;
+           $Branch->save();
             DB::commit();
             return redirect()->route('dashboard.branches.index')->with('success', 'تم أضافة الفرع بنجاح');            
             
@@ -128,6 +128,10 @@ class BranchController extends Controller
             DB::rollback();
             return redirect()->route('dashboard.branches.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
         }
-
     }
+
+
+
+    // public function getcities(){
+    // }
 }

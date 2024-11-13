@@ -1,55 +1,43 @@
-@extends('dashboard.layouts.master')
-@section('admin_title', 'أضافة عملة جديده')
-@section('css')
-@endsection
-@section('active-currency', 'active')
-@section('page-header', 'أضافة عملة جديده')
-@section('page-header_desc', 'أضافة عملة جديده')
-@section('page-header_link')
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.currencies.index') }}">جدول العملات</a></li>
-@endsection
-@section('content')
-
-    {{-- ./row --}}
-    <div class="row">
-        <div class="col-md-12">
-
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">أضف عملة جديده</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form action="{{ route('dashboard.currencies.update', $currencyUpdate['id']) }}" method="POST" role="form">
+<div class="modal Edit-modal-default fade" id="edit{{ $info->id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> تعديل المدينه</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('dashboard.cities.update', $info->id) }}" method="POST" role="form">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">أسم العملة</label>
-                            <input class="form-control" name="name" value="{{ $currencyUpdate['name'] }}" type="text"
-                                placeholder="أكتب أسم العملة">
+                            <label for="">أسم المدينه</label>
+                            <input class="form-control" name="name" value="{{ $info['name'] }}" type="text"
+                                placeholder="أكتب أسم المدينه">
                             @error('name')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="">وصف العملة</label>
-                            <input class="form-control" name="description" value="{{ $currencyUpdate['description'] }}"
-                                type="text" placeholder="وصف العملة">
-                            @error('description')
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
 
-                        <div class="form-group mb-3">
-                            <label for="">قيمة العملة بالمصرى</label>
-                            <input class="form-control" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
-                                name="amount" type="text" value="{{ $currencyUpdate['amount'] }}" placeholder="0.00">
-                            @error('amount')
+                        <div class="form-group">
+                            <label>محافظة</label>
+                            <select name="governorate_id" class="custom-select">
+                                <option selected>-- أختر المحافظة --</option>
+
+                                @if (!empty($other['governorates']) && isset($other['governorates']))
+                                    @foreach ($other['governorates'] as $governrate)
+                                        <option @if (old('governorate_id', $info['governorate_id']) == $governrate->id) selected="selected" @endif
+                                            value="{{ $governrate->id }}">{{ $governrate->name }}</option>
+                                    @endforeach
+                                @else
+                                    لا توجد بيانات
+                                @endif
+                            </select>
+                            @error('governorate_id')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>
@@ -59,21 +47,15 @@
                     </div>
                     <!-- /.card-body -->
 
-                    <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-primary">تأكيد البيانات</button>
-                    </div>
-                </form>
             </div>
-
+            <div class="modal-footer justify-content-between">
+                <button type="submit" class="btn btn-primary">تأكيد البيانات</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+            </div>
+            </form>
         </div>
-
-
-
+        <!-- /.modal-content -->
     </div>
-    <!-- /.row -->
-
-
-
-@endsection
-@section('scripts')
-@endsection
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
