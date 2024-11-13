@@ -21,58 +21,20 @@ return new class extends Migration
         });
 
         DB::table('sections')->insert([
-            [
-                'name' => 'قسم الباطنه',
-                'com_code' => 1,
-                'created_by' => 1,
-                'updated_by' => 1,
-            ],
-        ]);
-
-
-        DB::table('sections')->insert([
-            [
-                'name' => 'قسم جراحة مخ واعصاب',
-                'com_code' => 1,
-                'created_by' => 1,
-                'updated_by' => 1,
-            ],
-        ]);
-
-        DB::table('sections')->insert([
-            [
-                'name' => 'قسم الجراحه العامه',
-                'com_code' => 1,
-                'created_by' => 1,
-                'updated_by' => 1,
-            ],
-        ]);
-
-        DB::table('sections')->insert([
-            [
-                'name' => 'قسم الجهاز الهضمى',
-                'com_code' => 1,
-                'created_by' => 1,
-                'updated_by' => 1,
-            ],
-        ]);
-
-        DB::table('sections')->insert([
-            [
-                'name' => 'قسم الصدر',
-                'com_code' => 1,
-                'created_by' => 1,
-                'updated_by' => 1,
-            ],
-        ]);
-
-        DB::table('sections')->insert([
-            [
-                'name' => 'قسم الغدد الصماء',
-                'com_code' => 1,
-                'created_by' => 1,
-                'updated_by' => 1,
-            ],
+            ['id' => 1, 'name' => 'قسم الباطنه', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => NULL, 'updated_at' => NULL],
+            ['id' => 3, 'name' => 'قسم الجراحه', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => NULL, 'updated_at' => '2024-11-13 14:05:26'],
+            ['id' => 4, 'name' => 'قسم الجهاز الهضمى', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => NULL, 'updated_at' => NULL],
+            ['id' => 5, 'name' => 'قسم الصدر', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => NULL, 'updated_at' => NULL],
+            ['id' => 6, 'name' => 'قسم الغدد الصماء', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => NULL, 'updated_at' => NULL],
+            ['id' => 8, 'name' => 'قسم الأشعة', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => '2024-11-13 12:58:14', 'updated_at' => '2024-11-13 12:58:23'],
+            ['id' => 9, 'name' => 'قسم الطوارئ', 'created_by' => 1, 'updated_by' => NULL, 'com_code' => 1, 'created_at' => '2024-11-13 12:59:20', 'updated_at' => '2024-11-13 12:59:20'],
+            ['id' => 10, 'name' => 'قسم التخدير والعناية المركزة', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => '2024-11-13 12:59:32', 'updated_at' => '2024-11-13 13:00:23'],
+            ['id' => 11, 'name' => 'قسم الأورام', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => '2024-11-13 12:59:41', 'updated_at' => '2024-11-13 13:00:17'],
+            ['id' => 12, 'name' => 'قسم الأنف والأذن والحنجرة', 'created_by' => 1, 'updated_by' => 1, 'com_code' => 1, 'created_at' => '2024-11-13 12:59:50', 'updated_at' => '2024-11-13 13:00:11'],
+            ['id' => 13, 'name' => 'قسم العيون', 'created_by' => 1, 'updated_by' => NULL, 'com_code' => 1, 'created_at' => '2024-11-13 13:00:02', 'updated_at' => '2024-11-13 13:00:02'],
+            ['id' => 15, 'name' => 'قسم الأمراض الجلدية', 'created_by' => 1, 'updated_by' => NULL, 'com_code' => 1, 'created_at' => '2024-11-13 14:02:42', 'updated_at' => '2024-11-13 14:02:42'],
+            ['id' => 16, 'name' => 'قسم النساء والتوليد', 'created_by' => 1, 'updated_by' => NULL, 'com_code' => 1, 'created_at' => '2024-11-13 14:03:40', 'updated_at' => '2024-11-13 14:03:40'],
+            ['id' => 17, 'name' => 'قسم الطب الرياضي وإصابات الملاعب', 'created_by' => 1, 'updated_by' => NULL, 'com_code' => 1, 'created_at' => '2024-11-13 14:07:56', 'updated_at' => '2024-11-13 14:07:56'],
         ]);
     }
 
