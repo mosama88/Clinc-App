@@ -78,7 +78,7 @@
                         </div>
 
 
-                        <div class="form-group city_Div">
+                        <div class="form-group" id="city_Div">
                             <label>المدينة</label>
                             <select name="city_id" id="city_id" class="custom-select">
                                 <option selected>-- أختر المدينة --</option>

@@ -46,7 +46,7 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->name('dashboard.
     Route::resource('nationalities', NationalityController::class);
     Route::resource('sections', SectionController::class);
     Route::resource('branches',  BranchController::class);
-    Route::get('branches/getcities', [BranchController::class, 'getcities'])->name('branches.getcities');
+    Route::post('branches/getCities', [BranchController::class, 'getCities'])->name('branches.getCities');
 });
 
 

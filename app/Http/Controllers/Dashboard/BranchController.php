@@ -130,16 +130,17 @@ class BranchController extends Controller
         }
     }
 
-
-
-    public function getcities(Request $request){
-        if ($request->ajax()) {
-
+    public function getCities(Request $request)
+{
+    if ($request->ajax()) {
         $governorate_id = $request->governorate_id;
-        $other['cities'] = City::select('id','name')->where('governorate_id',$governorate_id)->get();
-        return view('dashboard.cities.getCitites',compact('cities'));
+        $other['cities'] = City::where('governorate_id', $governorate_id)->get();
+        return view('dashboard.branches.getCitites',compact('other'));
     }
 }
+
+
+
 
 
 

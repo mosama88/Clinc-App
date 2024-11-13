@@ -150,16 +150,18 @@
     </script>
 
     <script>
-        $(document).on("change", "#governorate_id", function(e) {
-            getcities();
+        // Get Cities When Governorate Changes
+        $(document).on('change', '#governorate_id', function() {
+            const governorate_id = $(this).val();
+            if (governorate_id) {
+                getCities(governorate_id);
+            }
         });
 
-
-        function getcities() {
-            var governorate_id = $("#governorate_id").val();
-            JQuery.ajax({
-                url: '{{ route('dashboard.branches.getcities') }}',
-                type: 'post',
+        function getCities(governorate_id) {
+            $.ajax({
+                url: '{{ route('dashboard.branches.getCities') }}',
+                type: 'POST',
                 dataType: 'html',
                 cache: false,
                 data: {
@@ -175,4 +177,7 @@
             });
         }
     </script>
+
+
+
 @endsection
