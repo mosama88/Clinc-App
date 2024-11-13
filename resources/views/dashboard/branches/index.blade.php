@@ -2,7 +2,7 @@
 @section('admin_title', 'الفروع')
 @section('css')
 @endsection
-@section('active-currency', 'active')
+@section('active-branches', 'active')
 @section('page-header', 'جدول الفروع')
 @section('page-header_desc', 'جدول الفروع')
 @section('page-header_link')

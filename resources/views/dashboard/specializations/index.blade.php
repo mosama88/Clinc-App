@@ -2,7 +2,7 @@
 @section('admin_title', 'التخصصات')
 @section('css')
 @endsection
-@section('active-currency', 'active')
+@section('active-specializations', 'active')
 @section('page-header', 'جدول التخصصات')
 @section('page-header_desc', 'جدول التخصصات')
 @section('page-header_link')

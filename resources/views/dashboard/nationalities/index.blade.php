@@ -2,7 +2,7 @@
 @section('admin_title', 'الجنسيات')
 @section('css')
 @endsection
-@section('active-currency', 'active')
+@section('active-nationalities', 'active')
 @section('page-header', 'جدول الجنسيات')
 @section('page-header_desc', 'جدول الجنسيات')
 @section('page-header_link')

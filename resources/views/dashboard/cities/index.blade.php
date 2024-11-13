@@ -2,7 +2,7 @@
 @section('admin_title', 'المدن')
 @section('css')
 @endsection
-@section('active-currency', 'active')
+@section('active-cities', 'active')
 @section('page-header', 'جدول المدن')
 @section('page-header_desc', 'جدول المدن')
 @section('page-header_link')

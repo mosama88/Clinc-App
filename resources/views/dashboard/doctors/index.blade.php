@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'الفروع')
+@section('admin_title', 'الأطباء')
 @section('css')
 @endsection
-@section('active-currency', 'active')
-@section('page-header', 'جدول الفروع')
-@section('page-header_desc', 'جدول الفروع')
+@section('active-doctors', 'active')
+@section('page-header', 'جدول الأطباء')
+@section('page-header_desc', 'جدول الأطباء')
 @section('page-header_link')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">لوحة التحكم</a></li>
 @endsection
@@ -28,14 +28,13 @@
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">جدول الفروع</h3>
+                    <h3 class="card-title">جدول الأطباء</h3>
                 </div>
                 <div class="card-header">
-                    <button type="button" class="btn btn-md btn-primary btn-flat" data-toggle="modal"
-                        data-target="#modal-default">
-                        <i class="fas fa-plus ml-2"></i> أضافة فرع جديد
-                    </button>
-                    @include('dashboard.branches.create')
+                    <a href="{{ route('dashboard.doctors.create') }}" type="button"
+                        class="btn btn-md btn-primary btn-flat">
+                        <i class="fas fa-plus ml-2"></i> أضافة طبيب جديد
+                    </a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
@@ -43,7 +42,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>أسم الفرع</th>
+                                <th>أسم الطبيب</th>
                                 <th> عنوان</th>
                                 <th> تليفون</th>
                                 <th>البريد الالكترونى</th>
@@ -95,8 +94,8 @@
 
 
                                                 <button class="dropdown-item" type="button"
-                                                    class="btn btn-md btn-primary btn-flat" data-toggle="modal"
-                                                    data-target="#edit{{ $info->id }}">
+                                                    class="btn btn-md btn-primary btn-flat"
+                                                    href="{{ route('dashboard.doctors.edit', $info->id) }}">
                                                     <i class="fas fa-edit ml-2"></i>
                                                     تعديل
                                                 </button>
@@ -110,8 +109,7 @@
 
                                             </div>
                                         </div>
-                                        @include('dashboard.branches.delete')
-                                        @include('dashboard.branches.edit')
+                                        @include('dashboard.doctors.delete')
                                     </td>
 
                                 </tr>
@@ -158,36 +156,6 @@
 
         });
     </script>
-
-    <script>
-        // Get Cities When Governorate Changes
-        $(document).on('change', '#governorate_id', function() {
-            const governorate_id = $(this).val();
-            if (governorate_id) {
-                getCities(governorate_id);
-            }
-        });
-
-        function getCities(governorate_id) {
-            $.ajax({
-                url: '{{ route('dashboard.branches.getCities') }}',
-                type: 'POST',
-                dataType: 'html',
-                cache: false,
-                data: {
-                    "_token": '{{ csrf_token() }}',
-                    governorate_id: governorate_id
-                },
-                success: function(data) {
-                    $("#city_Div").html(data);
-                },
-                error: function() {
-                    alert("عفوا لقد حدث خطأ ");
-                }
-            });
-        }
-    </script>
-
 
 
 @endsection

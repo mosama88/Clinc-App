@@ -2,7 +2,7 @@
 @section('admin_title', 'الأقسام')
 @section('css')
 @endsection
-@section('active-currency', 'active')
+@section('active-sections', 'active')
 @section('page-header', 'جدول الأقسام')
 @section('page-header_desc', 'جدول الأقسام')
 @section('page-header_link')

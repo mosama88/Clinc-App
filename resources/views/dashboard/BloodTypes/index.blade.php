@@ -2,7 +2,7 @@
 @section('admin_title', 'فصيلة الدم')
 @section('css')
 @endsection
-@section('active-currency', 'active')
+@section('active-BloodTypes', 'active')
 @section('page-header', 'جدول فصيلة الدم')
 @section('page-header_desc', 'جدول فصيلة الدم')
 @section('page-header_link')
