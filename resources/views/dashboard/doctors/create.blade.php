@@ -76,15 +76,111 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label for="exampleInputName">العنوان</label>
-                                <textarea class="form-control" rows="3" name="address" placeholder="أدخل العنوان">{{ old('address') }}</textarea>
+                                <input type="text" class="form-control" name="address" value="{{ old('address') }}"
+                                    id="address" placeholder="أدخل .....">
                                 @error('address')
                                     <div class="alert alert-danger" role="alert">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputName">الجنس</label>
+                                <select name="gender" id="gender" class="form-control">
+                                    <option value="1">ذكر</option>
+                                    <option value="0">انثى</option>
+                                </select> @error('gender')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label for="exampleInputName">الحالة</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="1">مفعل</option>
+                                    <option value="0">غير مفعل</option>
+                                </select>
+                                @error('status')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputName">القسم</label>
+                                <select name="section_id" id="section_id" class="custom-select">
+                                    <option selected>-- أختر القسم --</option>
+                                    @if (!empty($other['sections']) && isset($other['sections']))
+                                        @foreach ($other['sections'] as $section)
+                                            <option @if (old('section_id') == $section->id) selected="selected" @endif
+                                                value="{{ $section->id }}">{{ $section->name }}</option>
+                                        @endforeach
+                                    @else
+                                        لا توجد بيانات
+                                    @endif
+                                </select>
+                                @error('section_id')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label for="exampleInputName">التخصص</label>
+                                <select name="specialization_id" id="specialization_id" class="custom-select">
+                                    <option selected>-- أختر التخصص --</option>
+                                    @if (!empty($other['specializations']) && isset($other['specializations']))
+                                        @foreach ($other['specializations'] as $specialization)
+                                            <option @if (old('specialization_id') == $specialization->id) selected="selected" @endif
+                                                value="{{ $specialization->id }}">{{ $specialization->name }}</option>
+                                        @endforeach
+                                    @else
+                                        لا توجد بيانات
+                                    @endif
+                                </select>
+                                @error('section_id')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputName">الجنسية</label>
+                                <select name="nationality_id" id="nationality_id" class="custom-select">
+                                    <option selected>-- أختر الجنسية --</option>
+                                    @if (!empty($other['nationalities']) && isset($other['nationalities']))
+                                        @foreach ($other['nationalities'] as $nationality)
+                                            <option @if (old('nationality_id') == $nationality->id) selected="selected" @endif
+                                                value="{{ $nationality->id }}">{{ $nationality->name }}</option>
+                                        @endforeach
+                                    @else
+                                        لا توجد بيانات
+                                    @endif
+                                </select>
+                                @error('section_id')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
 
                             <div class="form-group col-6">
                                 <label for="exampleInputName">درجة الدكتور الوظيفية</label>
@@ -98,104 +194,12 @@
                             </div>
                         </div>
 
-
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="exampleInputName">الجنس</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="1">ذكر</option>
-                                    <option value="0">انثى</option>
-                                </select> @error('address')
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-6">
-                                <label for="exampleInputName">الحالة</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="1">مفعل</option>
-                                    <option value="0">غير مفعل</option>
-                                </select> @error('address')
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="exampleInputName">القسم</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="1">ذكر</option>
-                                    <option value="0">انثى</option>
-                                </select> @error('address')
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-6">
-                                <label for="exampleInputName">التخصص</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="1">مفعل</option>
-                                    <option value="0">غير مفعل</option>
-                                </select> @error('address')
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="exampleInputName">الجنسية</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="1">ذكر</option>
-                                    <option value="0">انثى</option>
-                                </select> @error('address')
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-6">
-                                <label for="exampleInputName">التخصص</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="1">مفعل</option>
-                                    <option value="0">غير مفعل</option>
-                                </select> @error('address')
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <div class="form-group">
                             <label for="exampleInputFile">صورة الطبيب</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                                    <input type="file" name="photo" class="custom-file-input"
+                                        id="exampleInputFile">
                                     <label class="custom-file-label" for="exampleInputFile">أرفق الصورة</label>
                                 </div>
                                 <div class="input-group-append">
@@ -203,7 +207,11 @@
                                 </div>
                             </div>
                         </div>
-
+                        @error('photo')
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <!-- /.card-body -->
 

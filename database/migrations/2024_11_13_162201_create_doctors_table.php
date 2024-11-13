@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('email',300)->unique();
             $table->integer('gender')->comment('1:Male,2:Female');
             $table->integer('status')->default(1)->nullable();
-            $table->foreignId('nationality_id_')->references('id')->on('nationalities')->onUpdate('cascade');
+            $table->foreignId('nationality_id')->references('id')->on('nationalities')->onUpdate('cascade');
             $table->foreignId('specialization_id')->references('id')->on('specializations')->onUpdate('cascade');
             $table->foreignId('section_id')->references('id')->on('sections')->onUpdate('cascade');
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
