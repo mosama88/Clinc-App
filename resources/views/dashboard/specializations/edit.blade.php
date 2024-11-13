@@ -23,6 +23,26 @@
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label>القسم</label>
+                            <select name="section_id" class="custom-select">
+                                <option selected>-- أختر القسم --</option>
+                                @if (!empty($other['sections']) && isset($other['sections']))
+                                    @foreach ($other['sections'] as $section)
+                                        <option @if (old('section_id', $info['section_id']) == $section->id) selected="selected" @endif
+                                            value="{{ $section->id }}">{{ $section->name }}</option>
+                                    @endforeach
+                                @else
+                                    لا توجد بيانات
+                                @endif
+                            </select>
+                            @error('section_id')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
                     </div>
                     <!-- /.card-body -->
 

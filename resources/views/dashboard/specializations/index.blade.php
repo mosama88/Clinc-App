@@ -47,6 +47,7 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>التخصصات</th>
+                                <th>القسم</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>
@@ -59,6 +60,7 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $info['name'] }}</td>
+                                    <td>{{ $info->section->name }}</td>
                                     <td>{{ $info->createdBy->name }}</td>
                                     <td>
                                         @if ($info->updated_by > 0)

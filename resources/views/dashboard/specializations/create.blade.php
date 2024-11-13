@@ -12,9 +12,31 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">أسم القسم</label>
-                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم القسم">
+                            <label for="">أسم التخصص</label>
+                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم التخصص">
                             @error('name')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>القسم </label>
+                            <select name="section_id" id="section_id" class="custom-select">
+                                <option selected>-- أختر القسم --</option>
+
+                                @if (!empty($other['sections']) && isset($other['sections']))
+                                    @foreach ($other['sections'] as $section)
+                                        <option @if (old('section_id') == $section->id) selected="selected" @endif
+                                            value="{{ $section->id }}">{{ $section->name }}</option>
+                                    @endforeach
+                                @else
+                                    لا توجد بيانات
+                                @endif
+                            </select>
+                            @error('section_id')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>

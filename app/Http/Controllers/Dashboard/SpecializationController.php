@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Section;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\SpecializationsRequest;
 use App\Http\Requests\Dashboard\SpecializationsUpdateRequest;
@@ -15,8 +18,9 @@ class SpecializationController extends Controller
     public function index()
     {
         $com_code = auth()->user()->com_code;
+        $other['sections'] = Section::get();
         $data = Specialization::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->get();
-        return view('dashboard.specializations.index',compact('data'));
+        return view('dashboard.specializations.index',compact('data','other'));
     }
 
     /**
@@ -24,7 +28,8 @@ class SpecializationController extends Controller
      */
     public function create()
     {
-        return view('dashboard.specializations.create');
+        $other['sections'] = Section::get();
+        return view('dashboard.specializations.create',compact('other'));
     }
 
     /**
@@ -35,11 +40,12 @@ class SpecializationController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $blood = new Specialization();
-           $blood['name'] = $request->name;
-           $blood['created_by'] = 1;
-           $blood['com_code'] = $com_code;
-           $blood->save();
+           $Specialization= new Specialization();
+           $Specialization['name'] = $request->name;
+           $Specialization['section_id'] = $request->section_id;
+           $Specialization['created_by'] = 1;
+           $Specialization['com_code'] = $com_code;
+           $Specialization->save();
             DB::commit();
             return redirect()->route('dashboard.specializations.index')->with('success', 'تم أضافة التخصص بنجاح');            
             
@@ -63,7 +69,8 @@ class SpecializationController extends Controller
     public function edit(string $id)
     {
         $info = Specialization::findOrFail($id);
-        return view('dashboard.specializations.edit',compact('info'));
+        $other['sections'] = Section::get();
+        return view('dashboard.specializations.edit',compact('info','other'));
 
     }
 
@@ -75,11 +82,12 @@ class SpecializationController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Updateblood = Specialization::findOrFail($id);
-           $Updateblood['name'] = $request->name;
-           $Updateblood['updated_by'] = 1;
-           $Updateblood['com_code'] = $com_code;
-           $Updateblood->save();
+           $UpdateSpecialization = Specialization::findOrFail($id);
+           $UpdateSpecialization['name'] = $request->name;
+           $UpdateSpecialization['section_id'] = $request->section_id;
+           $UpdateSpecialization['updated_by'] = 1;
+           $UpdateSpecialization['com_code'] = $com_code;
+           $UpdateSpecialization->save();
             DB::commit();
             return redirect()->route('dashboard.specializations.index')->with('success', 'تم تعديل التخصص بنجاح');            
             
@@ -97,8 +105,8 @@ class SpecializationController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Deleteblood = Specialization::findOrFail($id);
-           $Deleteblood->delete();
+           $DeleteSpecialization = Specialization::findOrFail($id);
+           $DeleteSpecialization->delete();
             DB::commit();
             return redirect()->route('dashboard.specializations.index')->with('success', 'تم حذف التخصص بنجاح');            
             
