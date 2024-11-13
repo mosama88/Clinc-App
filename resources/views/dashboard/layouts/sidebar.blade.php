@@ -94,6 +94,41 @@
 
 
 
+
+
+
+
+
+                <li class="nav-item has-treeview    {{ request()->is('admin/doctors*') ? 'menu-open' : '' }} ">
+                    <a href="{{ url('/') }}" class="nav-link {{ request()->is('doctors*') ? 'active' : '' }} ">
+
+                        <i class="fas fa-cog"></i>
+                        <p>
+                            قائمة الأطباء
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.doctors.index') }}" class="nav-link @yield('active-doctors')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الضبط العام</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
                 <li class="nav-item">
                     <a href="{{ url('/' . ($page = 'widgets')) }}" class="nav-link @yield('active-widgets')">
                         <i class="nav-icon fas fa-th"></i>
