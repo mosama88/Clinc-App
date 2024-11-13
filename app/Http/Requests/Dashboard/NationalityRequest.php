@@ -22,7 +22,7 @@ class NationalityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:name,nationalities',    
+            'name' => 'required|max:50|unique:nationalities,name',    
         ];
     }
 

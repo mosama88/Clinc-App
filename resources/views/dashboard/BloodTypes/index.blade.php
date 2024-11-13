@@ -19,6 +19,15 @@
                 </div>
             @endif
 
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
+
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
@@ -68,17 +77,19 @@
                                             </button>
                                             <div class="dropdown-menu" role="menu" x-placement="top-start"
                                                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-1px, -165px, 0px);">
-                                         
 
-                                                <button  class="dropdown-item" type="button" class="btn btn-md btn-primary btn-flat"
-                                                    data-toggle="modal" data-target="#edit{{ $info->id }}">
+
+                                                <button class="dropdown-item" type="button"
+                                                    class="btn btn-md btn-primary btn-flat" data-toggle="modal"
+                                                    data-target="#edit{{ $info->id }}">
                                                     <i class="fas fa-edit ml-2"></i>
                                                     تعديل
                                                 </button>
 
 
-                                                <button  class="dropdown-item" type="button" class="btn btn-md btn-primary btn-flat"
-                                                    data-toggle="modal" data-target="#delete{{ $info->id }}">
+                                                <button class="dropdown-item" type="button"
+                                                    class="btn btn-md btn-primary btn-flat" data-toggle="modal"
+                                                    data-target="#delete{{ $info->id }}">
                                                     <i class="fas fa-trash-alt ml-1"></i>حذف
                                                 </button>
 

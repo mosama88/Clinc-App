@@ -2,18 +2,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">أضافة فصيلة جديدة</h4>
+                <h4 class="modal-title">أضافة جنسية جديدة</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('dashboard.BloodTypes.store') }}" method="POST" role="form">
+                <form action="{{ route('dashboard.nationalities.store') }}" method="POST" role="form">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">أسم الفصيلة</label>
-                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم الفصيلة">
+                            <label for="">أسم الجنسية</label>
+                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم الجنسية">
                             @error('name')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
