@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\City;
 use App\Models\Doctor;
+use App\Models\Section;
 use App\Models\Governorate;
+use App\Models\Nationality;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\DoctorRequest;
@@ -27,8 +30,9 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        $other['governorates'] = Governorate::get();
-        $other['cities'] = City::get();
+        $other['nationalities'] = Nationality::get();
+        $other['sections'] = Section::get();
+        $other['specializations'] = Specialization::get();
         return view('dashboard.doctors.create',compact('other'));
         }
 
@@ -40,17 +44,21 @@ class DoctorController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Branch = new Doctor();
-           $Branch['name'] = $request->name;
-           $Branch['address'] = $request->address;
-           $Branch['phone'] = $request->phone;
-           $Branch['email'] = $request->email ;
-           $Branch['governorate_id'] = $request->governorate_id;
-           $Branch['city_id'] = $request->city_id;
-           $Branch['status'] = 1;
-           $Branch['created_by'] = 1;
-           $Branch['com_code'] = $com_code;
-           $Branch->save();
+           $doctor = new Doctor();
+           $doctor['name'] = $request->name;
+           $doctor['id_number'] = $request->id_number;
+           $doctor['mobile'] = $request->mobile;
+           $doctor['address'] = $request->address;
+           $doctor['title'] = $request->title;
+           $doctor['email'] = $request->email;
+           $doctor['gender'] = $request->gender;
+           $doctor['nationality_id'] = $request->nationality_id;
+           $doctor['specialization_id'] = $request->specialization_id;
+           $doctor['section_id'] = $request->section_id;
+           $doctor['status'] = 1;
+           $doctor['created_by'] = 1;
+           $doctor['com_code'] = $com_code;
+           $doctor->save();
             DB::commit();
             return redirect()->route('dashboard.doctors.index')->with('success', 'تم أضافة الطبيب بنجاح');            
             
@@ -74,8 +82,9 @@ class DoctorController extends Controller
     public function edit(string $id)
     {
         $info = Doctor::findOrFail($id);
-        $other['governorates'] = Governorate::get();
-        $other['cities'] = City::get();
+        $other['nationalities'] = Nationality::get();
+        $other['sections'] = Section::get();
+        $other['specializations'] = Specialization::get();
         return view('dashboard.doctors.edit',compact('info','other'));
 
     }

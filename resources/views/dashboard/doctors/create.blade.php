@@ -94,6 +94,7 @@
                             <div class="form-group col-6">
                                 <label for="exampleInputName">الجنس</label>
                                 <select name="gender" id="gender" class="form-control">
+                                    <option selected>-- أختر الجنس --</option>
                                     <option value="1">ذكر</option>
                                     <option value="0">انثى</option>
                                 </select> @error('gender')
@@ -106,6 +107,7 @@
                             <div class="form-group col-6">
                                 <label for="exampleInputName">الحالة</label>
                                 <select name="status" id="status" class="form-control">
+                                    <option selected>-- أختر الحالة --</option>
                                     <option value="1">مفعل</option>
                                     <option value="0">غير مفعل</option>
                                 </select>
@@ -196,16 +198,8 @@
 
                         <div class="form-group">
                             <label for="exampleInputFile">صورة الطبيب</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" name="photo" class="custom-file-input"
-                                        id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">أرفق الصورة</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">أرفق الصورة</span>
-                                </div>
-                            </div>
+                            <input class="form-control" type="file" id="formFileMultiple" multiple>
+
                         </div>
                         @error('photo')
                             <div class="alert alert-danger" role="alert">
