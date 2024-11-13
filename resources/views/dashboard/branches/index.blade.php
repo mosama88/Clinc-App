@@ -149,5 +149,30 @@
         });
     </script>
 
+    <script>
+        $(document).on("change", "#governorate_id", function(e) {
+            getcities();
+        });
 
+
+        function getcities() {
+            var governorate_id = $("#governorate_id").val();
+            JQuery.ajax({
+                url: '{{ route('dashboard.branches.getcities') }}',
+                type: 'post',
+                dataType: 'html',
+                cache: false,
+                data: {
+                    "_token": '{{ csrf_token() }}',
+                    governorate_id: governorate_id
+                },
+                success: function(data) {
+                    $("#city_Div").html(data);
+                },
+                error: function() {
+                    alert("عفوا لقد حدث خطأ ");
+                }
+            });
+        }
+    </script>
 @endsection

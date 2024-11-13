@@ -58,7 +58,7 @@
 
                         <div class="form-group">
                             <label>محافظة</label>
-                            <select name="governorate_id" class="custom-select">
+                            <select name="governorate_id" id="governorate_id" class="custom-select">
                                 <option selected>-- أختر المحافظة --</option>
 
                                 @if (!empty($other['governorates']) && isset($other['governorates']))
@@ -78,9 +78,9 @@
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="form-group city_Div">
                             <label>المدينة</label>
-                            <select name="city_id" class="custom-select">
+                            <select name="city_id" id="city_id" class="custom-select">
                                 <option selected>-- أختر المدينة --</option>
                                 @if (!empty($other['cities']) && isset($other['cities']))
                                     @foreach ($other['cities'] as $city)
