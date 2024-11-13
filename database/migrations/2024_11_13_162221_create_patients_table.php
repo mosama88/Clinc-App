@@ -30,6 +30,10 @@ return new class extends Migration
             $table->text('previous_surgeries',2000); 
             $table->integer('Do_you_take_therapy?')->nullable()->comment('  1 نعم | 2 لا::: هل تاخذ علاج مزمن');
             $table->text('take_therapy',2000);
+            $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
+            $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
+            $table->integer('com_code');
+
             $table->timestamps();
         });
     }
