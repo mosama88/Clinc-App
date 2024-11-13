@@ -23,6 +23,8 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->integer('age')->nullable();
             $table->integer('gender')->comment('1:Male,2:Female');
+            $table->foreignId('governorate_id')->references('id')->on('governorates')->onUpdate('cascade');
+            $table->foreignId('nationality_id')->references('id')->on('nationalities')->onUpdate('cascade');
             $table->foreignId('blood_type_id')->references('id')->on('blood_types')->onUpdate('cascade');
             $table->foreignId('doctor_id')->references('id')->on('doctors')->onUpdate('cascade');
             $table->text('medical_history',2000);
