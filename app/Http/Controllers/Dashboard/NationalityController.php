@@ -36,6 +36,10 @@ class NationalityController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Nationality::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.nationalities.index')->withErrors(['error' => 'عفوآ أسم الجنسية  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $nationality = new Nationality();
            $nationality['name'] = $request->name;
@@ -76,6 +80,10 @@ class NationalityController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Nationality::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.nationalities.index')->withErrors(['error' => 'عفوآ أسم الجنسية  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $UpdateNationality = Nationality::findOrFail($id);
            $UpdateNationality['name'] = $request->name;

@@ -36,6 +36,10 @@ class SectionController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Section::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.sections.index')->withErrors(['error' => 'عفوآ أسم القسم  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $section = new Section();
            $section['name'] = $request->name;
@@ -76,6 +80,10 @@ class SectionController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Section::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.sections.index')->withErrors(['error' => 'عفوآ أسم القسم  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $UpdateSection = Section::findOrFail($id);
            $UpdateSection['name'] = $request->name;

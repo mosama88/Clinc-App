@@ -39,6 +39,10 @@ class SpecializationController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Specialization::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.specializations.index')->withErrors(['error' => 'عفوآ أسم التخصص  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $specialization= new Specialization();
            $specialization['name'] = $request->name;
@@ -81,6 +85,10 @@ class SpecializationController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Specialization::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.specializations.index')->withErrors(['error' => 'عفوآ أسم التخصص  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $UpdateSpecialization = Specialization::findOrFail($id);
            $UpdateSpecialization['name'] = $request->name;

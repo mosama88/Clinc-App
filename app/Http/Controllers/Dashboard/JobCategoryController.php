@@ -32,6 +32,10 @@ class JobCategoryController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = JobCategory::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.jobCategories.index')->withErrors(['error' => 'عفوآ أسم الدرجه  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $jobCategory = new JobCategory();
            $jobCategory['name'] = $request->name;
@@ -72,6 +76,10 @@ class JobCategoryController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = JobCategory::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.jobCategories.index')->withErrors(['error' => 'عفوآ أسم الدرجه  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $UpdateJobCategory = JobCategory::findOrFail($id);
            $UpdateJobCategory['name'] = $request->name;

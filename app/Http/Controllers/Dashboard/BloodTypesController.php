@@ -35,6 +35,13 @@ class BloodTypesController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+
+
+            $checkExistsName = BloodTypes::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+    if(!empty($checkExistsName)){
+        return redirect()->route('dashboard.BloodTypes.index')->withErrors(['error' => 'عفوآ أسم فصيلة الدم مسجلة من قبل !!'])->withInput();
+    }
+            
             DB::beginTransaction();
            $blood = new BloodTypes();
            $blood['name'] = $request->name;
@@ -75,6 +82,10 @@ class BloodTypesController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = BloodTypes::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.BloodTypes.index')->withErrors(['error' => 'عفوآ أسم فصيلة الدم مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $Updateblood = BloodTypes::findOrFail($id);
            $Updateblood['name'] = $request->name;

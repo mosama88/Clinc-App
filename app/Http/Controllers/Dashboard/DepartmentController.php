@@ -32,6 +32,10 @@ class DepartmentController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Department::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.cities.index')->withErrors(['error' => 'عفوآ أسم الأداراه الدم مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $Department = new Department();
            $Department['name'] = $request->name;
@@ -74,6 +78,10 @@ class DepartmentController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Department::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.departments.index')->withErrors(['error' => 'عفوآ أسم الأداراه  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $UpdateDepartment = Department::findOrFail($id);
            $UpdateDepartment['name'] = $request->name;

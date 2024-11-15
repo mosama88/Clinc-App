@@ -35,6 +35,10 @@ class QualificationController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Qualification::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.qualifications.index')->withErrors(['error' => 'عفوآ أسم المؤهل  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $qualification = new Qualification();
            $qualification['name'] = $request->name;
@@ -75,6 +79,10 @@ class QualificationController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Qualification::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.qualifications.index')->withErrors(['error' => 'عفوآ أسم المؤهل  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $UpdateQualification = Qualification::findOrFail($id);
            $UpdateQualification['name'] = $request->name;

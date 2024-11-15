@@ -13,3 +13,10 @@ function uploadImage($folder, $image)
     
     return $filename;
 }
+
+
+// function checkExistsbefore($model , $input array){
+
+//     if(exists($model))
+    
+// }

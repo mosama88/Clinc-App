@@ -37,6 +37,10 @@ class CityController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = City::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.cities.index')->withErrors(['error' => 'عفوآ أسم المدينه الدم مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $city = new City();
            $city['name'] = $request->name;
@@ -80,6 +84,10 @@ class CityController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = City::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.cities.index')->withErrors(['error' => 'عفوآ أسم المدينه الدم مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $Updatecity = City::findOrFail($id);
            $Updatecity['name'] = $request->name;           

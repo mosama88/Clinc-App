@@ -42,6 +42,17 @@ class BranchController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+
+    $checkExistsbeforeName = Branch::select('id')->where('com_code' ,'=', $com_code)->where('name',$request->name)->first();
+    if(!empty($checkExistsbeforeName)){
+        return redirect()->route('dashboard.branches.index')->withErrors(['error' => 'عفوآ أسم الفرع مسجل من قبل !!'])->withInput();
+    }
+  
+    $checkExistsbeforeEmail = Branch::select('id')->where('com_code' ,'=', $com_code)->where('email',$request->email)->first();
+    if(!empty($checkExistsbeforeEmail)){
+        return redirect()->route('dashboard.branches.index')->withErrors(['error' => 'عفوآ البريد الالكترونى للفرع مسجل من قبل !!'])->withInput();
+    }
+            
             DB::beginTransaction();
            $Branch = new Branch();
            $Branch['name'] = $request->name;
@@ -89,7 +100,21 @@ class BranchController extends Controller
     public function update(UpdateBranchRequest $request, string $id)
     {
         try{
+            
             $com_code = auth()->user()->com_code;
+
+            $checkExistsbeforeName = Branch::select('id')->where('com_code' ,'=', $com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsbeforeName)){
+                return redirect()->route('dashboard.branches.index')->withErrors(['error' => 'عفوآ أسم الفرع مسجل من قبل !!'])->withInput();
+            }
+          
+            $checkExistsbeforeEmail = Branch::select('id')->where('com_code' ,'=', $com_code)->where('email',$request->email)->where('id','!=',$id)->first();
+            if(!empty($checkExistsbeforeEmail)){
+                return redirect()->route('dashboard.branches.index')->withErrors(['error' => 'عفوآ البريد الالكترونى للفرع مسجل من قبل !!'])->withInput();
+            }
+        
+
+            
             DB::beginTransaction();
            $UpdateBranch = Branch::findOrFail($id);
            $UpdateBranch['name'] = $request->name;

@@ -35,6 +35,10 @@ class CountryController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Country::select('id')->where('com_code',$com_code)->where('name',$request->name)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.countries.index')->withErrors(['error' => 'عفوآ أسم البلد  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $country = new Country();
            $country['name'] = $request->name;
@@ -75,6 +79,10 @@ class CountryController extends Controller
     {
         try{
             $com_code = auth()->user()->com_code;
+            $checkExistsName = Country::select('id')->where('com_code',$com_code)->where('name',$request->name)->where('id','!=',$id)->first();
+            if(!empty($checkExistsName)){
+                return redirect()->route('dashboard.countries.index')->withErrors(['error' => 'عفوآ أسم البلد  مسجلة من قبل !!'])->withInput();
+            }
             DB::beginTransaction();
            $UpdateCountry = Country::findOrFail($id);
            $UpdateCountry['name'] = $request->name;
