@@ -32,7 +32,7 @@ class BranchController extends Controller
     {
         $other['governorates'] = Governorate::get();
         $other['cities'] = City::get();
-        return view('dashboard.settingsbranches.create',compact('other'));
+        return view('dashboard.settings.branches.create',compact('other'));
         }
 
     /**
@@ -79,7 +79,7 @@ class BranchController extends Controller
         $info = Branch::findOrFail($id);
         $other['governorates'] = Governorate::get();
         $other['cities'] = City::get();
-        return view('dashboard.settingsbranches.edit',compact('info','other'));
+        return view('dashboard.settings.branches.edit',compact('info','other'));
 
     }
 
@@ -135,7 +135,7 @@ class BranchController extends Controller
     if ($request->ajax()) {
         $governorate_id = $request->governorate_id;
         $other['cities'] = City::where('governorate_id', $governorate_id)->get();
-        return view('dashboard.settingsbranches.getCitites',compact('other'));
+        return view('dashboard.settings.branches.getCitites',compact('other'));
     }
 }
 
