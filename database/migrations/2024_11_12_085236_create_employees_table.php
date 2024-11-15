@@ -57,8 +57,8 @@ return new class extends Migration
             $table->decimal("daily_work_hour", 20, 2)->nullable()->comment("عدد ساعات العمل للموظف وهذا في حالة ان ليس له شفت ثابت");
             $table->decimal("salary", 20, 2)->nullable()->default(0)->comment("راتب الموظف");
             $table->decimal("day_price", 10, 2)->nullable()->comment("سعر يوم الموظف");
-            $table->enum("motivation_type", ["changeable", "none", "fixed"])->nullable()->default("fixed")->comment("صفر لايوجد - واحد ثابت - اثنين متغير");
-            $table->decimal("motivation", 20, 2)->nullable()->default(0)->comment("قيمة الحافز الثابت ان وجد");
+            $table->enum("motivation_type", ["changeable", "none", "fixed"])->nullable()->default("fixed")->comment("واحد ثابت - اثنين متغير");
+            $table->decimal("motivation_value", 20, 2)->nullable()->default(0)->comment("قيمة الحافز الثابت ان وجد");
             $table->tinyInteger("fixed_allowances")->nullable()->default(0)->comment("هل له بدلات ثابته");
             $table->tinyInteger("social_insurance")->nullable()->default(1)->comment("هل للموظف تأمين اجتماعي");
             $table->decimal("social_insurance_cut_monthely", 20, 2)->nullable()->comment("  قيمة استقطاع التأمين الاجتماعي الشهري للموظف");

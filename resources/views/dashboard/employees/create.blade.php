@@ -1,6 +1,12 @@
 @extends('dashboard.layouts.master')
 @section('admin_title', 'أضافة موظف')
 @section('css')
+
+    <style>
+        .font-w {
+            font-weight: 600;
+        }
+    </style>
 @endsection
 @section('active-employees', 'active')
 @section('page-header', ' أضافة موظف')
@@ -41,6 +47,15 @@
                                 aria-controls="custom-content-below-qualifications" aria-selected="false">المؤهلات
                                 العلمية</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-content-below-military-tab" data-toggle="pill"
+                                href="#custom-content-below-military" role="tab"
+                                aria-controls="custom-content-below-military" aria-selected="false">البيانات
+                                العسكرية</a>
+                        </li>
+
+
                         <li class="nav-item">
                             <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill"
                                 href="#custom-content-below-profile" role="tab"
@@ -68,7 +83,7 @@
                                     {{-- أسم الموظف --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInputName">أسم الموظف</label>
-                                        <input type="text" class="form-control" name="name"
+                                        <input type="text" class="form-control font-w" name="name"
                                             value="{{ old('name') }}" id="exampleInputName" placeholder="أدخل اسم الموظف">
                                         @error('name')
                                             <div class="alert alert-danger" role="alert">
@@ -80,7 +95,7 @@
                                     {{-- البريد الالكترونى --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInputEmail">البريد الالكترونى</label>
-                                        <input type="text" class="form-control" name="email"
+                                        <input type="text" class="form-control font-w" name="email"
                                             value="{{ old('email') }}" id="exampleInputEmail"
                                             placeholder="أدخل البريد الالكترونى ">
                                         @error('email')
@@ -93,7 +108,7 @@
                                     {{-- تاريخ الميلاد --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">تاريخ الميلاد</label>
-                                        <input type="date" class="form-control" name="brith_date"
+                                        <input type="date" class="form-control font-w" name="brith_date"
                                             value="{{ old('brith_date') }}" id="brith_date" placeholder="YYYY-MM-DD ">
                                         @error('brith_date')
                                             <div class="alert alert-danger" role="alert">
@@ -105,7 +120,7 @@
                                     {{-- نوع الجنس --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">نوع الجنس</label>
-                                        <select name="gender" id="gender" class="form-control">
+                                        <select name="gender" id="gender" class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد نوع الجنس --</option>
                                             <option @if (old('gender') == 1) selected @endif value="1">ذكر
                                             </option>
@@ -122,7 +137,7 @@
                                     {{-- الديانه --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">الديانه</label>
-                                        <select name="religion" id="religion" class="form-control">
+                                        <select name="religion" id="religion" class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد الديانه --</option>
                                             <option @if (old('religion') == 1) selected @endif value="1">مسلم
                                             </option>
@@ -139,7 +154,7 @@
                                     {{-- الرقم القومى --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInputName">الرقم القومى</label>
-                                        <input type="text" class="form-control" name="id_number"
+                                        <input type="text" class="form-control font-w" name="id_number"
                                             value="{{ old('id_number') }}"
                                             oninput="this.value=this.value.replace(/[^0-9.]/g,'');" id="id_number"
                                             placeholder="أدخل الرقم القومى">
@@ -153,7 +168,7 @@
                                     {{-- الجنسية --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">الجنسية</label>
-                                        <select name="nationality_id" id="nationality_id" class="form-control">
+                                        <select name="nationality_id" id="nationality_id" class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد الجنسية --</option>
                                             @if (!empty($other['nationalities']) && isset($other['nationalities']))
                                                 @foreach ($other['nationalities'] as $nationality)
@@ -175,7 +190,7 @@
                                     {{-- المحافظة --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">المحافظة</label>
-                                        <select name="governorate_id" id="governorate_id" class="form-control">
+                                        <select name="governorate_id" id="governorate_id" class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المحافظة --</option>
                                             @if (!empty($other['governorates']) && isset($other['governorates']))
                                                 @foreach ($other['governorates'] as $governorate)
@@ -197,7 +212,7 @@
                                     {{-- المدينه --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">المدينه</label>
-                                        <select name="city_id" id="city_id" class="form-control">
+                                        <select name="city_id" id="city_id" class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المدينه --</option>
                                             @if (!empty($other['cities']) && isset($other['cities']))
                                                 @foreach ($other['cities'] as $city)
@@ -219,7 +234,7 @@
                                     {{-- فصيلة الدم --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">فصيلة الدم</label>
-                                        <select name="blood_types_id" id="blood_types_id" class="form-control">
+                                        <select name="blood_types_id" id="blood_types_id" class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المدينه --</option>
                                             @if (!empty($other['blood_types']) && isset($other['blood_types']))
                                                 @foreach ($other['blood_types'] as $blood_type)
@@ -241,7 +256,7 @@
                                     {{-- عنوان الموظف --}}
                                     <div class="form-group col-12">
                                         <label for="exampleInputAddress">عنوان الموظف</label>
-                                        <input type="text" class="form-control" name="address"
+                                        <input type="text" class="form-control font-w" name="address"
                                             value="{{ old('address') }}" id="exampleInputAddress"
                                             placeholder="أدخل اسم الموظف">
                                         @error('address')
@@ -255,7 +270,7 @@
                                     {{-- رقم الهاتف --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInputName">رقم الهاتف</label>
-                                        <input type="text" class="form-control" name="home_telephone	"
+                                        <input type="text" class="form-control font-w" name="home_telephone	"
                                             value="{{ old('home_telephone	') }}"
                                             oninput="this.value=this.value.replace(/[^0-9.]/g,'');" id="home_telephone	"
                                             placeholder="أدخل رقم الهاتف">
@@ -270,7 +285,7 @@
                                     {{-- الرقم المحمول --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInputName">الرقم المحمول</label>
-                                        <input type="text" class="form-control" name="mobile"
+                                        <input type="text" class="form-control font-w" name="mobile"
                                             value="{{ old('mobile') }}"
                                             oninput="this.value=this.value.replace(/[^0-9.]/g,'');" id="mobile"
                                             placeholder="أدخل الرقم المحمول">
@@ -285,7 +300,7 @@
                                     {{-- الحالة الاجتماعية --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">الحالة الاجتماعية</label>
-                                        <select name="social_status" id="social_status" class="form-control">
+                                        <select name="social_status" id="social_status" class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد الحالة الاجتماعية --
                                             </option>
                                             <option @if (old('social_status') == 'married') selected @endif value="married">
@@ -311,7 +326,7 @@
                                     {{-- عدد الأطفال --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">عدد الأطفال</label>
-                                        <input type="text" class="form-control" name="children_number"
+                                        <input type="text" class="form-control font-w" name="children_number"
                                             value="{{ old('children_number') }}"
                                             oninput="this.value=this.value.replace(/[^0-9.]/g,'');" value="0"
                                             id="children_number" placeholder="أدخل عدد الأطفال">
@@ -332,11 +347,12 @@
                                     {{-- أسم المؤهل --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">المؤهل</label>
-                                        <select name="qualification_id" id="qualification_id" class="form-control">
+                                        <select name="qualification_id" id="qualification_id"
+                                            class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المؤهل --</option>
                                             @if (!empty($other['qualifications']) && isset($other['qualifications']))
                                                 @foreach ($other['qualifications'] as $qualification)
-                                                    <option @if (old('qualification_id', $qualification['qualification_id'] == $nationality->id)) selected @endif
+                                                    <option @if (old('qualification_id', $qualification['qualification_id'] == $qualification->id)) selected @endif
                                                         value="{{ $qualification->id }}">{{ $qualification->name }}
                                                     </option>
                                                 @endforeach
@@ -351,10 +367,10 @@
                                         @enderror
                                     </div>
 
-                                    {{-- سنه التخرج --}}
+                                    {{-- تاريخ الحصول على المؤهل --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">تاريخ الحصول على المؤهل</label>
-                                        <input type="date" class="form-control" name="qualification_year"
+                                        <input type="date" class="form-control font-w" name="qualification_year"
                                             value="{{ old('qualification_year') }}" id="qualification_year">
                                         @error('qualification_year')
                                             <div class="alert alert-danger" role="alert">
@@ -363,10 +379,10 @@
                                         @enderror
                                     </div>
 
-
+                                    {{-- تخصص الشهاده --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">تخصص الشهاده</label>
-                                        <input type="text" class="form-control" name="major"
+                                        <input type="text" class="form-control font-w" name="major"
                                             value="{{ old('major') }}" id="major" placeholder="أدخل التخصص ">
                                         @error('major')
                                             <div class="alert alert-danger" role="alert">
@@ -375,9 +391,10 @@
                                         @enderror
                                     </div>
 
+                                    {{-- اسم الجهة التعليمية --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">اسم الجهة التعليمية</label>
-                                        <input type="text" class="form-control" name="university"
+                                        <input type="text" class="form-control font-w" name="university"
                                             value="{{ old('university') }}" id="university"
                                             placeholder="أدخل الجهة التعليمية ">
                                         @error('university')
@@ -387,10 +404,11 @@
                                         @enderror
                                     </div>
 
-                                    {{-- الحالة الاجتماعية --}}
+                                    {{-- المعدل التراكمي أو الدرجة --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">المعدل التراكمي أو الدرجة</label>
-                                        <select name="graduation_estimate" id="graduation_estimate" class="form-control">
+                                        <select name="graduation_estimate" id="graduation_estimate"
+                                            class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المعدل التراكمي أو
                                                 الدرجة --
                                             </option>
@@ -413,41 +431,183 @@
                                             </div>
                                         @enderror
                                     </div>
+                                </div>{{-- End Seconed Row of From --}}
+                            </div>
+
+                            <div class="tab-pane fade" id="custom-content-below-military" role="tabpanel"
+                                aria-labelledby="custom-content-below-military-tab">
+
+                                <div class="row my-4"> {{-- Start Seconed Row of From --}}
+                                    {{-- الحالة العسكرية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">الحالة العسكرية</label>
+                                        <select name="military" id="military" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء تحديد الحالة العسكرية --
+                                            </option>
+                                            <option @if (old('military') == 'exemption') selected @endif value="exemption">
+                                                إعفاء نهائى
+                                            </option>
+                                            <option @if (old('military') == 'exemption_temporary') selected @endif
+                                                value="exemption_temporary">
+                                                إعفاء مؤقت
+                                            </option>
+                                            <option @if (old('military') == 'complete') selected @endif value="complete">
+                                                أدى الخدمه العسكرية
+                                            </option>
+                                        </select>
+                                        @error('military')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- تاريخ بداية الخدمه العسكرية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">تاريخ بداية الخدمه العسكرية</label>
+                                        <input type="date" class="form-control font-w" name="military_date_from"
+                                            value="{{ old('military_date_from') }}" id="military_date_from">
+                                        @error('military_date_from')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- تاريخ نهاية الخدمه العسكرية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">تاريخ نهاية الخدمه العسكرية</label>
+                                        <input type="date" class="form-control font-w" name="military_date_to"
+                                            value="{{ old('military_date_to') }}" id="military_date_to">
+                                        @error('military_date_to')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- نوع سلاح الخدمة العسكرية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">نوع سلاح الخدمة العسكرية </label>
+                                        <input type="text" class="form-control font-w" name="military_wepon"
+                                            value="{{ old('military_wepon') }}" id="military_wepon"
+                                            placeholder="أدخل التخصص ">
+                                        @error('military_wepon')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- تاريخ الاعفاء من الخدمه العسكرية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">تاريخ الاعفاء من الخدمه العسكرية</label>
+                                        <input type="date" class="form-control font-w" name="military_exemption_date"
+                                            value="{{ old('military_exemption_date') }}" id="military_exemption_date">
+                                        @error('military_exemption_date')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- سبب الاعفاء من الخدمه العسكرية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">سبب الاعفاء من الخدمه العسكرية</label>
+                                        <input type="text" class="form-control font-w"
+                                            name="military_exemption_reason"
+                                            value="{{ old('military_exemption_reason') }}"
+                                            id="military_exemption_reason">
+                                        @error('military_exemption_reason')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- سبب التأجيل من الخدمه العسكرية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">سبب التأجيل من الخدمه العسكرية</label>
+                                        <input type="text" class="form-control font-w"
+                                            name="military_postponement_reason"
+                                            value="{{ old('military_postponement_reason') }}"
+                                            id="military_postponement_reason">
+                                        @error('military_postponement_reason')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
                                 </div>{{-- End Seconed Row of From --}}
                             </div>
 
                             <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
                                 aria-labelledby="custom-content-below-profile-tab">
 
+
+
+
+
+
+
+
                                 <div class="row my-4"> {{-- Start Seconed Row of From --}}
-                                    {{-- أسم المؤهل --}}
+
+
+                                    {{-- حالة الموظف	 --}}
                                     <div class="form-group col-6">
-                                        <label for="exampleInput">المؤهل</label>
-                                        <select name="qualification_id" id="qualification_id" class="form-control">
-                                            <option value="" disabled selected>-- برجاء تحديد المؤهل --</option>
-                                            @if (!empty($other['qualifications']) && isset($other['qualifications']))
-                                                @foreach ($other['qualifications'] as $qualification)
-                                                    <option @if (old('qualification_id', $qualification['qualification_id'] == $nationality->id)) selected @endif
-                                                        value="{{ $qualification->id }}">{{ $qualification->name }}
+                                        <label for="exampleInput">حالة الموظف </label>
+                                        <select name="functional_status	" id="functional_status	"
+                                            class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء تحديد حالة الموظف --
+                                            </option>
+                                            <option @if (old('functional_status	') == '1') selected @endif value="1">
+                                                يعمل
+                                            </option>
+                                            <option @if (old('functional_status	') == '2') selected @endif value="0">
+                                                لا يعمل
+                                            </option>
+                                        </select>
+                                        @error('functional_status ')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- تاريخ بدء العمل  --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">تاريخ بدء العمل </label>
+                                        <input type="date" class="form-control font-w" name="work_start_date"
+                                            value="{{ old('work_start_date') }}" id="work_start_date">
+                                        @error('work_start_date')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- الأدارة --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">الأدارة</label>
+                                        <select name="department_id" id="department_id" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء تحديد الأدارة --</option>
+                                            @if (!empty($other['departments']) && isset($other['departments']))
+                                                @foreach ($other['departments'] as $department)
+                                                    <option @if (old('department_id', $department['department_id'] == $department->id)) selected @endif
+                                                        value="{{ $department->id }}">{{ $department->name }}
                                                     </option>
                                                 @endforeach
                                             @else
                                                 لا توجد بيانات
                                             @endif
                                         </select>
-                                        @error('qualification_id')
-                                            <div class="alert alert-danger" role="alert">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    {{-- سنه التخرج --}}
-                                    <div class="form-group col-6">
-                                        <label for="exampleInput">تاريخ الحصول على المؤهل</label>
-                                        <input type="date" class="form-control" name="qualification_year"
-                                            value="{{ old('qualification_year') }}" id="qualification_year">
-                                        @error('qualification_year')
+                                        @error('department_id')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
                                             </div>
@@ -455,60 +615,302 @@
                                     </div>
 
 
+                                    {{-- الفئات الوظيفية --}}
                                     <div class="form-group col-6">
-                                        <label for="exampleInput">تخصص الشهاده</label>
-                                        <input type="text" class="form-control" name="major"
-                                            value="{{ old('major') }}" id="major" placeholder="أدخل التخصص ">
-                                        @error('major')
+                                        <label for="exampleInput">الفئات الوظيفية</label>
+                                        <select name="job_category_id" id="job_category_id" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء تحديد الفئات الوظيفية --
+                                            </option>
+                                            @if (!empty($other['job_categories']) && isset($other['job_categories']))
+                                                @foreach ($other['job_categories'] as $job)
+                                                    <option @if (old('job_category_id', $job['job_category_id'] == $job->id)) selected @endif
+                                                        value="{{ $job->id }}">{{ $job->name }}
+                                                    </option>
+                                                @endforeach
+                                            @else
+                                                لا توجد بيانات
+                                            @endif
+                                        </select>
+                                        @error('job_category_id')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
 
-                                    <div class="form-group col-6">
-                                        <label for="exampleInput">اسم الجهة التعليمية</label>
-                                        <input type="text" class="form-control" name="university"
-                                            value="{{ old('university') }}" id="university"
-                                            placeholder="أدخل الجهة التعليمية ">
-                                        @error('university')
-                                            <div class="alert alert-danger" role="alert">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
 
-                                    {{-- الحالة الاجتماعية --}}
+                                    {{-- هل له شفت ثابت --}}
                                     <div class="form-group col-6">
-                                        <label for="exampleInput">المعدل التراكمي أو الدرجة</label>
-                                        <select name="graduation_estimate" id="graduation_estimate" class="form-control">
-                                            <option value="" disabled selected>-- برجاء تحديد المعدل التراكمي أو
-                                                الدرجة --
+                                        <label for="exampleInput">هل له شفت ثابت</label>
+                                        <select name="has_fixed_shift" id="has_fixed_shift" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
                                             </option>
-                                            <option @if (old('graduation_estimate') == 'fair') selected @endif value="fair">
-                                                مقبول
+                                            <option @if (old('has_fixed_shift') == '1') selected @endif value="1">
+                                                نعم
                                             </option>
-                                            <option @if (old('graduation_estimate') == 'good') selected @endif value="good">
-                                                جيد
-                                            </option>
-                                            <option @if (old('graduation_estimate') == 'very_good') selected @endif value="very_good">
-                                                جيد جدآ
-                                            </option>
-                                            <option @if (old('graduation_estimate') == 'excellent') selected @endif value="excellent">
-                                                أمتياز
+                                            <option @if (old('has_fixed_shift') == '0') selected @endif value="0">
+                                                لا
                                             </option>
                                         </select>
-                                        @error('graduation_estimate')
+                                        @error('has_fixed_shift')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
+
+
+                                    {{-- نوع الشفت --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">نوع الشفت</label>
+                                        <select name="shift_type_id" id="shift_type_id" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء تحديد نوع الشفت --
+                                            </option>
+                                            @if (!empty($other['shift_types']) && isset($other['shift_types']))
+                                                @foreach ($other['shift_types'] as $job)
+                                                    <option @if (old('shift_type_id', $job['shift_type_id'] == $shift->id)) selected @endif
+                                                        value="{{ $shift->id }}">{{ $shift->name }}
+                                                    </option>
+                                                @endforeach
+                                            @else
+                                                لا توجد بيانات
+                                            @endif
+                                        </select>
+                                        @error('shift_type_id')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- عدد ساعات العمل --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">عدد ساعات العمل</label>
+                                        <input type="text" class="form-control font-w" name="daily_work_hour"
+                                            value="{{ old('daily_work_hour') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');" id="daily_work_hour"
+                                            placeholder="أدخل عدد ساعات العمل">
+                                        @error('daily_work_hour')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- المرتب --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">المرتب</label>
+                                        <input type="text" class="form-control font-w" name="salary"
+                                            value="{{ old('salary') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');" id="salary"
+                                            placeholder="أدخل المرتب">
+                                        @error('salary')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- سعر اليومى للمرتب --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">سعر اليومى للمرتب</label>
+                                        <input type="text" class="form-control font-w" name="day_price"
+                                            value="{{ old('day_price') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');" id="day_price"
+                                            placeholder="أدخل سعر اليومى للمرتب">
+                                        @error('day_price')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- هل له حافز --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">هل له حافز</label>
+                                        <select name="motivation_type" id="motivation_type" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('motivation_type') == 'changeable') selected @endif value="changeable">
+                                                متغير
+                                            </option>
+                                            <option @if (old('motivation_type') == 'fixed') selected @endif value="fixed">
+                                                ثابت
+                                            </option>
+                                            <option @if (old('motivation_type') == 'none') selected @endif value="none">
+                                                لا يوجد
+                                            </option>
+                                        </select>
+                                        @error('motivation_type')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- قيمة الحافز --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">قيمة الحافز</label>
+                                        <input type="text" class="form-control font-w" name="motivation_value"
+                                            value="{{ old('motivation_value') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');" id="motivation_value"
+                                            placeholder="أدخل قيمة الحافز">
+                                        @error('motivation_value')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+
+                                    {{-- هل له بدلات ثابته --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">هل له بدلات ثابته</label>
+                                        <select name="fixed_allowances" id="fixed_allowances"
+                                            class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('fixed_allowances') == '1') selected @endif value="1">
+                                                نعم
+                                            </option>
+                                            <option @if (old('fixed_allowances') == '0') selected @endif value="0">
+                                                لا
+                                            </option>
+                                        </select>
+                                        @error('fixed_allowances')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+
+                                    {{-- هل له تأمين اجتماعي --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">هل له تأمين اجتماعي </label>
+                                        <select name="social_insurance" id="social_insurance"
+                                            class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('social_insurance') == '1') selected @endif value="1">
+                                                نعم
+                                            </option>
+                                            <option @if (old('social_insurance') == '0') selected @endif value="0">
+                                                لا
+                                            </option>
+                                        </select>
+                                        @error('social_insurance')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- قيمة استقطاع التأمين الاجتماعي الشهري للموظف --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">قيمة استقطاع التأمين الاجتماعي الشهري</label>
+                                        <input type="text" class="form-control font-w"
+                                            name="social_insurance_cut_monthely"
+                                            value="{{ old('social_insurance_cut_monthely') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                            id="social_insurance_cut_monthely"
+                                            placeholder="أدخل قيمة استقطاع التأمين الاجتماعي الشهري للموظف">
+                                        @error('social_insurance_cut_monthely')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- رقم التأمين الاجتماعى --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">الرقم التأمينى الاجتماعى</label>
+                                        <input type="text" class="form-control font-w"
+                                            name="social_insurance_cut_monthely"
+                                            value="{{ old('social_insurance_cut_monthely') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                            id="social_insurance_cut_monthely" placeholder="أدخل رقم التأمين الاجتماعى">
+                                        @error('social_insurance_cut_monthely')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- هل له تأمين طبي --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">هل له تأمين طبي </label>
+                                        <select name="medical_insurance" id="medical_insurance"
+                                            class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('medical_insurance') == '1') selected @endif value="1">
+                                                نعم
+                                            </option>
+                                            <option @if (old('medical_insurance') == '0') selected @endif value="0">
+                                                لا
+                                            </option>
+                                        </select>
+                                        @error('medical_insurance')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- قيمة استقطاع التأمين الطبى الشهري للموظف --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">قيمة استقطاع التأمين الطبى الشهري</label>
+                                        <input type="text" class="form-control font-w"
+                                            name="medical_insurance_cut_monthely"
+                                            value="{{ old('medical_insurance_cut_monthely') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                            id="medical_insurance_cut_monthely"
+                                            placeholder="أدخل قيمة استقطاع التأمين الطبى الشهري للموظف">
+                                        @error('medical_insurance_cut_monthely')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- رقم التأمين الطبى --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">الرقم التأمينى الطبى</label>
+                                        <input type="text" class="form-control font-w" name="medical_insurance_number"
+                                            value="{{ old('medical_insurance_number') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                            id="medical_insurance_number" placeholder="أدخل رقم التأمين الطبى">
+                                        @error('medical_insurance_number')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
                                 </div>{{-- End Seconed Row of From --}}
+
+
+
+
+
+
                             </div>
+
+
                             <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel"
                                 aria-labelledby="custom-content-below-messages-tab">
-                                tab-4
+                                tab-5
                             </div>
                             <div class="card-footer">
                                 <button type="submit" style="float: left" class="btn btn-primary">تأكيد البيانات
