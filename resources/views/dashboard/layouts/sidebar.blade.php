@@ -119,7 +119,7 @@
                         <li class="nav-item">
                             <a href="{{ route('dashboard.jobGrades.index') }}" class="nav-link @yield('active-jobGrades')">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>الدرجه الوظيفية</p>
+                                <p>الدرجات الوظيفية</p>
                             </a>
                         </li>
                     </ul>
