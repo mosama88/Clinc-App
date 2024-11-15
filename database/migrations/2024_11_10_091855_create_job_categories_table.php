@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'محاسب',
                 'com_code' => 1,
@@ -30,7 +31,7 @@ return new class extends Migration
         ]);
 
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'محامى',
                 'com_code' => 1,
@@ -40,7 +41,7 @@ return new class extends Migration
         ]);
 
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'IT',
                 'com_code' => 1,
@@ -49,7 +50,7 @@ return new class extends Migration
             ],
         ]);
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'HR',
                 'com_code' => 1,
@@ -60,7 +61,7 @@ return new class extends Migration
 
 
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'المبيعات',
                 'com_code' => 1,
@@ -70,7 +71,7 @@ return new class extends Migration
         ]);
 
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'المشتريات',
                 'com_code' => 1,
@@ -79,7 +80,7 @@ return new class extends Migration
             ],
         ]);
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'مدير مالى',
                 'com_code' => 1,
@@ -89,7 +90,7 @@ return new class extends Migration
         ]);
 
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'مهندس شبكات',
                 'com_code' => 1,
@@ -100,7 +101,7 @@ return new class extends Migration
 
 
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'مهندس تطوير الويب',
                 'com_code' => 1,
@@ -111,7 +112,7 @@ return new class extends Migration
 
 
 
-        DB::table('jobs_categories')->insert([
+        DB::table('job_categories')->insert([
             [
                 'name' => 'مصمم جرافيك',
                 'com_code' => 1,
