@@ -2,7 +2,7 @@
 @section('admin_title', 'الدولة')
 @section('css')
 @endsection
-@section('active-nationalities', 'active')
+@section('active-countries', 'active')
 @section('page-header', 'جدول الدولة')
 @section('page-header_desc', 'جدول الدولة')
 @section('page-header_link')

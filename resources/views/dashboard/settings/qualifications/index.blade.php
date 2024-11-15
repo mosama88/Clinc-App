@@ -2,7 +2,7 @@
 @section('admin_title', 'المؤهلات العلمية')
 @section('css')
 @endsection
-@section('active-nationalities', 'active')
+@section('active-qualifications', 'active')
 @section('page-header', 'جدول المؤهلات العلمية')
 @section('page-header_desc', 'جدول المؤهلات العلمية')
 @section('page-header_link')

@@ -14,6 +14,8 @@ use App\Http\Controllers\Dashboard\CurrencyController;
 use App\Http\Controllers\Dashboard\EmployeeController;
 use App\Http\Controllers\Dashboard\AdminPanelController;
 use App\Http\Controllers\Dashboard\BloodTypesController;
+use App\Http\Controllers\Dashboard\DepartmentController;
+use App\Http\Controllers\Dashboard\JobCategoryController;
 use App\Http\Controllers\Dashboard\NationalityController;
 use App\Http\Controllers\Dashboard\QualificationController;
 use App\Http\Controllers\Dashboard\SpecializationController;
@@ -67,8 +69,11 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->name('dashboard.
     // الاقسام
     Route::resource('sections', SectionController::class);
 
+     // الأدارات
+     Route::resource('departments', DepartmentController::class);
+
     // الدرجه الوظيفية
-    Route::resource('jobCategories', SectionController::class);
+    Route::resource('jobCategories', JobCategoryController::class);
     
     // الفروع
     Route::resource('branches',  BranchController::class);

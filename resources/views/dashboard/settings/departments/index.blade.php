@@ -2,7 +2,7 @@
 @section('admin_title', 'الأدارات')
 @section('css')
 @endsection
-@section('active-nationalities', 'active')
+@section('active-departments', 'active')
 @section('page-header', 'جدول الأدارات')
 @section('page-header_desc', 'جدول الأدارات')
 @section('page-header_link')

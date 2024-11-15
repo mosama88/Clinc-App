@@ -2,7 +2,7 @@
 @section('admin_title', 'الدرجه الوظيفية')
 @section('css')
 @endsection
-@section('active-nationalities', 'active')
+@section('active-jobCategories', 'active')
 @section('page-header', 'جدول الدرجه الوظيفية')
 @section('page-header_desc', 'جدول الدرجه الوظيفية')
 @section('page-header_link')
