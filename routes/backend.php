@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\CurrencyController;
 use App\Http\Controllers\Dashboard\EmployeeController;
+use App\Http\Controllers\Dashboard\JobGradeController;
 use App\Http\Controllers\Dashboard\AdminPanelController;
 use App\Http\Controllers\Dashboard\BloodTypesController;
 use App\Http\Controllers\Dashboard\DepartmentController;
@@ -72,8 +73,11 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->name('dashboard.
      // الأدارات
      Route::resource('departments', DepartmentController::class);
 
-    // الدرجه الوظيفية
+    // الفئات الوظيفية
     Route::resource('jobCategories', JobCategoryController::class);
+
+        // الدرجه الوظيفية
+        Route::resource('jobGrades', JobGradeController::class);
     
     // الفروع
     Route::resource('branches',  BranchController::class);

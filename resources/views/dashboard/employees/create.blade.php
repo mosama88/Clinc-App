@@ -560,15 +560,43 @@
                                     {{-- حالة الموظف	 --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">حالة الموظف </label>
-                                        <select name="functional_status	" id="functional_status	"
+                                        <select name="functional_status" id="functional_status"
                                             class="form-control font-w">
                                             <option value="" disabled selected>-- برجاء تحديد حالة الموظف --
                                             </option>
-                                            <option @if (old('functional_status	') == '1') selected @endif value="1">
+                                            <option @if (old('functional_status') == '1') selected @endif value="1">
                                                 يعمل
                                             </option>
-                                            <option @if (old('functional_status	') == '2') selected @endif value="0">
+                                            <option @if (old('functional_status') == '2') selected @endif value="0">
                                                 لا يعمل
+                                            </option>
+                                        </select>
+                                        @error('functional_status')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+
+                                    {{-- نوع وظيفة الموظف --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">نوع وظيفة الموظف </label>
+                                        <select name="job_type" id="job_type" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء تحديد نوع وظيفة الموظف --
+                                            </option>
+                                            <option @if (old('job_type') == 'doctor') selected @endif value="doctor">
+                                                دكتور
+                                            </option>
+                                            <option @if (old('job_type') == 'employee') selected @endif value="employee">
+                                                موظف
+                                            </option>
+                                            <option @if (old('job_type') == 'nurse') selected @endif value="nurse">
+                                                ممرض
+                                            </option>
+                                            <option @if (old('job_type') == 'worker') selected @endif value="worker">
+                                                عامل
                                             </option>
                                         </select>
                                         @error('functional_status ')
@@ -577,7 +605,6 @@
                                             </div>
                                         @enderror
                                     </div>
-
 
                                     {{-- تاريخ بدء العمل  --}}
                                     <div class="form-group col-6">
@@ -608,6 +635,30 @@
                                             @endif
                                         </select>
                                         @error('department_id')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- الدرجه الوظيفية --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">الدرجه الوظيفية</label>
+                                        <select name="job_grade_id" id="job_grade_id" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء تحديد الدرجه الوظيفية --
+                                            </option>
+                                            @if (!empty($other['job_grades']) && isset($other['job_grades']))
+                                                @foreach ($other['job_grades'] as $jobGrade)
+                                                    <option @if (old('job_grade_id', $department['job_grade_id'] == $jobGrade->id)) selected @endif
+                                                        value="{{ $jobGrade->id }}">{{ $jobGrade->name }}
+                                                    </option>
+                                                @endforeach
+                                            @else
+                                                لا توجد بيانات
+                                            @endif
+                                        </select>
+                                        @error('job_grade_id')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
                                             </div>
@@ -892,6 +943,29 @@
                                             oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
                                             id="medical_insurance_number" placeholder="أدخل رقم التأمين الطبى">
                                         @error('medical_insurance_number')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+
+                                    {{-- نوع صرف الراتب --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">نوع صرف الراتب </label>
+                                        <select name="Type_salary_receipt" id="Type_salary_receipt"
+                                            class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('Type_salary_receipt') == '1') selected @endif value="1">
+                                                كاش
+                                            </option>
+                                            <option @if (old('Type_salary_receipt') == '2') selected @endif value="2">
+                                                فيزا
+                                            </option>
+                                        </select>
+                                        @error('Type_salary_receipt')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
                                             </div>

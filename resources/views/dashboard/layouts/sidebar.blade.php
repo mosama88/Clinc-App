@@ -34,9 +34,9 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/admin_panels*') || request()->is('admin/countries*') || request()->is('admin/cities*') || request()->is('admin/departments*') || request()->is('admin/branches*') || request()->is('admin/nationalities*') || request()->is('admin/sections*') || request()->is('admin/specializations*') || request()->is('admin/qualifications*') || request()->is('admin/jobCategories*') ? 'menu-open' : '' }} ">
+                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/admin_panels*') || request()->is('admin/countries*') || request()->is('admin/cities*') || request()->is('admin/departments*') || request()->is('admin/branches*') || request()->is('admin/nationalities*') || request()->is('admin/sections*') || request()->is('admin/specializations*') || request()->is('admin/qualifications*') || request()->is('admin/jobCategories*') || request()->is('admin/jobGrades*') ? 'menu-open' : '' }} ">
                     <a href="{{ url('/') }}"
-                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('admin_panels*') || request()->is('countries*') || request()->is('cities*') || request()->is('branches*') || request()->is('nationalities*') || request()->is('departments*') || request()->is('specializations*') || request()->is('sections*') || request()->is('qualifications*') || request()->is('jobCategories*') ? 'active' : '' }} ">
+                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('admin_panels*') || request()->is('countries*') || request()->is('cities*') || request()->is('branches*') || request()->is('nationalities*') || request()->is('departments*') || request()->is('specializations*') || request()->is('sections*') || request()->is('qualifications*') || request()->is('jobCategories*') || request()->is('jobGrades*') ? 'active' : '' }} ">
 
                         <i class="fas fa-cog"></i>
                         <p>
@@ -116,7 +116,12 @@
                             </a>
                         </li>
 
-
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.jobGrades.index') }}" class="nav-link @yield('active-jobGrades')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الدرجه الوظيفية</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -170,7 +175,8 @@
 
 
                 <li class="nav-item has-treeview    {{ request()->is('admin/patients*') ? 'menu-open' : '' }} ">
-                    <a href="{{ url('/') }}" class="nav-link {{ request()->is('patients*') ? 'active' : '' }} ">
+                    <a href="{{ url('/') }}"
+                        class="nav-link {{ request()->is('patients*') ? 'active' : '' }} ">
 
                         <i class="fas fa-procedures"></i>
 

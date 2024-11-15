@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Branch;
 use App\Models\Section;
 use App\Models\Employee;
+use App\Models\JobGrade;
 use App\Models\ShiftType;
 use App\Models\BloodTypes;
 use App\Models\Department;
@@ -43,6 +44,7 @@ class EmployeeController extends Controller
         $other['qualifications'] = Qualification::get();
         $other['shift_types'] = ShiftType::get();
         $other['cities'] = City::get();
+        $other['Job_grades'] = JobGrade::get();
         return view('dashboard.employees.create',compact('other'));
     }
 

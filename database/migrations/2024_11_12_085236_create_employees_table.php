@@ -51,6 +51,8 @@ return new class extends Migration
             $table->date("work_start_date")->nullable()->comment("تاريخ بدء العمل للموظف");
             $table->tinyInteger("functional_status")->default(1)->comment("حالة الموظف");
             $table->foreignId("department_id")->references("id")->on("departments")->onUpdate("cascade");
+            $table->foreignId("job_grade_id")->comment("الدرجه الوظيفية ")->references("id")->on("job_grades")->onUpdate("cascade");
+
             $table->foreignId("job_category_id")->nullable()->references("id")->on("job_categories")->onUpdate("cascade");
             $table->tinyInteger("has_fixed_shift")->nullable()->comment("هل للموظف شفت ثابت")->default(1);
             $table->foreignId("shift_type_id")->nullable()->references("id")->on("shift_types")->onUpdate("cascade");

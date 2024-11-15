@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JobCategoryRequest extends FormRequest
+class JobGradeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,8 @@ class JobCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => "يرجى كتابة اسم الفئة الوظيفية",
-            'name.max' => "اسم الفئة الوظيفية يجب ألا يزيد عن الحد 50 المسموح",
+            'name.required' => "يرجى كتابة اسم الدرجه الوظيفية",
+            'name.max' => "اسم الدرجه الوظيفية يجب ألا يزيد عن الحد 50 المسموح",
 
         ];
     }
