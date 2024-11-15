@@ -22,7 +22,7 @@ class JobCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:nationalities,name',    
+            'name' => 'required|max:50|unique:job_categories,name',    
         ];
     }
 

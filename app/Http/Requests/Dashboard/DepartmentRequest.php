@@ -22,7 +22,9 @@ class DepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:nationalities,name',    
+            'name' => 'required|max:50|unique:departments,name',    
+            'phones' => 'required|max:20',    
+            'notes' => 'nullable|max:100',    
         ];
     }
 
@@ -33,6 +35,11 @@ class DepartmentRequest extends FormRequest
             'name.max' => "اسم الاداره يجب ألا يزيد عن الحد 50 المسموح",
             'name.unique' => "الدولةالاداره مسجلة بالفعل",
 
+
+            'phones.required' => "يرجى كتابة تليفون الاداره",
+            'phones.max' => "تليفون الاداره يجب ألا يزيد عن الحد 20 المسموح",
+
+            'notes.max' => "ملاحظات الاداره يجب ألا يزيد عن الحد 100 المسموح",
         ];
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 225);
             $table->string('phones', 100);
-            $table->string('notes', 300);
+            $table->string('notes', 300)->nullable();
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
             $table->integer('com_code');

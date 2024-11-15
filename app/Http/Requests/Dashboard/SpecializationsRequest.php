@@ -22,7 +22,7 @@ class SpecializationsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:sections,name',    
+            'name' => 'required|max:50|unique:specializations,name',    
         ];
     }
 
