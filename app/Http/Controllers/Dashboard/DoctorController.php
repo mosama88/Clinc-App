@@ -97,17 +97,17 @@ class DoctorController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $UpdateBranch = Doctor::findOrFail($id);
-           $UpdateBranch['name'] = $request->name;
-           $UpdateBranch['address'] = $request->address;
-           $UpdateBranch['phone'] = $request->phone;
-           $UpdateBranch['email'] = $request->email ;
-           $UpdateBranch['governorate_id'] = $request->governorate_id;
-           $UpdateBranch['city_id'] = $request->city_id;
-           $UpdateBranch['status'] = $request->status;
-           $UpdateBranch['updated_by'] = 1;
-           $UpdateBranch['com_code'] = $com_code;
-           $UpdateBranch->save();
+           $UpdateDoctor = Doctor::findOrFail($id);
+           $UpdateDoctor['name'] = $request->name;
+           $UpdateDoctor['address'] = $request->address;
+           $UpdateDoctor['phone'] = $request->phone;
+           $UpdateDoctor['email'] = $request->email ;
+           $UpdateDoctor['governorate_id'] = $request->governorate_id;
+           $UpdateDoctor['city_id'] = $request->city_id;
+           $UpdateDoctor['status'] = $request->status;
+           $UpdateDoctor['updated_by'] = 1;
+           $UpdateDoctor['com_code'] = $com_code;
+           $UpdateDoctor->save();
             DB::commit();
             return redirect()->route('dashboard.doctors.index')->with('success', 'تم تعديل الطبيب بنجاح');            
             
@@ -125,8 +125,8 @@ class DoctorController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $DeleteBranch = Doctor::findOrFail($id);
-           $DeleteBranch->delete();
+           $DeleteDoctor = Doctor::findOrFail($id);
+           $DeleteDoctor->delete();
             DB::commit();
             return redirect()->route('dashboard.doctors.index')->with('success', 'تم حذف الطبيب بنجاح');            
             

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Qualification;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\QualificationRequest;
 
 class QualificationController extends Controller
 {
@@ -12,7 +15,9 @@ class QualificationController extends Controller
      */
     public function index()
     {
-        //
+        $com_code = auth()->user()->com_code;
+        $data = Qualification::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
+        return view('dashboard.settings.qualifications.index',compact('data'));
     }
 
     /**
@@ -20,15 +25,29 @@ class QualificationController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.settings.qualifications.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(QualificationRequest $request)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $qualification = new Qualification();
+           $qualification['name'] = $request->name;
+           $qualification['created_by'] = 1;
+           $qualification['com_code'] = $com_code;
+           $qualification->save();
+            DB::commit();
+            return redirect()->route('dashboard.qualifications.index')->with('success', 'تم أضافة المؤهل بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.qualifications.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
     }
 
     /**
@@ -44,15 +63,31 @@ class QualificationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $info = Qualification::findOrFail($id);
+        return view('dashboard.settings.qualifications.edit',compact('info'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(QualificationRequest $request, string $id)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $UpdateQualification = Qualification::findOrFail($id);
+           $UpdateQualification['name'] = $request->name;
+           $UpdateQualification['updated_by'] = 1;
+           $UpdateQualification['com_code'] = $com_code;
+           $UpdateQualification->save();
+            DB::commit();
+            return redirect()->route('dashboard.qualifications.index')->with('success', 'تم تعديل المؤهل بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.qualifications.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
     }
 
     /**
@@ -60,6 +95,18 @@ class QualificationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $DeleteQualification = Qualification::findOrFail($id);
+           $DeleteQualification->delete();
+            DB::commit();
+            return redirect()->route('dashboard.qualifications.index')->with('success', 'تم حذف المؤهل بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.qualifications.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
+
     }
 }

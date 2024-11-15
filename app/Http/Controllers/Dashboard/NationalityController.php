@@ -37,11 +37,11 @@ class NationalityController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $blood = new Nationality();
-           $blood['name'] = $request->name;
-           $blood['created_by'] = 1;
-           $blood['com_code'] = $com_code;
-           $blood->save();
+           $nationality = new Nationality();
+           $nationality['name'] = $request->name;
+           $nationality['created_by'] = 1;
+           $nationality['com_code'] = $com_code;
+           $nationality->save();
             DB::commit();
             return redirect()->route('dashboard.nationalities.index')->with('success', 'تم أضافة الجنسية بنجاح');            
             
@@ -77,11 +77,11 @@ class NationalityController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Updateblood = Nationality::findOrFail($id);
-           $Updateblood['name'] = $request->name;
-           $Updateblood['updated_by'] = 1;
-           $Updateblood['com_code'] = $com_code;
-           $Updateblood->save();
+           $UpdateNationality = Nationality::findOrFail($id);
+           $UpdateNationality['name'] = $request->name;
+           $UpdateNationality['updated_by'] = 1;
+           $UpdateNationality['com_code'] = $com_code;
+           $UpdateNationality->save();
             DB::commit();
             return redirect()->route('dashboard.nationalities.index')->with('success', 'تم تعديل الجنسية بنجاح');            
             
@@ -99,8 +99,8 @@ class NationalityController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Deleteblood = Nationality::findOrFail($id);
-           $Deleteblood->delete();
+           $DeleteNationality = Nationality::findOrFail($id);
+           $DeleteNationality->delete();
             DB::commit();
             return redirect()->route('dashboard.nationalities.index')->with('success', 'تم حذف الجنسية بنجاح');            
             

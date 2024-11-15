@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\JobCategoryRequest;
 
 class JobCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $com_code = auth()->user()->com_code;
+        $data = JobCategory::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
+        return view('dashboard.settings.jobCategories.index',compact('data'));
     }
 
     /**
@@ -20,15 +21,29 @@ class JobCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.settings.jobCategories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(JobCategoryRequest $request)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $jobCategory = new JobCategory();
+           $jobCategory['name'] = $request->name;
+           $jobCategory['created_by'] = 1;
+           $jobCategory['com_code'] = $com_code;
+           $jobCategory->save();
+            DB::commit();
+            return redirect()->route('dashboard.jobCategories.index')->with('success', 'تم أضافة الدرجه الوظيفية بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.jobCategories.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
     }
 
     /**
@@ -44,15 +59,31 @@ class JobCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $info = JobCategory::findOrFail($id);
+        return view('dashboard.settings.jobCategories.edit',compact('info'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(JobCategoryRequest $request, string $id)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $UpdateJobCategory = JobCategory::findOrFail($id);
+           $UpdateJobCategory['name'] = $request->name;
+           $UpdateJobCategory['updated_by'] = 1;
+           $UpdateJobCategory['com_code'] = $com_code;
+           $UpdateJobCategory->save();
+            DB::commit();
+            return redirect()->route('dashboard.jobCategories.index')->with('success', 'تم تعديل الدرجه بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.jobCategories.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
     }
 
     /**
@@ -60,6 +91,18 @@ class JobCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $com_code = auth()->user()->com_code;
+            DB::beginTransaction();
+           $DeleteJobCategory = JobCategory::findOrFail($id);
+           $DeleteJobCategory->delete();
+            DB::commit();
+            return redirect()->route('dashboard.jobCategories.index')->with('success', 'تم حذف الدرجه بنجاح');            
+            
+        }catch(\Exeption $ex){
+            DB::rollback();
+            return redirect()->route('dashboard.jobCategories.index')->withErrors('error', 'عفوآ لقد حدث خطأ !!' . $ex->getMessage());
+        }
+
     }
 }

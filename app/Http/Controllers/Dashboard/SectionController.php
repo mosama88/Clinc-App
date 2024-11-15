@@ -37,11 +37,11 @@ class SectionController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $blood = new Section();
-           $blood['name'] = $request->name;
-           $blood['created_by'] = 1;
-           $blood['com_code'] = $com_code;
-           $blood->save();
+           $section = new Section();
+           $section['name'] = $request->name;
+           $section['created_by'] = 1;
+           $section['com_code'] = $com_code;
+           $section->save();
             DB::commit();
             return redirect()->route('dashboard.sections.index')->with('success', 'تم أضافة القسم بنجاح');            
             
@@ -77,11 +77,11 @@ class SectionController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Updateblood = Section::findOrFail($id);
-           $Updateblood['name'] = $request->name;
-           $Updateblood['updated_by'] = 1;
-           $Updateblood['com_code'] = $com_code;
-           $Updateblood->save();
+           $UpdateSection = Section::findOrFail($id);
+           $UpdateSection['name'] = $request->name;
+           $UpdateSection['updated_by'] = 1;
+           $UpdateSection['com_code'] = $com_code;
+           $UpdateSection->save();
             DB::commit();
             return redirect()->route('dashboard.sections.index')->with('success', 'تم تعديل القسم بنجاح');            
             
@@ -99,8 +99,8 @@ class SectionController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Deleteblood = Section::findOrFail($id);
-           $Deleteblood->delete();
+           $DeleteSection = Section::findOrFail($id);
+           $DeleteSection->delete();
             DB::commit();
             return redirect()->route('dashboard.sections.index')->with('success', 'تم حذف القسم بنجاح');            
             

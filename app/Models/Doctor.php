@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     use HasFactory;
+    protected $table = "doctors";
+
+    protected $guarded = [];
+
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
 }

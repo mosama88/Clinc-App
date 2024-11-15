@@ -11,7 +11,7 @@ class CountryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class CountryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:50|unique:nationalities,name',    
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => "يرجى كتابة اسم الدولة",
+            'name.max' => "اسم الدولة يجب ألا يزيد عن الحد 50 المسموح",
+            'name.unique' => "الدولة مسجلة بالفعل",
+
         ];
     }
 }

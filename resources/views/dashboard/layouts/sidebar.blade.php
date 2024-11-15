@@ -34,9 +34,9 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/admin_panels*') || request()->is('admin/cities*') || request()->is('admin/branches*') || request()->is('admin/nationalities*') || request()->is('admin/sections*') || request()->is('admin/specializations*') ? 'menu-open' : '' }} ">
+                    class="nav-item has-treeview    {{ request()->is('admin/BloodTypes*') || request()->is('admin/admin_panels*') || request()->is('admin/countries*') || request()->is('admin/cities*') || request()->is('admin/departments*') || request()->is('admin/branches*') || request()->is('admin/nationalities*') || request()->is('admin/sections*') || request()->is('admin/specializations*') || request()->is('admin/qualifications*') || request()->is('admin/jobCategories*') ? 'menu-open' : '' }} ">
                     <a href="{{ url('/') }}"
-                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('admin_panels*') || request()->is('cities*') || request()->is('branches*') || request()->is('nationalities*') || request()->is('specializations*') || request()->is('sections*') ? 'active' : '' }} ">
+                        class="nav-link {{ request()->is('BloodTypes*') || request()->is('admin_panels*') || request()->is('countries*') || request()->is('cities*') || request()->is('branches*') || request()->is('nationalities*') || request()->is('departments*') || request()->is('specializations*') || request()->is('sections*') || request()->is('qualifications*') || request()->is('jobCategories*') ? 'active' : '' }} ">
 
                         <i class="fas fa-cog"></i>
                         <p>
@@ -64,6 +64,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('dashboard.countries.index') }}" class="nav-link @yield('active-countries')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الدول</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('dashboard.cities.index') }}" class="nav-link @yield('active-cities')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>المدن</p>
@@ -73,6 +79,12 @@
                             <a href="{{ route('dashboard.branches.index') }}" class="nav-link @yield('active-branches')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>الفروع</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.departments.index') }}" class="nav-link @yield('active-departments')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الأدارات</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -88,6 +100,23 @@
                                 <p>التخصصات</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.qualifications.index') }}"
+                                class="nav-link @yield('active-qualifications')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>المؤهلات</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.jobCategories.index') }}" class="nav-link @yield('active-jobCategories')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>الدرجه الوظيفية</p>
+                            </a>
+                        </li>
+
+
                     </ul>
                 </li>
 

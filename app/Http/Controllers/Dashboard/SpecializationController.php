@@ -40,12 +40,12 @@ class SpecializationController extends Controller
         try{
             $com_code = auth()->user()->com_code;
             DB::beginTransaction();
-           $Specialization= new Specialization();
-           $Specialization['name'] = $request->name;
-           $Specialization['section_id'] = $request->section_id;
-           $Specialization['created_by'] = 1;
-           $Specialization['com_code'] = $com_code;
-           $Specialization->save();
+           $specialization= new Specialization();
+           $specialization['name'] = $request->name;
+           $specialization['section_id'] = $request->section_id;
+           $specialization['created_by'] = 1;
+           $specialization['com_code'] = $com_code;
+           $specialization->save();
             DB::commit();
             return redirect()->route('dashboard.specializations.index')->with('success', 'تم أضافة التخصص بنجاح');            
             
