@@ -22,7 +22,7 @@ class NationalityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:nationalities,name',    
+            'name' => 'required|max:50',    
         ];
     }
 
@@ -31,7 +31,6 @@ class NationalityRequest extends FormRequest
         return [
             'name.required' => "يرجى كتابة اسم الجنسية",
             'name.max' => "اسم الجنسية يجب ألا يزيد عن الحد 50 المسموح",
-            'name.unique' => "الجنسية مسجلة بالفعل",
 
         ];
     }

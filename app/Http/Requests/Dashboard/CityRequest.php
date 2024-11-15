@@ -22,7 +22,7 @@ class CityRequest extends FormRequest
     public function rules(): array
     {
             return [
-                'name' => 'required|max:50|unique:cities,name',
+                'name' => 'required|max:50',
                 'governorate_id' => 'required|exists:governorates,id',
             ];
         }
@@ -32,7 +32,6 @@ class CityRequest extends FormRequest
             return [
                 'name.required' => "يرجى كتابة اسم المدينه",
                 'name.max' => "اسم الكدينه يجب ألا يزيد عن 50 حرفًا",
-                'name.unique' => "المدينه مسجلة بالفعل",
 
                 
                 'governorate_id.required' => "يرجى اختيار المحافظة",

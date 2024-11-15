@@ -22,7 +22,7 @@ class SectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:sections,name',    
+            'name' => 'required|max:50',    
         ];
     }
 
@@ -31,7 +31,6 @@ class SectionRequest extends FormRequest
         return [
             'name.required' => "يرجى كتابة اسم القسم",
             'name.max' => "اسم القسم يجب ألا يزيد عن الحد 50 المسموح",
-            'name.unique' => "القسم مسجلة بالفعل",
 
         ];
     }

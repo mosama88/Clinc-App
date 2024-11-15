@@ -25,7 +25,7 @@ class BranchRequest extends FormRequest
                 'name' => 'required|max:50',
                 'address' => 'required|string|max:500',
                 'phone' => 'required|string|max:20',
-                'email' => 'required|email|max:50|unique:branches,email', // تعديل في حقل البريد الإلكتروني
+                'email' => 'required|email|max:50', // تعديل في حقل البريد الإلكتروني
                 'governorate_id' => 'required|exists:governorates,id',
                 'city_id' => 'required|exists:cities,id',
             ];
@@ -36,7 +36,7 @@ class BranchRequest extends FormRequest
             return [
                 'name.required' => "يرجى كتابة اسم الفرع",
                 'name.max' => "اسم الفرع يجب ألا يزيد عن 50 حرفًا",
-                
+
                 'address.required' => "يرجى كتابة العنوان",
                 'address.string' => "يجب أن يكون العنوان نصًا",
                 'address.max' => "العنوان يجب ألا يزيد عن 500 حرف",
@@ -48,7 +48,6 @@ class BranchRequest extends FormRequest
                 'email.required' => "يرجى كتابة البريد الإلكتروني",
                 'email.email' => "يرجى إدخال بريد إلكتروني صحيح",
                 'email.max' => "البريد الإلكتروني يجب ألا يزيد عن 50 حرفًا",
-                'email.unique' => "البريد الإلكتروني مسجل بالفعل",
         
                 'governorate_id.required' => "يرجى اختيار المحافظة",
                 'governorate_id.exists' => "المحافظة المحددة غير موجودة",

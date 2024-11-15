@@ -22,7 +22,7 @@ class QualificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:qualifications,name',    
+            'name' => 'required|max:50',    
         ];
     }
 
@@ -31,7 +31,6 @@ class QualificationRequest extends FormRequest
         return [
             'name.required' => "يرجى كتابة اسم المؤهل",
             'name.max' => "اسم المؤهل يجب ألا يزيد عن الحد 50 المسموح",
-            'name.unique' => "المؤهل مسجلة بالفعل",
 
         ];
     }

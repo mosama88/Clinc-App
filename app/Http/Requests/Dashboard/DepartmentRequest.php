@@ -22,7 +22,7 @@ class DepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:departments,name',    
+            'name' => 'required|max:50',    
             'phones' => 'required|max:20',    
             'notes' => 'nullable|max:100',    
         ];
@@ -33,7 +33,6 @@ class DepartmentRequest extends FormRequest
         return [
             'name.required' => "يرجى كتابة اسم الاداره",
             'name.max' => "اسم الاداره يجب ألا يزيد عن الحد 50 المسموح",
-            'name.unique' => "الدولةالاداره مسجلة بالفعل",
 
 
             'phones.required' => "يرجى كتابة تليفون الاداره",

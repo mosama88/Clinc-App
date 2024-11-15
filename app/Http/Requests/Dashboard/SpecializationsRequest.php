@@ -22,7 +22,7 @@ class SpecializationsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:specializations,name',    
+            'name' => 'required|max:50',    
         ];
     }
 
@@ -31,7 +31,6 @@ class SpecializationsRequest extends FormRequest
         return [
             'name.required' => "يرجى كتابة اسم التخصص",
             'name.max' => "اسم التخصص يجب ألا يزيد عن الحد 50 المسموح",
-            'name.unique' => "التخصص مسجلة بالفعل",
 
         ];
     }

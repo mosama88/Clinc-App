@@ -22,7 +22,7 @@ class CountryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:countries,name',    
+            'name' => 'required|max:50',    
         ];
     }
 
@@ -31,7 +31,6 @@ class CountryRequest extends FormRequest
         return [
             'name.required' => "يرجى كتابة اسم الدولة",
             'name.max' => "اسم الدولة يجب ألا يزيد عن الحد 50 المسموح",
-            'name.unique' => "الدولة مسجلة بالفعل",
 
         ];
     }

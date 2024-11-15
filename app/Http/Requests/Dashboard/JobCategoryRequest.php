@@ -22,7 +22,7 @@ class JobCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:job_categories,name',    
+            'name' => 'required|max:50',    
         ];
     }
 
@@ -31,7 +31,6 @@ class JobCategoryRequest extends FormRequest
         return [
             'name.required' => "يرجى كتابة اسم الدرجه الوظيفية",
             'name.max' => "اسم الدرجه الوظيفية يجب ألا يزيد عن الحد 50 المسموح",
-            'name.unique' => "الدرجه الوظيفية مسجلة بالفعل",
 
         ];
     }
