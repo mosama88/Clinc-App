@@ -94,7 +94,27 @@
 
 
 
+                <li class="nav-item has-treeview    {{ request()->is('admin/employees*') ? 'menu-open' : '' }} ">
+                    <a href="{{ url('/') }}" class="nav-link {{ request()->is('employees*') ? 'active' : '' }} ">
 
+
+                        <i class="fas fa-user-friends"></i>
+
+
+                        <p>
+                            قائمة شئون الموظفين
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.employees.index') }}" class="nav-link @yield('active-employees')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>شئون الموظفين</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
 
@@ -123,7 +143,7 @@
                 <li class="nav-item has-treeview    {{ request()->is('admin/patients*') ? 'menu-open' : '' }} ">
                     <a href="{{ url('/') }}" class="nav-link {{ request()->is('patients*') ? 'active' : '' }} ">
 
-                        <i class="fas fa-procedures"></i> 
+                        <i class="fas fa-procedures"></i>
 
                         <p>
                             قائمة المرضى
@@ -173,7 +193,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/' . ($page = 'layout-top-nav')) }}" class="nav-link @yield('active-layout-top-nav')">
+                            <a href="{{ url('/' . ($page = 'layout-top-nav')) }}"
+                                class="nav-link @yield('active-layout-top-nav')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Top Navigation</p>
                             </a>

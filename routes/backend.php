@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\CurrencyController;
+use App\Http\Controllers\Dashboard\EmployeeController;
 use App\Http\Controllers\Dashboard\AdminPanelController;
 use App\Http\Controllers\Dashboard\BloodTypesController;
 use App\Http\Controllers\Dashboard\NationalityController;
@@ -62,11 +63,16 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->name('dashboard.
     Route::resource('branches',  BranchController::class);
     Route::post('branches/getCities', [BranchController::class, 'getCities'])->name('branches.getCities');
 
+
+    // الموظفين
+    Route::resource('employees',  EmployeeController::class);
+
+        
     // الأطباء
     Route::resource('doctors',  DoctorController::class);
 
-       // المرضى
-       Route::resource('patients',  PatientController::class);
+    // المرضى
+    Route::resource('patients',  PatientController::class);
 
 });
 

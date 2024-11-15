@@ -34,7 +34,7 @@ class DoctorController extends Controller
         $other['sections'] = Section::get();
         $other['specializations'] = Specialization::get();
         return view('dashboard.doctors.create',compact('other'));
-        }
+    }
 
     /**
      * Store a newly created resource in storage.
