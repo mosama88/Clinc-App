@@ -62,7 +62,14 @@
                                     <td>{{ $i }}</td>
                                     <td>{{ $info['name'] }}</td>
                                     <td>{{ $info['phones'] }}</td>
-                                    <td>{{ $info['notes'] }}</td>
+                                    <td>
+                                        @if (empty($info->notes))
+                                            لا توجد ملاحظات
+                                        @else
+                                            {{ $info['notes'] }}
+                                        @endif
+
+                                    </td>
                                     <td>{{ $info->createdBy->name }}</td>
                                     <td>
                                         @if ($info->updated_by > 0)
