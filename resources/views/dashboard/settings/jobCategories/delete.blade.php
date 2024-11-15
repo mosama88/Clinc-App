@@ -14,7 +14,7 @@
                     @method('DELETE')
                     <div class="modal-body">
                         <input type="hidden" name="id" value="{{ $info->id }}">
-                        <h5>أسم الدرجه الوظيفية</h5>
+                        <h5>أسم الفئة الوظيفية</h5>
                         <h5 class="text-primary">{{ $info->name }}</h5>
                     </div>
                     <div class="modal-footer mx-auto">

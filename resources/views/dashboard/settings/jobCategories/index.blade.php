@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'الدرجه الوظيفية')
+@section('admin_title', 'فئات الوظائف')
 @section('css')
 @endsection
 @section('active-jobCategories', 'active')
-@section('page-header', 'جدول الدرجه الوظيفية')
-@section('page-header_desc', 'جدول الدرجه الوظيفية')
+@section('page-header', 'جدول فئات الوظائف')
+@section('page-header_desc', 'جدول فئات الوظائف')
 @section('page-header_link')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">لوحة التحكم</a></li>
 @endsection
@@ -31,12 +31,12 @@
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">جدول الدرجه الوظيفية</h3>
+                    <h3 class="card-title">جدول فئات الوظائف</h3>
                 </div>
                 <div class="card-header">
                     <button type="button" class="btn btn-md btn-primary btn-flat" data-toggle="modal"
                         data-target="#modal-default">
-                        <i class="fas fa-plus ml-2"></i> أضافة درجه وظيفية جديدة
+                        <i class="fas fa-plus ml-2"></i> أضافة فئة وظيفية جديدة
                     </button>
                     @include('dashboard.settings.jobCategories.create')
                 </div>
@@ -46,7 +46,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>الدرجه الوظيفية</th>
+                                <th>فئات الوظائف</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>

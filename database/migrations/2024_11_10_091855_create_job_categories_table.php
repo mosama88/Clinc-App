@@ -21,15 +21,242 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        
+
         DB::table('job_categories')->insert([
             [
-                'name' => 'محاسب',
+                'name' => 'طبيب عام',
                 'com_code' => 1,
                 'created_by' => 1,
                 'updated_by' => 1,
             ],
         ]);
 
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'طبيب استشاري',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي أمراض القلب',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي الجراحة العامة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي الأطفال',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي الأشعة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'تمريض',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'موظف استقبال',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'صيدلي مسؤول',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي تغذية',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'فني تعقيم',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي نفسية',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مسؤول سجلات طبية',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مسؤول المشتريات',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مسؤول العلاقات العامة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مهندس كهرباء',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مهندس صيانة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'سائق إسعاف',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'موظف أمن',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'عامل نظافة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مسؤول خدمات التغذية',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'رئيس قسم العمليات',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مدير التخطيط والجودة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'مدير مكافحة العدوى',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي التخدير',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+        DB::table('job_categories')->insert([
+            [
+                'name' => 'أخصائي الطوارئ',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
 
         DB::table('job_categories')->insert([
             [
@@ -73,7 +300,7 @@ return new class extends Migration
 
         DB::table('job_categories')->insert([
             [
-                'name' => 'المشتريات',
+                'name' => 'محاسب',
                 'com_code' => 1,
                 'created_by' => 1,
                 'updated_by' => 1,

@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"> تعديل الدرجه الوظيفية </h4>
+                <h4 class="modal-title"> تعديل الفئة الوظيفية </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,9 +13,9 @@
                     @method('PUT')
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">أسم الدرجه الوظيفية</label>
+                            <label for="">أسم الفئة الوظيفية</label>
                             <input class="form-control" name="name" value="{{ $info['name'] }}" type="text"
-                                placeholder="أكتب أسم الدرجه الوظيفية">
+                                placeholder="أكتب أسم الفئة الوظيفية">
                             @error('name')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
