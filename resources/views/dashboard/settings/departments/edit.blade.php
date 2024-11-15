@@ -23,6 +23,28 @@
                             @enderror
                         </div>
 
+
+                        <div class="form-group">
+                            <label for="">تليفون الأدارة</label>
+                            <input class="form-control" name="phones" value="{{ $info['phones'] }}" type="text"
+                                placeholder="أكتب تليفون الأدارة">
+                            @error('phones')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">ملاحظات عن الأدارة</label>
+                            <input class="form-control" value="{{ $info['notes'] }}" name="notes" type="text"
+                                placeholder="أكتب ملاحظات عن الأدارة">
+                            @error('notes')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
                     <!-- /.card-body -->
 

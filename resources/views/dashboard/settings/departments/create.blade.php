@@ -13,9 +13,29 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">أسم الأدارة</label>
-                            <input class="form-control" name="name" type="text"
-                                placeholder="أكتب أسم الأدارة">
+                            <input class="form-control" name="name" type="text" placeholder="أكتب أسم الأدارة">
                             @error('name')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">تليفون الأدارة</label>
+                            <input class="form-control" name="phones" type="text" placeholder="أكتب تليفون الأدارة">
+                            @error('phones')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">ملاحظات عن الأدارة</label>
+                            <input class="form-control" name="notes" type="text"
+                                placeholder="أكتب ملاحظات عن الأدارة">
+                            @error('notes')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>
