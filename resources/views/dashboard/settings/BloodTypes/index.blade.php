@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'الجنسيات')
+@section('admin_title', 'فصيلة الدم')
 @section('css')
 @endsection
-@section('active-nationalities', 'active')
-@section('page-header', 'جدول الجنسيات')
-@section('page-header_desc', 'جدول الجنسيات')
+@section('active-BloodTypes', 'active')
+@section('page-header', 'جدول فصيلة الدم')
+@section('page-header_desc', 'جدول فصيلة الدم')
 @section('page-header_link')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">لوحة التحكم</a></li>
 @endsection
@@ -31,14 +31,14 @@
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">جدول الجنسيات</h3>
+                    <h3 class="card-title">جدول فصيلة الدم</h3>
                 </div>
                 <div class="card-header">
                     <button type="button" class="btn btn-md btn-primary btn-flat" data-toggle="modal"
                         data-target="#modal-default">
-                        <i class="fas fa-plus ml-2"></i> أضافة جنسية جديده
+                        <i class="fas fa-plus ml-2"></i> أضافة فصيلة جديده
                     </button>
-                    @include('dashboard.nationalities.create')
+                    @include('dashboard.settings.BloodTypes.create')
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
@@ -46,7 +46,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>الجنسيات</th>
+                                <th>فصيلة الدم</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>
@@ -95,8 +95,8 @@
 
                                             </div>
                                         </div>
-                                        @include('dashboard.nationalities.delete')
-                                        @include('dashboard.nationalities.edit')
+                                        @include('dashboard.settings.BloodTypes.delete')
+                                        @include('dashboard.settings.BloodTypes.edit')
                                     </td>
 
                                 </tr>

@@ -17,7 +17,7 @@ class CityController extends Controller
         $com_code = auth()->user()->com_code;
         $other['governorates'] = Governorate::get();
         $data = City::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
-        return view('dashboard.cities.index',compact('data','other'));
+        return view('dashboard.settings.cities.index',compact('data','other'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CityController extends Controller
     {
         $other['governorates'] = Governorate::get();
         $other['cities'] = City::get();
-        return view('dashboard.cities.create',compact('other'));
+        return view('dashboard.settings.cities.create',compact('other'));
         }
 
     /**
@@ -69,7 +69,7 @@ class CityController extends Controller
         $info = City::findOrFail($id);
         $other['governorates'] = Governorate::get();
         $other['cities'] = City::get();
-       return view('dashboard.cities.edit',compact('info','other'));
+       return view('dashboard.settings.cities.edit',compact('info','other'));
 
     }
 

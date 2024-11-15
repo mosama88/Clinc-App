@@ -18,7 +18,7 @@ class NationalityController extends Controller
     {
         $com_code = auth()->user()->com_code;
         $data = Nationality::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
-        return view('dashboard.nationalities.index',compact('data'));
+        return view('dashboard.settings.nationalities.index',compact('data'));
     }
 
     /**
@@ -26,7 +26,7 @@ class NationalityController extends Controller
      */
     public function create()
     {
-        return view('dashboard.nationalities.create');
+        return view('dashboard.settings.nationalities.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class NationalityController extends Controller
     public function edit(string $id)
     {
         $info = Nationality::findOrFail($id);
-        return view('dashboard.nationalities.edit',compact('info'));
+        return view('dashboard.settings.nationalities.edit',compact('info'));
 
     }
 

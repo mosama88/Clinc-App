@@ -17,7 +17,7 @@ class BloodTypesController extends Controller
     {
         $com_code = auth()->user()->com_code;
         $data = BloodTypes::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
-        return view('dashboard.BloodTypes.index',compact('data'));
+        return view('dashboard.settings.BloodTypes.index',compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class BloodTypesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.BloodTypes.create');
+        return view('dashboard.settings.BloodTypes.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class BloodTypesController extends Controller
     public function edit(string $id)
     {
         $info = BloodTypes::findOrFail($id);
-        return view('dashboard.BloodTypes.edit',compact('info'));
+        return view('dashboard.settings.BloodTypes.edit',compact('info'));
 
     }
 

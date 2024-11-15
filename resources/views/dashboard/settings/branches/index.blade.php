@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'المدن')
+@section('admin_title', 'الفروع')
 @section('css')
 @endsection
-@section('active-cities', 'active')
-@section('page-header', 'جدول المدن')
-@section('page-header_desc', 'جدول المدن')
+@section('active-branches', 'active')
+@section('page-header', 'جدول الفروع')
+@section('page-header_desc', 'جدول الفروع')
 @section('page-header_link')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">لوحة التحكم</a></li>
 @endsection
@@ -18,7 +18,6 @@
                     {{ session('success') }}
                 </div>
             @endif
-
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
@@ -29,14 +28,14 @@
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">جدول المدن</h3>
+                    <h3 class="card-title">جدول الفروع</h3>
                 </div>
                 <div class="card-header">
                     <button type="button" class="btn btn-md btn-primary btn-flat" data-toggle="modal"
                         data-target="#modal-default">
-                        <i class="fas fa-plus ml-2"></i> أضافة مدينة جديدة
+                        <i class="fas fa-plus ml-2"></i> أضافة فرع جديد
                     </button>
-                    @include('dashboard.cities.create')
+                    @include('dashboard.settings.branches.create')
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
@@ -44,8 +43,13 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>أسم المدينه</th>
+                                <th>أسم الفرع</th>
+                                <th> عنوان</th>
+                                <th> تليفون</th>
+                                <th>البريد الالكترونى</th>
                                 <th>المحافظة</th>
+                                <th>المدينة</th>
+                                <th>الحالة</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>
@@ -58,7 +62,18 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $info['name'] }}</td>
+                                    <td>{{ Str::limit($info['address'], 20) }}</td>
+                                    <td>{{ $info['phone'] }}</td>
+                                    <td>{{ $info['email'] }}</td>
                                     <td>{{ $info->governorate->name }}</td>
+                                    <td>{{ $info->city->name }}</td>
+                                    <td>
+                                        @if ($info->status == 1)
+                                            مفعل
+                                        @else
+                                            غير مفعل
+                                        @endif
+                                    </td>
                                     <td>{{ $info->createdBy->name }}</td>
                                     <td>
                                         @if ($info->updated_by > 0)
@@ -95,8 +110,8 @@
 
                                             </div>
                                         </div>
-                                        @include('dashboard.cities.delete')
-                                        @include('dashboard.cities.edit')
+                                        @include('dashboard.settings.branches.delete')
+                                        @include('dashboard.settings.branches.edit')
                                     </td>
 
                                 </tr>
@@ -143,6 +158,36 @@
 
         });
     </script>
+
+    <script>
+        // Get Cities When Governorate Changes
+        $(document).on('change', '#governorate_id', function() {
+            const governorate_id = $(this).val();
+            if (governorate_id) {
+                getCities(governorate_id);
+            }
+        });
+
+        function getCities(governorate_id) {
+            $.ajax({
+                url: '{{ route('dashboard.branches.getCities') }}',
+                type: 'POST',
+                dataType: 'html',
+                cache: false,
+                data: {
+                    "_token": '{{ csrf_token() }}',
+                    governorate_id: governorate_id
+                },
+                success: function(data) {
+                    $("#city_Div").html(data);
+                },
+                error: function() {
+                    alert("عفوا لقد حدث خطأ ");
+                }
+            });
+        }
+    </script>
+
 
 
 @endsection

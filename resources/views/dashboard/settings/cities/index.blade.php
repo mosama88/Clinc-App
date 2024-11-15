@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'فصيلة الدم')
+@section('admin_title', 'المدن')
 @section('css')
 @endsection
-@section('active-BloodTypes', 'active')
-@section('page-header', 'جدول فصيلة الدم')
-@section('page-header_desc', 'جدول فصيلة الدم')
+@section('active-cities', 'active')
+@section('page-header', 'جدول المدن')
+@section('page-header_desc', 'جدول المدن')
 @section('page-header_link')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">لوحة التحكم</a></li>
 @endsection
@@ -19,7 +19,6 @@
                 </div>
             @endif
 
-
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
@@ -27,26 +26,26 @@
                     </div>
                 @endforeach
             @endif
-
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">جدول فصيلة الدم</h3>
+                    <h3 class="card-title">جدول المدن</h3>
                 </div>
                 <div class="card-header">
                     <button type="button" class="btn btn-md btn-primary btn-flat" data-toggle="modal"
                         data-target="#modal-default">
-                        <i class="fas fa-plus ml-2"></i> أضافة فصيلة جديده
+                        <i class="fas fa-plus ml-2"></i> أضافة مدينة جديدة
                     </button>
-                    @include('dashboard.BloodTypes.create')
+                    @include('dashboard.settings.cities.create')
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body p-0">
+                <div class="card-body table-responsive p-0">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>فصيلة الدم</th>
+                                <th>أسم المدينه</th>
+                                <th>المحافظة</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>
@@ -59,6 +58,7 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $info['name'] }}</td>
+                                    <td>{{ $info->governorate->name }}</td>
                                     <td>{{ $info->createdBy->name }}</td>
                                     <td>
                                         @if ($info->updated_by > 0)
@@ -95,8 +95,8 @@
 
                                             </div>
                                         </div>
-                                        @include('dashboard.BloodTypes.delete')
-                                        @include('dashboard.BloodTypes.edit')
+                                        @include('dashboard.settings.cities.delete')
+                                        @include('dashboard.settings.cities.edit')
                                     </td>
 
                                 </tr>

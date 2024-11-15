@@ -20,7 +20,7 @@ class SpecializationController extends Controller
         $com_code = auth()->user()->com_code;
         $other['sections'] = Section::get();
         $data = Specialization::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
-        return view('dashboard.specializations.index',compact('data','other'));
+        return view('dashboard.settings.specializations.index',compact('data','other'));
     }
 
     /**
@@ -29,7 +29,7 @@ class SpecializationController extends Controller
     public function create()
     {
         $other['sections'] = Section::get();
-        return view('dashboard.specializations.create',compact('other'));
+        return view('dashboard.settings.specializations.create',compact('other'));
     }
 
     /**
@@ -70,7 +70,7 @@ class SpecializationController extends Controller
     {
         $info = Specialization::findOrFail($id);
         $other['sections'] = Section::get();
-        return view('dashboard.specializations.edit',compact('info','other'));
+        return view('dashboard.settings.specializations.edit',compact('info','other'));
 
     }
 

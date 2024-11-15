@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'التخصصات')
+@section('admin_title', 'الأقسام')
 @section('css')
 @endsection
-@section('active-specializations', 'active')
-@section('page-header', 'جدول التخصصات')
-@section('page-header_desc', 'جدول التخصصات')
+@section('active-sections', 'active')
+@section('page-header', 'جدول الأقسام')
+@section('page-header_desc', 'جدول الأقسام')
 @section('page-header_link')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">لوحة التحكم</a></li>
 @endsection
@@ -31,14 +31,14 @@
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">جدول التخصصات</h3>
+                    <h3 class="card-title">جدول الأقسام</h3>
                 </div>
                 <div class="card-header">
                     <button type="button" class="btn btn-md btn-primary btn-flat" data-toggle="modal"
                         data-target="#modal-default">
-                        <i class="fas fa-plus ml-2"></i> أضافة تخصص جديد
+                        <i class="fas fa-plus ml-2"></i> أضافة قسم جديد
                     </button>
-                    @include('dashboard.specializations.create')
+                    @include('dashboard.settings.sections.create')
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
@@ -46,8 +46,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>التخصصات</th>
-                                <th>القسم</th>
+                                <th>الأقسام</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>
@@ -60,7 +59,6 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $info['name'] }}</td>
-                                    <td>{{ $info->section->name }}</td>
                                     <td>{{ $info->createdBy->name }}</td>
                                     <td>
                                         @if ($info->updated_by > 0)
@@ -97,8 +95,8 @@
 
                                             </div>
                                         </div>
-                                        @include('dashboard.specializations.delete')
-                                        @include('dashboard.specializations.edit')
+                                        @include('dashboard.settings.sections.delete')
+                                        @include('dashboard.settings.sections.edit')
                                     </td>
 
                                 </tr>
@@ -112,6 +110,7 @@
                 </div>
                 <!-- /.card-body -->
             </div>
+
 
         </div>
 

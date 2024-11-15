@@ -18,7 +18,7 @@ class SectionController extends Controller
     {
         $com_code = auth()->user()->com_code;
         $data = Section::select("*")->where('com_code',$com_code)->orderBy('id','DESC')->paginate(10);
-        return view('dashboard.sections.index',compact('data'));
+        return view('dashboard.settings.sections.index',compact('data'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-        return view('dashboard.sections.create');
+        return view('dashboard.settings.sections.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class SectionController extends Controller
     public function edit(string $id)
     {
         $info = Section::findOrFail($id);
-        return view('dashboard.sections.edit',compact('info'));
+        return view('dashboard.settings.sections.edit',compact('info'));
 
     }
 

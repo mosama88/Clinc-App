@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
-@section('admin_title', 'الفروع')
+@section('admin_title', 'التخصصات')
 @section('css')
 @endsection
-@section('active-branches', 'active')
-@section('page-header', 'جدول الفروع')
-@section('page-header_desc', 'جدول الفروع')
+@section('active-specializations', 'active')
+@section('page-header', 'جدول التخصصات')
+@section('page-header_desc', 'جدول التخصصات')
 @section('page-header_link')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">لوحة التحكم</a></li>
 @endsection
@@ -18,6 +18,8 @@
                     {{ session('success') }}
                 </div>
             @endif
+
+
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
@@ -25,31 +27,27 @@
                     </div>
                 @endforeach
             @endif
+
             {{-- Content --}}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">جدول الفروع</h3>
+                    <h3 class="card-title">جدول التخصصات</h3>
                 </div>
                 <div class="card-header">
                     <button type="button" class="btn btn-md btn-primary btn-flat" data-toggle="modal"
                         data-target="#modal-default">
-                        <i class="fas fa-plus ml-2"></i> أضافة فرع جديد
+                        <i class="fas fa-plus ml-2"></i> أضافة تخصص جديد
                     </button>
-                    @include('dashboard.branches.create')
+                    @include('dashboard.settings.specializations.create')
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
+                <div class="card-body p-0">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>أسم الفرع</th>
-                                <th> عنوان</th>
-                                <th> تليفون</th>
-                                <th>البريد الالكترونى</th>
-                                <th>المحافظة</th>
-                                <th>المدينة</th>
-                                <th>الحالة</th>
+                                <th>التخصصات</th>
+                                <th>القسم</th>
                                 <th>أضافة بواسطة</th>
                                 <th>تعديل بواسطة</th>
                                 <th>العمليات</th>
@@ -62,18 +60,7 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $info['name'] }}</td>
-                                    <td>{{ Str::limit($info['address'], 20) }}</td>
-                                    <td>{{ $info['phone'] }}</td>
-                                    <td>{{ $info['email'] }}</td>
-                                    <td>{{ $info->governorate->name }}</td>
-                                    <td>{{ $info->city->name }}</td>
-                                    <td>
-                                        @if ($info->status == 1)
-                                            مفعل
-                                        @else
-                                            غير مفعل
-                                        @endif
-                                    </td>
+                                    <td>{{ $info->section->name }}</td>
                                     <td>{{ $info->createdBy->name }}</td>
                                     <td>
                                         @if ($info->updated_by > 0)
@@ -110,8 +97,8 @@
 
                                             </div>
                                         </div>
-                                        @include('dashboard.branches.delete')
-                                        @include('dashboard.branches.edit')
+                                        @include('dashboard.settings.specializations.delete')
+                                        @include('dashboard.settings.specializations.edit')
                                     </td>
 
                                 </tr>
@@ -158,36 +145,6 @@
 
         });
     </script>
-
-    <script>
-        // Get Cities When Governorate Changes
-        $(document).on('change', '#governorate_id', function() {
-            const governorate_id = $(this).val();
-            if (governorate_id) {
-                getCities(governorate_id);
-            }
-        });
-
-        function getCities(governorate_id) {
-            $.ajax({
-                url: '{{ route('dashboard.branches.getCities') }}',
-                type: 'POST',
-                dataType: 'html',
-                cache: false,
-                data: {
-                    "_token": '{{ csrf_token() }}',
-                    governorate_id: governorate_id
-                },
-                success: function(data) {
-                    $("#city_Div").html(data);
-                },
-                error: function() {
-                    alert("عفوا لقد حدث خطأ ");
-                }
-            });
-        }
-    </script>
-
 
 
 @endsection
