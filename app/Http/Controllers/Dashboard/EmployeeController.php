@@ -44,7 +44,7 @@ class EmployeeController extends Controller
         $other['qualifications'] = Qualification::get();
         $other['shift_types'] = ShiftType::get();
         $other['cities'] = City::get();
-        $other['Job_grades'] = JobGrade::get();
+        $other['job_grades'] = JobGrade::get();
         return view('dashboard.employees.create',compact('other'));
     }
 

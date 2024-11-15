@@ -1,6 +1,9 @@
 @extends('dashboard.layouts.master')
 @section('admin_title', 'أضافة موظف')
 @section('css')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
     <style>
         .font-w {
@@ -168,7 +171,8 @@
                                     {{-- الجنسية --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">الجنسية</label>
-                                        <select name="nationality_id" id="nationality_id" class="form-control font-w">
+                                        <select name="nationality_id" id="nationality_id"
+                                            class="form-control select2 font-w">
                                             <option value="" disabled selected>-- برجاء تحديد الجنسية --</option>
                                             @if (!empty($other['nationalities']) && isset($other['nationalities']))
                                                 @foreach ($other['nationalities'] as $nationality)
@@ -190,7 +194,8 @@
                                     {{-- المحافظة --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">المحافظة</label>
-                                        <select name="governorate_id" id="governorate_id" class="form-control font-w">
+                                        <select name="governorate_id" id="governorate_id"
+                                            class="form-control select2 font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المحافظة --</option>
                                             @if (!empty($other['governorates']) && isset($other['governorates']))
                                                 @foreach ($other['governorates'] as $governorate)
@@ -212,7 +217,7 @@
                                     {{-- المدينه --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">المدينه</label>
-                                        <select name="city_id" id="city_id" class="form-control font-w">
+                                        <select name="city_id" id="city_id" class="form-control select2 font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المدينه --</option>
                                             @if (!empty($other['cities']) && isset($other['cities']))
                                                 @foreach ($other['cities'] as $city)
@@ -348,7 +353,7 @@
                                     <div class="form-group col-6">
                                         <label for="exampleInput">المؤهل</label>
                                         <select name="qualification_id" id="qualification_id"
-                                            class="form-control font-w">
+                                            class="form-control select2 font-w">
                                             <option value="" disabled selected>-- برجاء تحديد المؤهل --</option>
                                             @if (!empty($other['qualifications']) && isset($other['qualifications']))
                                                 @foreach ($other['qualifications'] as $qualification)
@@ -622,7 +627,8 @@
                                     {{-- الأدارة --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">الأدارة</label>
-                                        <select name="department_id" id="department_id" class="form-control font-w">
+                                        <select name="department_id" id="department_id"
+                                            class="form-control select2 font-w">
                                             <option value="" disabled selected>-- برجاء تحديد الأدارة --</option>
                                             @if (!empty($other['departments']) && isset($other['departments']))
                                                 @foreach ($other['departments'] as $department)
@@ -645,12 +651,13 @@
                                     {{-- الدرجه الوظيفية --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">الدرجه الوظيفية</label>
-                                        <select name="job_grade_id" id="job_grade_id" class="form-control font-w">
+                                        <select name="job_grade_id" id="job_grade_id" class="form-control select2 font-w"
+                                            style="width: 100%;">
                                             <option value="" disabled selected>-- برجاء تحديد الدرجه الوظيفية --
                                             </option>
                                             @if (!empty($other['job_grades']) && isset($other['job_grades']))
                                                 @foreach ($other['job_grades'] as $jobGrade)
-                                                    <option @if (old('job_grade_id', $department['job_grade_id'] == $jobGrade->id)) selected @endif
+                                                    <option @if (old('job_grade_id', $jobGrade['job_grade_id'] == $jobGrade->id)) selected @endif
                                                         value="{{ $jobGrade->id }}">{{ $jobGrade->name }}
                                                     </option>
                                                 @endforeach
@@ -669,7 +676,8 @@
                                     {{-- الفئات الوظيفية --}}
                                     <div class="form-group col-6">
                                         <label for="exampleInput">الفئات الوظيفية</label>
-                                        <select name="job_category_id" id="job_category_id" class="form-control font-w">
+                                        <select name="job_category_id" id="job_category_id"
+                                            class="form-control select2 font-w">
                                             <option value="" disabled selected>-- برجاء تحديد الفئات الوظيفية --
                                             </option>
                                             @if (!empty($other['job_categories']) && isset($other['job_categories']))
@@ -984,7 +992,170 @@
 
                             <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel"
                                 aria-labelledby="custom-content-below-messages-tab">
-                                tab-5
+
+
+
+
+
+
+
+
+
+                                <div class="row my-4"> {{-- Start Seconed Row of From --}}
+
+                                    {{-- هل يمتلك رخصه قياده --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">هل يمتلك رخصه قياده </label>
+                                        <select name="driving_license" id="driving_license" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('driving_license') == '1') selected @endif value="1">
+                                                نعم
+                                            </option>
+                                            <option @if (old('driving_license') == '0') selected @endif value="0">
+                                                لا
+                                            </option>
+                                        </select>
+                                        @error('driving_license')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+
+
+                                    {{-- نوع رخصه القيادة --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">نوع رخصه القيادة </label>
+                                        <select name="driving_license_type" id="driving_license_type"
+                                            class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('driving_license_type') == 'special') selected @endif value="special">
+                                                رخصه خاصة
+                                            </option>
+                                            <option @if (old('driving_license_type') == 'first') selected @endif value="first">
+                                                رخصه درجه أولى
+                                            </option>
+                                            <option @if (old('driving_license_type') == 'second') selected @endif value="second">
+                                                رخصه درجه ثانية
+                                            </option>
+                                            <option @if (old('driving_license_type') == 'third') selected @endif value="third">
+                                                رخصه درجه ثالثه
+                                            </option>
+                                            <option @if (old('driving_license_type') == 'fourth') selected @endif value="fourth">
+                                                رخصه درجه رابعه
+                                            </option>
+                                            <option @if (old('driving_license_type') == 'pro') selected @endif value="pro">
+                                                رخصة مهنية
+                                            </option>
+                                            <option @if (old('driving_license_type') == 'motorcycle') selected @endif value="motorcycle">
+                                                دراجه نارية
+                                            </option>
+                                        </select>
+                                        @error('driving_license_type')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- رقم رخصة القياده --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">رقم رخصة القياده</label>
+                                        <input type="text" class="form-control font-w" name="driving_License_id"
+                                            value="{{ old('driving_License_id') }}"
+                                            oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                            id="driving_License_id" placeholder="أدخل رقم رخصة القياده">
+                                        @error('driving_License_id')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+
+                                    {{-- هل له اقارب بالعمل --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInput">هل له اقارب بالعمل </label>
+                                        <select name="has_relatives" id="has_relatives" class="form-control font-w">
+                                            <option value="" disabled selected>-- برجاء التحديد --
+                                            </option>
+                                            <option @if (old('has_relatives') == '1') selected @endif value="1">
+                                                نعم
+                                            </option>
+                                            <option @if (old('has_relatives') == '0') selected @endif value="0">
+                                                لا
+                                            </option>
+                                        </select>
+                                        @error('has_relatives')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- تفاصيل الاقارب بالعمل --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">تفاصيل الاقارب بالعمل</label>
+                                        <input type="text" class="form-control font-w" name="relatives_details"
+                                            value="{{ old('relatives_details') }}" id="relatives_details"
+                                            placeholder="أدخل تفاصيل الاقارب بالعمل">
+                                        @error('relatives_details')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+
+                                    {{-- تفاصيل شخص يمكن الرجوع اليه للوصول للموظف --}}
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputName">تفاصيل شخص يمكن الرجوع اليه للوصول للموظف </label>
+                                        <input type="text" class="form-control font-w" name="urgent_person_details"
+                                            value="{{ old('urgent_person_details') }}" id="urgent_person_details"
+                                            placeholder="أدخل تفاصيل شخص يمكن الرجوع اليه للوصول للموظف">
+                                        @error('urgent_person_details')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+
+                                    {{-- ملاحظات --}}
+                                    <div class="form-group col-12">
+                                        <label for="exampleInputName">ملاحظات </label>
+                                        <textarea class="form-control font-w" rows="3" name="notes" placeholder="أدخل ملاحظات">{{ old('notes') }}</textarea>
+                                        @error('notes')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- صورة الموظف --}}
+                                    <div class="form-group col-12">
+                                        <label for="exampleInput">صورة الموظف</label>
+                                        <input class="form-control" name="photo" id="photo" type="file"
+                                            id="formFile">
+                                        @error('photo')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                </div>{{-- End Seconed Row of From --}}
+
+
+
                             </div>
                             <div class="card-footer">
                                 <button type="submit" style="float: left" class="btn btn-primary">تأكيد البيانات
@@ -1029,4 +1200,14 @@
 
 @endsection
 @section('scripts')
+    <!-- Select2 -->
+    <script src="{{ asset('dashboard') }}/assets/plugins/select2/js/select2.full.min.js"></script>
+    <script>
+        $(function() {
+            $('.select2').select2({
+                theme: 'bootstrap4'
+            });
+        });
+    </script>
+
 @endsection
