@@ -21,9 +21,83 @@ return new class extends Migration
             $table->timestamps();
         });
 
+
         DB::table('qualifications')->insert([
             [
-                'name' => 'ليسانس حقوق',
+                'name' => 'بكالوريوس الطب والجراحة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('qualifications')->insert([
+            [
+                'name' => 'بكالوريوس الهندسة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('qualifications')->insert([
+            [
+                'name' => 'بكالوريوس الآداب',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('qualifications')->insert([
+            [
+                'name' => 'دبلوم دراسات عليا',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('qualifications')->insert([
+            [
+                'name' => 'دكتوراه في الفلسفة',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('qualifications')->insert([
+            [
+                'name' => 'دكتوراه في العلوم',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('qualifications')->insert([
+            [
+                'name' => 'كلية تمريض',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        DB::table('qualifications')->insert([
+            [
+                'name' => 'معهد تمريض',
+                'com_code' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ],
+        ]);
+
+        
+        DB::table('qualifications')->insert([
+            [
+                'name' => ' ليسانس حقوق',
                 'com_code' => 1,
                 'created_by' => 1,
                 'updated_by' => 1,

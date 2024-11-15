@@ -15,17 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('employee_code')->nullable()->comment('كود الموظف التلقائي لايتغير');
             $table->string("name", 300)->unique();
-            $table->tinyInteger('gender')->comment('1:Male,2:Female');
-            $table->foreignId("branch_id")->comment("الفرع التابع له الموظف ")->references("id")->on("branches")->onUpdate("cascade");
-            $table->foreignId("qualification_id")->nullable()->comment("المؤهل التعليمي")->references("id")->on("qualifications")->onUpdate("cascade");
-            $table->string("qualification_year", 10)->nullable()->comment("سنة التخرج");
-            $table->string("major", 225)->nullable()->comment("تخصص التخرج");
-            $table->enum("graduation_estimate", ['fair', 'good', 'very_good', 'excellent'])->nullable()->comment("تقدير التخرج ")->default('fair');
-            $table->date("brith_date")->nullable()->comment("تاريخ ميلاد الموظف");
-            $table->string("national_id", 50)->unique()->nullable()->comment("رقم البطاقة الشخصية - او رقم الهوية");
-            $table->foreignId("blood_types_id")->nullable()->comment("فصيلة الدم")->references("id")->on("blood_types")->onUpdate("cascade");
-            $table->enum('religion', ['muslim', 'christian'])->nullable()->comment('حقل الديانة')->default('muslim');
             $table->string("email", 100)->unique()->nullable()->comment(" ايميل  الموظف");
+            $table->date("brith_date")->nullable()->comment("تاريخ ميلاد الموظف");
+            $table->tinyInteger('gender')->comment('1:Male,2:Female');
+            $table->enum('religion', ['muslim', 'christian'])->nullable()->comment('حقل الديانة')->default('muslim');
             $table->foreignId("nationality_id")->nullable()->references("id")->on("nationalities")->onUpdate("cascade");
             $table->foreignId("governorate_id")->nullable()->comment("محافظة الموظف")->references("id")->on("governorates")->onUpdate("cascade");
             $table->foreignId("city_id")->nullable()->comment("مدينة الموظف")->references("id")->on("cities")->onUpdate("cascade");
@@ -34,6 +27,15 @@ return new class extends Migration
             $table->string("mobile", 50)->nullable()->comment("رقم هاتف المحمول");
             $table->enum("social_status", ["divorced", "married", "single", "widowed"])->nullable()->default("single")->comment("الحالة الاجتماعية");
             $table->integer('children_number')->nullable()->default(0);
+            $table->foreignId("blood_types_id")->nullable()->comment("فصيلة الدم")->references("id")->on("blood_types")->onUpdate("cascade");
+            $table->foreignId("branch_id")->comment("الفرع التابع له الموظف ")->references("id")->on("branches")->onUpdate("cascade");
+            $table->foreignId("qualification_id")->nullable()->comment("المؤهل التعليمي")->references("id")->on("qualifications")->onUpdate("cascade");
+            $table->string("qualification_year", 10)->nullable()->comment("سنة التخرج");
+            $table->string("major", 225)->nullable()->comment("تخصص التخرج");
+            $table->enum("graduation_estimate", ['fair', 'good', 'very_good', 'excellent'])->nullable()->comment("تقدير التخرج ")->default('fair');
+            $table->string("university", 225)->nullable()->comment("جهه التخرج");
+
+            $table->string("national_id", 50)->unique()->nullable()->comment("رقم البطاقة الشخصية - او رقم الهوية");
             $table->enum("military", ["exemption", "exemption_temporary", "complete"])->nullable()->comment("الحالة العسكرية")->default('exemption_temporary');
             $table->date("military_date_from")->nullable()->comment("تاريخ بداية الخدمة العسكرية");
             $table->date("military_date_to")->nullable()->comment("تاريخ نهاية الخدمة العسكرية");

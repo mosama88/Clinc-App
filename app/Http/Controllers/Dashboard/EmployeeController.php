@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\City;
+use App\Models\Branch;
 use App\Models\Section;
 use App\Models\Employee;
+use App\Models\ShiftType;
+use App\Models\BloodTypes;
+use App\Models\Department;
+use App\Models\Governorate;
+use App\Models\JobCategory;
 use App\Models\Nationality;
 use Illuminate\Http\Request;
+use App\Models\Qualification;
 use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
@@ -27,6 +35,14 @@ class EmployeeController extends Controller
     {
         $other['nationalities'] = Nationality::get();
         $other['sections'] = Section::get();
+        $other['blood_types'] = BloodTypes::get();
+        $other['branches'] = Branch::get();
+        $other['departments'] = Department::get();
+        $other['governorates'] = Governorate::get();
+        $other['job_categories'] = JobCategory::get();
+        $other['qualifications'] = Qualification::get();
+        $other['shift_types'] = ShiftType::get();
+        $other['cities'] = City::get();
         return view('dashboard.employees.create',compact('other'));
     }
 
